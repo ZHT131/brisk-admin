@@ -64,7 +64,6 @@
                   ><a href="/">活动管理</a></el-breadcrumb-item
                 >
                 <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-                <el-breadcrumb-item>活动详情</el-breadcrumb-item>
               </el-breadcrumb>
             </div>
             <div class="header-right">
@@ -107,11 +106,20 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   data() {
     return {
       isCollapse: false,
     };
+  },
+  computed: {
+    ...mapState({
+      device: (state) => state.app.device,
+    }),
+  },
+  created() {
+    console.log(this.device);
   },
   methods: {
     outSide() {
