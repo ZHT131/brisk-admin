@@ -12,8 +12,6 @@
         <el-scrollbar>
           <el-menu
             default-active="1-4-1"
-            @open="handleOpen"
-            @close="handleClose"
             :collapse="sidebar"
           >
             <el-submenu index="1">
