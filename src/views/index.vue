@@ -2,11 +2,11 @@
   <div class="ym-body">
     <el-container style="height: 100%">
       <el-aside
-        :width="isCollapse ? 'auto' : '200px'"
+        :width="sidebar ? 'auto' : '200px'"
         style="height: 100%; overflow: hidden"
       >
         <div class="logo">
-          <span v-if="!isCollapse">ymadmin</span>
+          <span v-if="!sidebar">ymadmin</span>
           <span v-else>YM</span>
         </div>
         <el-scrollbar>
@@ -14,7 +14,7 @@
             default-active="1-4-1"
             @open="handleOpen"
             @close="handleClose"
-            :collapse="isCollapse"
+            :collapse="sidebar"
           >
             <el-submenu index="1">
               <template #title>
@@ -56,9 +56,9 @@
               <div class="header-tool" @click="outSide">
                 <i class="el-icon-s-fold" style="font-size: 22px"></i>
               </div>
-             <div class="header-tab">
-              <!-- 准备用来放置tab标签页 -->
-             </div>
+              <div class="header-tab">
+                <!-- 准备用来放置tab标签页 -->
+              </div>
             </div>
             <div class="header-right">
               <el-dropdown>
@@ -100,16 +100,17 @@
 </template>
 
 <script>
+import ResizeMixin from "../layout/mixin/ResizeHandler";
 import { mapState } from "vuex";
 export default {
+  mixins: [ResizeMixin],
   data() {
-    return {
-      isCollapse: false,
-    };
+    return {};
   },
   computed: {
     ...mapState({
       device: (state) => state.app.device,
+      sidebar: (state) => state.app.sidebar,
     }),
   },
   created() {
@@ -117,7 +118,7 @@ export default {
   },
   methods: {
     outSide() {
-      this.isCollapse = !this.isCollapse;
+      this.$store.dispatch("app/toggleSidebar", !this.sidebar);
     },
   },
 };
