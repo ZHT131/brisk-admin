@@ -56,15 +56,9 @@
               <div class="header-tool" @click="outSide">
                 <i class="el-icon-s-fold" style="font-size: 22px"></i>
               </div>
-              <el-breadcrumb separator="/">
-                <el-breadcrumb-item :to="{ path: '/' }"
-                  >首页</el-breadcrumb-item
-                >
-                <el-breadcrumb-item
-                  ><a href="/">活动管理</a></el-breadcrumb-item
-                >
-                <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-              </el-breadcrumb>
+             <div class="header-tab">
+              <!-- 准备用来放置tab标签页 -->
+             </div>
             </div>
             <div class="header-right">
               <el-dropdown>
@@ -141,6 +135,9 @@ export default {
   color: #333;
   text-align: center;
   line-height: 160px;
+  .el-breadcrumb {
+    font-size: 12px;
+  }
 }
 .el-menu-vertical {
   text-align: left;
@@ -156,9 +153,6 @@ export default {
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  .el-breadcrumb {
-    font-size: 12px;
-  }
   .header-tool {
     padding-right: 20px;
   }
