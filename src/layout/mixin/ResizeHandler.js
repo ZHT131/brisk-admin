@@ -19,7 +19,6 @@ export default {
   },
   mounted() {
     const isMobile = this.$_isMobile()
-    console.log(isMobile)
     if (isMobile) {
       store.dispatch('app/toggleDevice', 'mobile')
       store.dispatch('app/toggleSidebar', true)
@@ -35,7 +34,6 @@ export default {
     $_resizeHandler() {
       if (!document.hidden) {
         const isMobile = this.$_isMobile()
-        console.log(isMobile)
 
         store.dispatch('app/toggleDevice', isMobile ? 'mobile' : 'desktop')
 
