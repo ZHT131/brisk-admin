@@ -1,19 +1,70 @@
 <template>
   <div class="ym-body">
     <el-container style="height: 100%">
+      <el-drawer
+        v-model="sidebar"
+        direction="ltr"
+        :size="200"
+        :show-close="false"
+        :withHeader="false"
+        :before-close="handleClose"
+        destroy-on-close
+        v-if="device == 'mobile'"
+      >
+        <el-aside
+          :width="sidebar ? 'auto' : '200px'"
+          style="height: 100%; overflow: hidden"
+        >
+          <div class="logo">
+            <span>ymadmin</span>
+          </div>
+          <el-scrollbar>
+            <el-menu default-active="1-4-1">
+              <el-submenu index="1">
+                <template #title>
+                  <i class="el-icon-location"></i>
+                  <span>导航一</span>
+                </template>
+                <el-menu-item-group>
+                  <template #title>分组一</template>
+                  <el-menu-item index="1-1">选项1</el-menu-item>
+                  <el-menu-item index="1-2">选项2</el-menu-item>
+                </el-menu-item-group>
+                <el-menu-item-group title="分组2">
+                  <el-menu-item index="1-3">选项3</el-menu-item>
+                </el-menu-item-group>
+                <el-submenu index="1-4">
+                  <template #title>选项4</template>
+                  <el-menu-item index="1-4-1">选项1</el-menu-item>
+                </el-submenu>
+              </el-submenu>
+              <el-menu-item index="2">
+                <i class="el-icon-menu"></i>
+                <template #title>导航二</template>
+              </el-menu-item>
+              <el-menu-item index="3" disabled>
+                <i class="el-icon-document"></i>
+                <template #title>导航三</template>
+              </el-menu-item>
+              <el-menu-item index="4">
+                <i class="el-icon-setting"></i>
+                <template #title>导航四</template>
+              </el-menu-item>
+            </el-menu>
+          </el-scrollbar>
+        </el-aside>
+      </el-drawer>
       <el-aside
         :width="sidebar ? 'auto' : '200px'"
         style="height: 100%; overflow: hidden"
+        v-else
       >
         <div class="logo">
           <span v-if="!sidebar">ymadmin</span>
           <span v-else>YM</span>
         </div>
         <el-scrollbar>
-          <el-menu
-            default-active="1-4-1"
-            :collapse="sidebar"
-          >
+          <el-menu default-active="1-4-1" :collapse="sidebar">
             <el-submenu index="1">
               <template #title>
                 <i class="el-icon-location"></i>
@@ -117,6 +168,9 @@ export default {
   methods: {
     outSide() {
       this.$store.dispatch("app/toggleSidebar", !this.sidebar);
+    },
+    handleClose() {
+      this.$store.dispatch("app/toggleSidebar", false);
     },
   },
 };

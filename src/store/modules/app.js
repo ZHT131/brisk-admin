@@ -9,7 +9,7 @@ const state = {
 
 const mutations = {
   TOGGLE_DEVICE: (state, device) => {
-    state.device = device
+    state.device = device;
   },
   TOGGLE_SIDEBAR: (state, sidebar) => {
     state.sidebar = sidebar
