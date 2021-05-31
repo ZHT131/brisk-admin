@@ -1,0 +1,74 @@
+<template>
+  <el-drawer
+    v-model="sidebar"
+    direction="ltr"
+    :size="200"
+    :show-close="false"
+    :withHeader="false"
+    :before-close="handleClose"
+    destroy-on-close
+    v-if="device == 'mobile'"
+  >
+    <el-aside
+      :width="sidebar ? 'auto' : '200px'"
+      style="height: 100%; overflow: hidden"
+    >
+      <div class="logo">
+        <span>{{ appName }}</span>
+      </div>
+      <el-scrollbar>
+        <MenuLayout />
+      </el-scrollbar>
+    </el-aside>
+  </el-drawer>
+  <el-aside
+    :width="sidebar ? 'auto' : '200px'"
+    style="height: 100%; overflow: hidden"
+    v-else
+  >
+    <div class="logo">
+      <span v-if="!sidebar">{{ appName }}</span>
+      <span v-else>{{ logogram }}</span>
+    </div>
+    <el-scrollbar>
+      <MenuLayout />
+    </el-scrollbar>
+  </el-aside>
+</template>
+
+<script>
+import { mapState } from "vuex";
+import MenuLayout from "./menu.vue";
+export default {
+  components: { MenuLayout },
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapState({
+      appName: (state) => state.settings.appName,
+      logogram: (state) => state.settings.logogram,
+      sidebar: (state) => state.app.sidebar,
+      device: (state) => state.app.device,
+    }),
+  },
+  methods: {
+    handleClose() {
+      this.$store.dispatch("app/toggleSidebar", false);
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.el-aside {
+  overflow-x: hidden !important;
+}
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+}
+</style>

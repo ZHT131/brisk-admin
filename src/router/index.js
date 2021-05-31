@@ -1,6 +1,6 @@
 //1.引入vue-router
 import { createRouter, createWebHashHistory } from 'vue-router'
-// import Layout from '@/layout'
+import Layout from '@/layout/index.vue'
 
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
@@ -8,8 +8,16 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 export const constantRoutes = [
   {
     path: '/',
-    name: 'index',
-    component: () => import('@/views/index.vue'),
+    component: Layout,
+    redirect: '/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        component: () => import('@/views/dashboard/index.vue'),
+        name: 'Dashboard',
+        meta: { title: '控制台', icon: 'dashboard' }
+      }
+    ]
   }
 ]
 
