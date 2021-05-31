@@ -1,11 +1,31 @@
 <template>
   <div>
-    <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item><a href="/">活动管理</a></el-breadcrumb-item>
-      <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-      <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-    </el-breadcrumb>
+    <el-row :gutter="10">
+      <el-col :xs="12" :sm="12" :md="6">
+        <div class="ym-card">
+          <div class="title">统计名称</div>
+          <div class="number">6666</div>
+        </div>
+      </el-col>
+      <el-col :xs="12" :sm="12" :md="6">
+        <div class="ym-card">
+          <div class="title">统计名称</div>
+          <div class="number">6666</div>
+        </div>
+      </el-col>
+      <el-col :xs="12" :sm="12" :md="6">
+        <div class="ym-card">
+          <div class="title">统计名称</div>
+          <div class="number">6666</div>
+        </div>
+      </el-col>
+      <el-col :xs="12" :sm="12" :md="6">
+        <div class="ym-card">
+          <div class="title">统计名称</div>
+          <div class="number">6666</div>
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -30,4 +50,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.ym-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  .title {
+    font-size: 14px;
+    color: #666666;
+  }
+  .number {
+    font-size: 28px;
+    font-weight: 600;
+    color: $--color-primary;
+    margin-top: 20px;
+  }
+}
 </style>

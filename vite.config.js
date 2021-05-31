@@ -21,7 +21,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        // additionalData: `@import "./src/assets/common/common.scss";`
+        additionalData: `@import "./src/style/element-variables.scss";`
         //引用公共样式，使用vite搭建项目只安装sass即可，不需要安装node-sass,sass-loader
       }
     }
