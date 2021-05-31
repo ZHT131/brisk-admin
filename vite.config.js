@@ -8,7 +8,8 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src')
+      '@': resolve(__dirname, 'src'),
+      '/@': resolve(__dirname, 'src'),
     }
   },
   base: './',
@@ -17,7 +18,7 @@ export default defineConfig({
     port: 8086,
     open: true,
   },
-  css:{
+  css: {
     preprocessorOptions: {
       scss: {
         // additionalData: `@import "./src/assets/common/common.scss";`
