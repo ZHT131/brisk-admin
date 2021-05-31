@@ -1,8 +1,12 @@
 <template>
   <el-menu
-    default-active="1-4-1"
+    default-active="0"
     :collapse="device == 'desktop' ? sidebar : false"
   >
+    <el-menu-item index="0">
+      <i class="el-icon-menu"></i>
+      <template #title>控制台</template>
+    </el-menu-item>
     <el-submenu index="1">
       <template #title>
         <i class="el-icon-location"></i>
