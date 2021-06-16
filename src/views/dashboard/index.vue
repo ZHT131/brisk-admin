@@ -1,25 +1,25 @@
 <template>
   <div>
     <el-row :gutter="10">
-      <el-col :xs="12" :sm="12" :md="6">
+      <el-col :xs="12" :sm="12" :md="6" style="margin-bottom:10px">
         <div class="ym-card">
           <div class="title">统计名称</div>
           <div class="number">6666</div>
         </div>
       </el-col>
-      <el-col :xs="12" :sm="12" :md="6">
+      <el-col :xs="12" :sm="12" :md="6" style="margin-bottom:10px">
         <div class="ym-card">
           <div class="title">统计名称</div>
           <div class="number">6666</div>
         </div>
       </el-col>
-      <el-col :xs="12" :sm="12" :md="6">
+      <el-col :xs="12" :sm="12" :md="6" style="margin-bottom:10px">
         <div class="ym-card">
           <div class="title">统计名称</div>
           <div class="number">6666</div>
         </div>
       </el-col>
-      <el-col :xs="12" :sm="12" :md="6">
+      <el-col :xs="12" :sm="12" :md="6" style="margin-bottom:10px">
         <div class="ym-card">
           <div class="title">统计名称</div>
           <div class="number">6666</div>
