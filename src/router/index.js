@@ -7,6 +7,23 @@ import Layout from '@/layout/index.vue'
 // 我们后面再讨论嵌套路由。
 export const constantRoutes = [
   {
+    path: '/login',
+    component: () => import('@/views/login/index.vue'),
+    hidden: true,
+  },
+  {
+    path: '/401',
+    name: '401',
+    component: () => import('@/views/401/index.vue'),
+    hidden: true,
+  },
+  {
+    path: '/404',
+    name: '404',
+    component: () => import('@/views/404/index.vue'),
+    hidden: true,
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/dashboard',
@@ -14,7 +31,7 @@ export const constantRoutes = [
       {
         path: 'dashboard',
         component: () => import('@/views/dashboard/index.vue'),
-        name: 'Dashboard',
+        name: 'dashboard',
         meta: { title: '控制台', icon: 'dashboard' }
       }
     ]
