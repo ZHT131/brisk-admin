@@ -1,10 +1,9 @@
-// import Cookies from 'js-cookie'
-// import { getLanguage } from '@/lang/index'
+import Cookies from 'js-cookie'
 
 const state = {
   sidebar: false,
   device: 'desktop',
-  // language: getLanguage(),
+  language: Cookies.get('language') ? Cookies.get('language') : 'zh-cn',
 }
 
 const mutations = {
@@ -14,10 +13,10 @@ const mutations = {
   TOGGLE_SIDEBAR: (state, sidebar) => {
     state.sidebar = sidebar
   },
-  // SET_LANGUAGE: (state, language) => {
-  //   state.language = language
-  //   Cookies.set('language', language)
-  // }
+  SET_LANGUAGE: (state, language) => {
+    state.language = language
+    Cookies.set('language', language)
+  }
 }
 
 const actions = {
@@ -27,9 +26,9 @@ const actions = {
   toggleSidebar({ commit }, sidebar) {
     commit('TOGGLE_SIDEBAR', sidebar)
   },
-  // setLanguage({ commit }, language) {
-  //   commit('SET_LANGUAGE', language)
-  // },
+  setLanguage({ commit }, language) {
+    commit('SET_LANGUAGE', language)
+  },
 }
 
 export default {

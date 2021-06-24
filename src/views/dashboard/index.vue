@@ -38,6 +38,7 @@
         </div>
       </el-col>
     </el-row>
+    {{ $t("message.hello") }}
   </div>
 </template>
 
