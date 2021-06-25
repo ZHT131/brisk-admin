@@ -16,3 +16,11 @@ export const mokePost = (data) => {
         config: {}
     })
 }
+export const login = (data) => {
+    return axios({
+        url: "api/login",
+        method: "post",
+        data,
+        config: {}
+    })
+}

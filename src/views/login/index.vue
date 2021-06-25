@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import { login } from "@/api";
 export default {
   data() {
     return {
@@ -61,9 +62,16 @@ export default {
       },
     };
   },
+  created() {},
   methods: {
     onSubmit() {
-      this.$router.push("dashboard");
+      login(this.form).then((res) => {
+        console.log(res);
+        if (res.code == 1) {
+          this.$store.dispatch("user/loginSet", res.data);
+          this.$router.push("dashboard");
+        }
+      });
     },
   },
 };
