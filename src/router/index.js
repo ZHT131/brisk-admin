@@ -1,6 +1,7 @@
 //1.引入vue-router
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Layout from '@/layout/index.vue'
+import Cookies from 'js-cookie'
 
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
@@ -52,24 +53,31 @@ const router = createRouter({
 // 前置守卫：路由跳转之前
 // to 要进入的路由
 // from 从那个路由过来的
-router.beforeEach((to, form, next)=>{
+router.beforeEach((to, form, next) => {
   /* 必须调用 `next` */
   // 动态修改网页标题
   document.title = to.matched[0].meta.title
+  //执行登录鉴权
+  if (!Cookies.get('token')) {
+    if (to.path == '/login') {
+      // in the free login whitelist, go directly
+      next()
+    } else {
+      next(`/login`)
+    }
+  }
   next()
 })
 
 // 全局解析守卫: 同时在所有组件内守卫和异步路由组件被解析之后 和beforeEach区别是在导航被确认之前
-router.beforeResolve((to, form, next)=>{
+router.beforeResolve((to, form, next) => {
   /* 必须调用 `next` */
-
-
   next()
 })
 
 // 后置守卫：路由跳转之后
-router.afterEach((to, form)=>{
- 
+router.afterEach((to, form) => {
+
 })
 
 export default router
