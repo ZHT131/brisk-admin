@@ -38,7 +38,7 @@
         </div>
       </el-col>
     </el-row>
-    {{ $t("message.hello") }}
+    <router-link :to="'/auth/admin'"> {{ $t("message.hello") }}</router-link>
   </div>
 </template>
 

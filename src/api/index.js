@@ -24,3 +24,11 @@ export const login = (data) => {
         config: {}
     })
 }
+export const authRoutes = (data) => {
+    return axios({
+        url: "api/authRoutes",
+        method: "get",
+        data,
+        config: {}
+    })
+}

@@ -1,8 +1,10 @@
 import Cookies from 'js-cookie'
+import { authRoutes } from "@/api";
 
 const state = {
     token: Cookies.get('token'),
     userinfo: null,
+    routes: []
 }
 
 const mutations = {
@@ -11,6 +13,9 @@ const mutations = {
     },
     SET_USERINFO: (state, userinfo) => {
         state.userinfo = userinfo
+    },
+    SET_ROUTES: (state, routes) => {
+        state.routes = routes
     },
 }
 
@@ -25,6 +30,18 @@ const actions = {
         commit('SET_USERINFO', null);
         Cookies.remove('token');
     },
+    getUserRoutes({ commit }) {
+        return new Promise((resolve, reject) => {
+            authRoutes().then((res) => {
+                let routes = res.data;
+                commit('SET_ROUTES', routes)
+                resolve(routes);
+            }).catch((err) => {
+                reject(false);
+            });
+        });
+    }
+
 }
 
 export default {
