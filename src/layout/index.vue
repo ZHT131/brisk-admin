@@ -7,11 +7,13 @@
           <headerLayout />
         </el-header>
         <el-main>
-          <transition name="fade-transform" mode="out-in">
-            <keep-alive>
-              <router-view :key="key" />
-            </keep-alive>
-          </transition>
+          <router-view v-slot="{ Component }">
+            <transition name="fade-transform" mode="out-in">
+              <keep-alive>
+                <component :is="Component" />
+              </keep-alive>
+            </transition>
+          </router-view>
         </el-main>
       </el-container>
     </el-container>
@@ -40,9 +42,7 @@ export default {
       return this.$route.path;
     },
   },
-  methods: {
-  
-  },
+  methods: {},
 };
 </script>
 

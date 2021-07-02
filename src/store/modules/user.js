@@ -1,10 +1,12 @@
 import Cookies from 'js-cookie'
 import { authRoutes } from "@/api";
+import { singleAsyncRoutes } from '../../utils/index'
 
 const state = {
     token: Cookies.get('token'),
     userinfo: null,
-    routes: []
+    routes: [],
+    singleRoutes: [],
 }
 
 const mutations = {
@@ -16,6 +18,9 @@ const mutations = {
     },
     SET_ROUTES: (state, routes) => {
         state.routes = routes
+    },
+    SET_SINGLEROUTES: (state, routes) => {
+        state.singleRoutes = routes
     },
 }
 
@@ -34,7 +39,9 @@ const actions = {
         return new Promise((resolve, reject) => {
             authRoutes().then((res) => {
                 let routes = res.data;
-                commit('SET_ROUTES', routes)
+                commit('SET_ROUTES', routes);
+                let single = singleAsyncRoutes(routes)
+                commit('SET_SINGLEROUTES', single);
                 resolve(routes);
             }).catch((err) => {
                 reject(false);

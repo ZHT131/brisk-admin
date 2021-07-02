@@ -2,7 +2,7 @@
   <el-drawer
     v-model="sidebar"
     direction="ltr"
-    :size="200"
+    :size="220"
     :show-close="false"
     :withHeader="false"
     :before-close="handleClose"
@@ -10,7 +10,7 @@
     v-if="device == 'mobile'"
   >
     <el-aside
-      :width="sidebar ? 'auto' : '200px'"
+      :width="sidebar ? 'auto' : '220px'"
       style="height: 100%; overflow: hidden"
     >
       <div class="logo">
@@ -22,7 +22,7 @@
     </el-aside>
   </el-drawer>
   <el-aside
-    :width="sidebar ? 'auto' : '200px'"
+    :width="sidebar ? 'auto' : '220px'"
     style="height: 100%; overflow: hidden"
     v-else
   >

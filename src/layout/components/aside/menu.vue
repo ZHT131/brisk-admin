@@ -1,34 +1,32 @@
 <template>
   <el-menu
-    default-active="0"
+    default-active="/"
+    router
     :collapse="device == 'desktop' ? sidebar : false"
   >
-    <el-menu-item index="0">
-      <i class="el-icon-menu"></i>
-      <template #title>控制台</template>
-    </el-menu-item>
-    <el-submenu index="1">
-      <template #title>
-        <i class="el-icon-location"></i>
-        <span>导航一</span>
-      </template>
-      <el-menu-item-group>
-        <el-menu-item index="1-1">选项1</el-menu-item>
-        <el-menu-item index="1-2">选项2</el-menu-item>
-      </el-menu-item-group>
-    </el-submenu>
-    <el-menu-item index="2">
-      <i class="el-icon-menu"></i>
-      <template #title>导航二</template>
-    </el-menu-item>
-    <el-menu-item index="3" disabled>
-      <i class="el-icon-document"></i>
-      <template #title>导航三</template>
-    </el-menu-item>
-    <el-menu-item index="4">
-      <i class="el-icon-setting"></i>
-      <template #title>导航四</template>
-    </el-menu-item>
+    <template v-for="item in routes" :key="item.path">
+      <el-menu-item
+        v-if="item.children.length <= 1 && !item.alwaysShow"
+        :index="item.path"
+      >
+        <i :class="item.meta.icon"></i>
+        <template #title>{{ item.meta.title }}</template>
+      </el-menu-item>
+      <el-submenu v-else :index="item.path">
+        <template #title>
+          <i :class="item.meta.icon"></i>
+          <span>{{ item.meta.title }}</span>
+        </template>
+        <el-menu-item-group>
+          <el-menu-item
+            v-for="child in item.children"
+            :key="child.path"
+            :index="item.path + '/' + child.path"
+            >{{ child.meta.title }}</el-menu-item
+          >
+        </el-menu-item-group>
+      </el-submenu>
+    </template>
   </el-menu>
 </template>
 
@@ -42,7 +40,14 @@ export default {
     ...mapState({
       sidebar: (state) => state.app.sidebar,
       device: (state) => state.app.device,
+      routes: (state) => state.user.routes,
     }),
+  },
+  created() {
+    // console.log(this.routes);
+    // console.log(this.sidebar);
+    // console.log(this.device);
+    // console.log(this.$store.state.user.routes);
   },
 };
 </script>
@@ -50,6 +55,6 @@ export default {
 <style lang="scss" scoped>
 .el-menu-vertical {
   text-align: left;
-  width: 200px;
+  width: 220px;
 }
 </style>
