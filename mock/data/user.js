@@ -46,13 +46,13 @@ const authRoutes = (params) => {
             redirect: '/dashboard',
             meta: { title: '首页', icon: 'el-icon-menu' },
             alwaysShow: false,
-            name:'/',
+            name: '/',
             children: [
                 {
                     path: 'dashboard',
                     component: '/@/views/dashboard/index.vue',
                     name: 'dashboard',
-                    meta: { title: '控制台', icon: 'el-icon-menu' }
+                    meta: { title: '控制台', icon: 'el-icon-menu' },
                 }
             ]
         },
@@ -62,7 +62,7 @@ const authRoutes = (params) => {
             redirect: 'noRedirect',
             meta: { title: '权限管理', icon: 'auth' },
             alwaysShow: false,
-            name:'auth',
+            name: 'auth',
             children: [
                 {
                     path: 'admin',

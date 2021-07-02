@@ -1,8 +1,9 @@
 <template>
   <el-menu
-    default-active="/"
+    :default-active="activeRoute"
     router
     :collapse="device == 'desktop' ? sidebar : false"
+    @select="selectMenu"
   >
     <template v-for="item in routes" :key="item.path">
       <el-menu-item
@@ -41,13 +42,18 @@ export default {
       sidebar: (state) => state.app.sidebar,
       device: (state) => state.app.device,
       routes: (state) => state.user.routes,
+      activeRoute: (state) => state.user.activeRoute,
     }),
   },
   created() {
-    // console.log(this.routes);
     // console.log(this.sidebar);
     // console.log(this.device);
     // console.log(this.$store.state.user.routes);
+  },
+  methods: {
+    selectMenu(index,path) {
+      this.$store.dispatch("user/activeRoute", index);
+    },
   },
 };
 </script>

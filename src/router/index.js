@@ -88,24 +88,20 @@ router.beforeEach(async (to, form) => {
       router.addRoute(item);
     }
   })
+  //删除用户权限中已不存在的路由
   let newallRoutes = router.getRoutes();
   let singleRoutes = store.state.user.singleRoutes;
-  console.log(singleRoutes);
-  //删除用户权限中已不存在的路由
   newallRoutes.forEach((item) => {
     if (
       singleRoutes.findIndex(
         (value) => value.path === item.path
       ) == -1
     ) {
-      console.log(item);
-      console.log(WhiteList.includes(item.name));
       if (!WhiteList.includes(item.name)) {
-        // router.removeRoute(item.name);
+        router.removeRoute(item.name);
       }
     }
   })
-  // console.log(router.getRoutes());
   //判断是否存在执行重定向避免刷新页面404
   if (has_route) {
     return;

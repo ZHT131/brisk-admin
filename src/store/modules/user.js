@@ -7,6 +7,7 @@ const state = {
     userinfo: null,
     routes: [],
     singleRoutes: [],
+    activeRoute: Cookies.get('activeRoute') ? Cookies.get('activeRoute') : '/',
 }
 
 const mutations = {
@@ -22,6 +23,9 @@ const mutations = {
     SET_SINGLEROUTES: (state, routes) => {
         state.singleRoutes = routes
     },
+    SET_ACTIVEROUTE: (state, activeRoute) => {
+        state.activeRoute = activeRoute
+    },
 }
 
 const actions = {
@@ -34,6 +38,10 @@ const actions = {
         commit('SET_TOKEN', null);
         commit('SET_USERINFO', null);
         Cookies.remove('token');
+    },
+    activeRoute({ commit }, path) {
+        commit('SET_ACTIVEROUTE', path);
+        Cookies.set('activeRoute', path);
     },
     getUserRoutes({ commit }) {
         return new Promise((resolve, reject) => {
