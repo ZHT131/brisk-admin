@@ -10,24 +10,21 @@ export const constantRoutes = [
   {
     path: '/login',
     name: 'login',
+    meta: { title: '登录', icon: 'el-icon-menu' },
     component: () => import('/@/views/login/index.vue'),
     hidden: true,
   },
   {
     path: '/401',
     name: '401',
+    meta: { title: '401', icon: 'el-icon-menu' },
     component: () => import('/@/views/401/index.vue'),
     hidden: true,
   },
   {
     path: '/404',
     name: '404',
-    component: () => import('/@/views/404/index.vue'),
-    hidden: true,
-  },
-  {
-    path: '/504',
-    name: '504',
+    meta: { title: '404', icon: 'el-icon-menu' },
     component: () => import('/@/views/404/index.vue'),
     hidden: true,
   }
@@ -106,7 +103,18 @@ router.beforeEach(async (to, form) => {
   if (has_route) {
     return;
   } else {
-    return to.fullPath
+    //判断最新路由数组中是否含有当前即将跳转页面
+    if (
+      router.getRoutes().findIndex(
+        (value) => value.path === to.fullPath
+      ) == -1
+    ) {
+      //没有返回404页面
+      return '/404';
+    } else {
+      //重定向
+      return to.fullPath;
+    }
   }
 })
 
