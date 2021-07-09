@@ -1,6 +1,6 @@
 <template>
   <el-drawer
-    v-model="sidebar"
+    :model-value="sidebar"
     direction="ltr"
     :size="220"
     :show-close="false"
