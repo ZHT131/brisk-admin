@@ -1,4 +1,6 @@
 import { isExternal } from './validate'
+//先进行views下所有vue文件动态导入声明，以便后台动态返回路由进行本地动态导入
+const modules = import.meta.glob('../views/*/*.vue')
 /**
  * 转化路由component实例化本地文件
  * @param routes asyncRoutes
@@ -11,7 +13,7 @@ export function filterAsyncRoutes(routes) {
         if (tmp.children) {
             tmp.children = filterAsyncRoutes(tmp.children)
         }
-        tmp.component = () => import(`${route.component}`);
+        tmp.component = modules[`../views/${route.component}`];
         res.push(tmp)
     })
 

@@ -1,6 +1,6 @@
 //1.引入vue-router
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Layout from '/@/layout/index.vue'
+import Layout from '/@/views/layout/index.vue'
 import Cookies from 'js-cookie'
 import store from '../store'
 import { filterAsyncRoutes } from '../utils/index'

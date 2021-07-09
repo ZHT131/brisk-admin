@@ -42,7 +42,7 @@ const authRoutes = (params) => {
     const routes = [
         {
             path: '/',
-            component: '/@/layout/index.vue',
+            component: 'layout/index.vue',
             redirect: '/dashboard',
             meta: { title: '首页', icon: 'el-icon-menu' },
             alwaysShow: false,
@@ -50,7 +50,7 @@ const authRoutes = (params) => {
             children: [
                 {
                     path: 'dashboard',
-                    component: '/@/views/dashboard/index.vue',
+                    component: 'dashboard/index.vue',
                     name: 'dashboard',
                     meta: { title: '控制台', icon: 'el-icon-menu' },
                 }
@@ -58,7 +58,7 @@ const authRoutes = (params) => {
         },
         {
             path: '/auth',
-            component: '/@/layout/index.vue',
+            component: 'layout/index.vue',
             redirect: 'noRedirect',
             meta: { title: '权限管理', icon: 'auth' },
             alwaysShow: false,
@@ -66,25 +66,25 @@ const authRoutes = (params) => {
             children: [
                 {
                     path: 'admin',
-                    component: '/@/views/admin/index.vue',
+                    component: 'admin/index.vue',
                     name: 'admin',
                     meta: { title: '管理员管理', icon: 'el-icon-menu' }
                 },
                 {
                     path: 'adminLog',
-                    component: '/@/views/adminLog/index.vue',
+                    component: 'adminLog/index.vue',
                     name: 'adminLog',
                     meta: { title: '管理员日志', icon: 'el-icon-menu' }
                 },
                 {
                     path: 'adminGroup',
-                    component: '/@/views/adminGroup/index.vue',
+                    component: 'adminGroup/index.vue',
                     name: 'adminGroup',
                     meta: { title: '管理员角色组', icon: 'el-icon-menu' }
                 },
                 {
                     path: 'adminRule',
-                    component: '/@/views/adminRule/index.vue',
+                    component: 'adminRule/index.vue',
                     name: 'adminRule',
                     meta: { title: '菜单规则', icon: 'el-icon-menu' }
                 }

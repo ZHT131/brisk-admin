@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import ResizeMixin from "../../layout/mixin/ResizeHandler";
+import ResizeMixin from "../layout/mixin/ResizeHandler";
 import { mapState } from "vuex";
 import { Chart, registerShape } from "@antv/g2";
 import { mokePost } from "@/api";
