@@ -60,7 +60,7 @@ const authRoutes = (params) => {
             path: '/auth',
             component: 'layout/index.vue',
             redirect: 'noRedirect',
-            meta: { title: 'auth', icon: 'auth' },
+            meta: { title: 'auth', icon: 'el-icon-menu' },
             alwaysShow: false,
             name: 'auth',
             children: [
