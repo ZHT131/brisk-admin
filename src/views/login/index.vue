@@ -26,7 +26,7 @@
                 </template>
                 <el-input
                   v-model="form.username"
-                  placeholder="请输入用户名"
+                  :placeholder="$t('login.usernamePlaceholder')"
                 ></el-input>
               </el-form-item>
               <el-form-item label-width="50px">
@@ -37,12 +37,12 @@
                 </template>
                 <el-input
                   v-model="form.password"
-                  placeholder="请输入密码"
+                  :placeholder="$t('login.passwordPlaceholder')"
                 ></el-input>
               </el-form-item>
-              <el-button class="loginbtn" type="primary" @click="onSubmit"
-                >登录</el-button
-              >
+              <el-button class="loginbtn" type="primary" @click="onSubmit">{{
+                $t("login.loginBtn")
+              }}</el-button>
             </el-form>
           </div>
         </div>
@@ -62,7 +62,9 @@ export default {
       },
     };
   },
-  created() {},
+  created() {
+     
+  },
   methods: {
     onSubmit() {
       login(this.form).then((res) => {

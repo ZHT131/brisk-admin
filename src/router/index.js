@@ -108,7 +108,7 @@ router.beforeEach(async (to, form) => {
         (value) => value.path === to.fullPath
       ) == -1
     ) {
-      //没有返回404页面
+      //不存在，返回404页面
       return '/404';
     } else {
       //重定向

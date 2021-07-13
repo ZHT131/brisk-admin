@@ -1,7 +1,8 @@
 import { createI18n } from 'vue-i18n'
 import enLocale from 'element-plus/lib/locale/lang/en'
 import zhLocale from 'element-plus/lib/locale/lang/zh-cn'
-
+import enLang from './en'
+import zhLang from './zh'
 const messages = {
   [enLocale.name]: {
     // el 这个属性很关键，一定要保证有这个属性，
@@ -10,6 +11,7 @@ const messages = {
     message: {
       hello: 'hello world',
     },
+    ...enLang
   },
   [zhLocale.name]: {
     el: zhLocale.el,
@@ -17,6 +19,7 @@ const messages = {
     message: {
       hello: '你好，世界',
     },
+    ...zhLang
   }
 }
 
