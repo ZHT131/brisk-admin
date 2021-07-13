@@ -11,13 +11,13 @@
     <div class="header-right">
       <el-dropdown>
         <span class="el-dropdown-link">
-          {{ language == "en" ? "english" : "中文"
-          }}<i class="el-icon-arrow-down el-icon--right"></i>
+          {{ language == "en" ? "English" : "中文" }}
+          <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="setLang('zh-cn')">中文</el-dropdown-item>
-            <el-dropdown-item @click="setLang('en')">english</el-dropdown-item>
+            <el-dropdown-item @click="setLang('en')">English</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>

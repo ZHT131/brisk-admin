@@ -3,25 +3,25 @@
     <el-row :gutter="10">
       <el-col :xs="12" :sm="12" :md="6" style="margin-bottom: 10px">
         <div class="ym-card">
-          <div class="title">总用户数</div>
+          <div class="title">{{ $t("dashboard.totalUserNumber") }}</div>
           <div class="number">6666</div>
         </div>
       </el-col>
       <el-col :xs="12" :sm="12" :md="6" style="margin-bottom: 10px">
         <div class="ym-card">
-          <div class="title">总访问量</div>
+          <div class="title">{{ $t("dashboard.totalVisits") }}</div>
           <div class="number">6666</div>
         </div>
       </el-col>
       <el-col :xs="12" :sm="12" :md="6" style="margin-bottom: 10px">
         <div class="ym-card">
-          <div class="title">总订单数</div>
+          <div class="title">{{ $t("dashboard.totalOrderNumber") }}</div>
           <div class="number">6666</div>
         </div>
       </el-col>
       <el-col :xs="12" :sm="12" :md="6" style="margin-bottom: 10px">
         <div class="ym-card">
-          <div class="title">总销售金额</div>
+          <div class="title">{{ $t("dashboard.totalSalesAmount") }}</div>
           <div class="number">6666</div>
         </div>
       </el-col>
@@ -38,7 +38,6 @@
         </div>
       </el-col>
     </el-row>
-    <router-link :to="'/auth/admin'"> {{ $t("message.hello") }}</router-link>
   </div>
 </template>
 
@@ -51,12 +50,46 @@ import { mokePost } from "@/api";
 export default {
   mixins: [ResizeMixin],
   data() {
-    return {};
+    return {
+      chart: "",
+      chartB: "",
+    };
   },
   computed: {
     ...mapState({
       device: (state) => state.app.device,
     }),
+  },
+
+  watch: {
+    "$i18n.locale"(newValue) {
+      const data = [
+        { name: this.$t("dashboard.sales"), month: "1", num: 18.9 },
+        { name: this.$t("dashboard.sales"), month: "2", num: 28.8 },
+        { name: this.$t("dashboard.sales"), month: "3", num: 39.3 },
+        { name: this.$t("dashboard.sales"), month: "4", num: 81.4 },
+        { name: this.$t("dashboard.sales"), month: "5", num: 47 },
+        { name: this.$t("dashboard.sales"), month: "6", num: 20.3 },
+        { name: this.$t("dashboard.sales"), month: "7", num: 24 },
+        { name: this.$t("dashboard.sales"), month: "8", num: 35.6 },
+        { name: this.$t("dashboard.orderNumber"), month: "1", num: 12.4 },
+        { name: this.$t("dashboard.orderNumber"), month: "2", num: 23.2 },
+        { name: this.$t("dashboard.orderNumber"), month: "3", num: 34.5 },
+        { name: this.$t("dashboard.orderNumber"), month: "4", num: 99.7 },
+        { name: this.$t("dashboard.orderNumber"), month: "5", num: 52.6 },
+        { name: this.$t("dashboard.orderNumber"), month: "6", num: 35.5 },
+        { name: this.$t("dashboard.orderNumber"), month: "7", num: 37.4 },
+        { name: this.$t("dashboard.orderNumber"), month: "8", num: 42.4 },
+      ];
+      this.chart.changeData(data);
+      const data1 = [
+        { type: this.$t("dashboard.wxPay"), value: 20 },
+        { type: this.$t("dashboard.aliPay"), value: 18 },
+        { type: this.$t("dashboard.walletPay"), value: 32 },
+        { type: this.$t("dashboard.otherPay"), value: 15 },
+      ];
+      this.chartB.changeData(data1);
+    },
   },
   created() {
     mokePost().then((res) => {
@@ -75,43 +108,43 @@ export default {
   methods: {
     zChart() {
       const data = [
-        { name: "销售额（元）", month: "1", num: 18.9 },
-        { name: "销售额（元）", month: "2", num: 28.8 },
-        { name: "销售额（元）", month: "3", num: 39.3 },
-        { name: "销售额（元）", month: "4", num: 81.4 },
-        { name: "销售额（元）", month: "5", num: 47 },
-        { name: "销售额（元）", month: "6", num: 20.3 },
-        { name: "销售额（元）", month: "7", num: 24 },
-        { name: "销售额（元）", month: "8", num: 35.6 },
-        { name: "订单数（笔）", month: "1", num: 12.4 },
-        { name: "订单数（笔）", month: "2", num: 23.2 },
-        { name: "订单数（笔）", month: "3", num: 34.5 },
-        { name: "订单数（笔）", month: "4", num: 99.7 },
-        { name: "订单数（笔）", month: "5", num: 52.6 },
-        { name: "订单数（笔）", month: "6", num: 35.5 },
-        { name: "订单数（笔）", month: "7", num: 37.4 },
-        { name: "订单数（笔）", month: "8", num: 42.4 },
+        { name: this.$t("dashboard.sales"), month: "1", num: 18.9 },
+        { name: this.$t("dashboard.sales"), month: "2", num: 28.8 },
+        { name: this.$t("dashboard.sales"), month: "3", num: 39.3 },
+        { name: this.$t("dashboard.sales"), month: "4", num: 81.4 },
+        { name: this.$t("dashboard.sales"), month: "5", num: 47 },
+        { name: this.$t("dashboard.sales"), month: "6", num: 20.3 },
+        { name: this.$t("dashboard.sales"), month: "7", num: 24 },
+        { name: this.$t("dashboard.sales"), month: "8", num: 35.6 },
+        { name: this.$t("dashboard.orderNumber"), month: "1", num: 12.4 },
+        { name: this.$t("dashboard.orderNumber"), month: "2", num: 23.2 },
+        { name: this.$t("dashboard.orderNumber"), month: "3", num: 34.5 },
+        { name: this.$t("dashboard.orderNumber"), month: "4", num: 99.7 },
+        { name: this.$t("dashboard.orderNumber"), month: "5", num: 52.6 },
+        { name: this.$t("dashboard.orderNumber"), month: "6", num: 35.5 },
+        { name: this.$t("dashboard.orderNumber"), month: "7", num: 37.4 },
+        { name: this.$t("dashboard.orderNumber"), month: "8", num: 42.4 },
       ];
 
-      const chart = new Chart({
+      this.chart = new Chart({
         container: "container1",
         autoFit: true,
         height: 450,
       });
 
-      chart.data(data);
-      chart.scale("month", {
+      this.chart.data(data);
+      this.chart.scale("month", {
         formatter: (val) => `${val}月`,
       });
-      chart.scale("num", {
+      this.chart.scale("num", {
         nice: true,
       });
-      chart.tooltip({
+      this.chart.tooltip({
         showMarkers: false,
         shared: true,
       });
 
-      chart
+      this.chart
         .interval()
         .position("month*num")
         .color("name")
@@ -122,16 +155,16 @@ export default {
           },
         ]);
 
-      chart.interaction("active-region");
+      this.chart.interaction("active-region");
 
-      chart.render();
+      this.chart.render();
     },
     bChart() {
       const data = [
-        { type: "微信支付", value: 20 },
-        { type: "支付宝支付", value: 18 },
-        { type: "钱包支付", value: 32 },
-        { type: "其他", value: 15 },
+        { type: this.$t("dashboard.wxPay"), value: 20 },
+        { type: this.$t("dashboard.aliPay"), value: 18 },
+        { type: this.$t("dashboard.walletPay"), value: 32 },
+        { type: this.$t("dashboard.otherPay"), value: 15 },
       ];
 
       // 可以通过调整这个数值控制分割空白处的间距，0-1 之间的数值
@@ -157,29 +190,29 @@ export default {
         },
       });
 
-      const chart = new Chart({
+      this.chartB = new Chart({
         container: "container2",
         autoFit: true,
         height: 450,
       });
 
-      chart.data(data);
-      chart.coordinate("theta", {
+      this.chartB.data(data);
+      this.chartB.coordinate("theta", {
         radius: 0.75,
         innerRadius: 0.6,
       });
-      chart.tooltip({
+      this.chartB.tooltip({
         showTitle: false,
         showMarkers: false,
       });
-      chart
+      this.chartB
         .interval()
         .adjust("stack")
         .position("value")
         .color("type")
         .shape("slice-shape");
 
-      chart.render();
+      this.chartB.render();
     },
   },
 };

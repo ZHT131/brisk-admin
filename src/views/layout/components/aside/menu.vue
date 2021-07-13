@@ -11,19 +11,19 @@
         :index="item.path"
       >
         <i :class="item.meta.icon"></i>
-        <template #title>{{ item.meta.title }}</template>
+        <template #title>{{ $t(item.name + "." + item.meta.title) }}</template>
       </el-menu-item>
       <el-submenu v-else :index="item.path">
         <template #title>
           <i :class="item.meta.icon"></i>
-          <span>{{ item.meta.title }}</span>
+          <span>{{ $t(item.name + "." + item.meta.title) }}</span>
         </template>
         <el-menu-item-group>
           <el-menu-item
             v-for="child in item.children"
             :key="child.path"
             :index="item.path + '/' + child.path"
-            >{{ child.meta.title }}</el-menu-item
+            >{{ $t(child.name + "." + child.meta.title) }}</el-menu-item
           >
         </el-menu-item-group>
       </el-submenu>
@@ -51,7 +51,7 @@ export default {
     // console.log(this.$store.state.user.routes);
   },
   methods: {
-    selectMenu(index,path) {
+    selectMenu(index, path) {
       this.$store.dispatch("user/activeRoute", index);
     },
   },
