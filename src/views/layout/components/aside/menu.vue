@@ -5,35 +5,17 @@
     :collapse="device == 'desktop' ? sidebar : false"
     @select="selectMenu"
   >
-    <template v-for="item in routes" :key="item.path">
-      <el-menu-item
-        v-if="item.children.length <= 1 && !item.alwaysShow"
-        :index="item.path"
-      >
-        <i :class="item.meta.icon"></i>
-        <template #title>{{ $t(item.name + "." + item.meta.title) }}</template>
-      </el-menu-item>
-      <el-submenu v-else :index="item.path">
-        <template #title>
-          <i :class="item.meta.icon"></i>
-          <span>{{ $t(item.name + "." + item.meta.title) }}</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item
-            v-for="child in item.children"
-            :key="child.path"
-            :index="item.path + '/' + child.path"
-            >{{ $t(child.name + "." + child.meta.title) }}</el-menu-item
-          >
-        </el-menu-item-group>
-      </el-submenu>
-    </template>
+    <menuItem v-for="item in routes" :key="item.path" :item="item" />
   </el-menu>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import menuItem from "./menuItem.vue";
 export default {
+  components: {
+    menuItem,
+  },
   data() {
     return {};
   },
