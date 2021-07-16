@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import Cookies from 'js-cookie'
 import store from '../store'
 import { filterAsyncRoutes } from '../utils/index'
+import i18n from '../lang/index'
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
 export const constantRoutes = [
@@ -40,7 +41,6 @@ const router = createRouter({
 
 //导航守卫中不会删除路由的白名单,对应上面constantRoutes(本地默认路由)名称
 const WhiteList = ['login', '401', '404'];
-
 //5.此处可以添加全局路由守卫以方便鉴权，也可以独立鉴权文件然后在main.js引入即可！
 //我在这里直接放在路由文件中
 
@@ -50,7 +50,8 @@ const WhiteList = ['login', '401', '404'];
 router.beforeEach(async (to, form) => {
   /* 必须调用 `next` */
   // 动态修改网页标题
-  document.title = to.meta.title
+  const { t } = i18n.global;
+  document.title = t(`${to.meta.title}.${to.meta.title}`)
   //执行登录鉴权，未登录跳转登录页
   if (!Cookies.get('token')) {
     if (to.path == '/login') {
