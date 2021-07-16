@@ -50,8 +50,10 @@ const WhiteList = ['login', '401', '404'];
 router.beforeEach(async (to, form) => {
   /* 必须调用 `next` */
   // 动态修改网页标题
-  const { t } = i18n.global;
-  document.title = t(`${to.meta.title}.${to.meta.title}`)
+  if(to.meta.title){
+    const { t } = i18n.global;
+    document.title = t(`${to.meta.title}.${to.meta.title}`)
+  }
   //执行登录鉴权，未登录跳转登录页
   if (!Cookies.get('token')) {
     if (to.path == '/login') {
