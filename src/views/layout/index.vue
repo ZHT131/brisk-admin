@@ -7,8 +7,8 @@
           <headerLayout />
         </el-header>
         <el-main>
-          <router-view v-slot="{ Component }">
-            <transition name="fade-transform" mode="out-in">
+          <router-view :key="key" v-slot="{ Component }">
+            <transition appear name="fade-transform" mode="out-in">
               <keep-alive>
                 <component :is="Component" />
               </keep-alive>

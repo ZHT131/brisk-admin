@@ -1,5 +1,7 @@
 <template>
-  <span>1</span>
+  <div>
+    adminGroup
+  </div>
 </template>
 
 <script>

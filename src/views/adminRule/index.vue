@@ -1,5 +1,7 @@
 <template>
-  <span>1</span>
+    <div>
+    adminRule
+  </div>
 </template>
 
 <script>

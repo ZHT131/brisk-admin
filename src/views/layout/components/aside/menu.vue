@@ -28,9 +28,7 @@ export default {
     }),
   },
   created() {
-    // console.log(this.sidebar);
-    // console.log(this.device);
-    // console.log(this.$store.state.user.routes);
+   
   },
   methods: {
     selectMenu(index, path) {

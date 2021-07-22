@@ -1,13 +1,10 @@
 <template>
-  <span>1</span>
+  <div>adminLog</div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
-
 </style>

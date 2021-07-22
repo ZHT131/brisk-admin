@@ -25,7 +25,7 @@
               :style="{ width: '100%' }"
             >
               <el-option
-                v-for="item in ceshiOptions"
+                v-for="item in options"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value"
@@ -89,6 +89,28 @@ export default {
         ceshiValue: undefined,
       },
       currentPage4: 4,
+      options: [
+        {
+          value: "选项1",
+          label: "黄金糕",
+        },
+        {
+          value: "选项2",
+          label: "双皮奶",
+        },
+        {
+          value: "选项3",
+          label: "蚵仔煎",
+        },
+        {
+          value: "选项4",
+          label: "龙须面",
+        },
+        {
+          value: "选项5",
+          label: "北京烤鸭",
+        },
+      ],
       tableData: [
         {
           date: "2016-05-02",
@@ -132,7 +154,7 @@ export default {
   padding: 20px;
   background: white;
 }
-.ym-page{
+.ym-page {
   display: flex;
   flex-direction: row;
   align-items: center;
