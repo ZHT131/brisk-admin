@@ -48,7 +48,6 @@ const WhiteList = ['login', '401', '404'];
 // to 要进入的路由
 // from 从那个路由过来的
 router.beforeEach(async (to, form) => {
-  /* 必须调用 `next` */
   // 动态修改网页标题
   if(to.meta.title){
     const { t } = i18n.global;
