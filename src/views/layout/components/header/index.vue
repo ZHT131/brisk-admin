@@ -9,6 +9,7 @@
       </div>
     </div>
     <div class="header-right">
+      <i class="el-icon-full-screen" @click="toScreenfull"></i>
       <el-dropdown>
         <span class="el-dropdown-link">
           {{ language == "en" ? "English" : "中文" }}
@@ -42,6 +43,8 @@
 
 <script>
 import { mapState } from "vuex";
+import screenfull from "screenfull";
+
 export default {
   data() {
     return {};
@@ -63,6 +66,9 @@ export default {
     setLang(lang) {
       this.$i18n.locale = lang;
       this.$store.dispatch("app/setLanguage", lang);
+    },
+    toScreenfull() {
+      screenfull.toggle();
     },
   },
 };
