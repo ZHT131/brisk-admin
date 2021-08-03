@@ -128,27 +128,36 @@
     <el-table ref="tables" :data="tableData" border stripe style="width: 100%">
       <el-table-column type="selection" width="55"></el-table-column>
       <el-table-column
+        v-if="showColumns.id"
         prop="id"
         label="ID"
         min-width="180"
         sortable
       ></el-table-column>
       <el-table-column
+        v-if="showColumns.username"
         prop="username"
         label="用户名"
         min-width="180"
       ></el-table-column>
       <el-table-column
+        v-if="showColumns.nickname"
         prop="nickname"
         label="昵称"
         min-width="180"
       ></el-table-column>
-      <el-table-column prop="group_id" label="所属组别" min-width="180">
+      <el-table-column
+        v-if="showColumns.group_id"
+        prop="group_id"
+        label="所属组别"
+        min-width="180"
+      >
         <template #default="scope">
           <el-tag size="medium">{{ scope.row.group.name }}</el-tag>
         </template>
       </el-table-column>
       <el-table-column
+        v-if="showColumns.status"
         prop="status"
         label="状态"
         min-width="180"
@@ -167,7 +176,11 @@
           >
         </template>
       </el-table-column>
-      <el-table-column fixed="right" label="操作" min-width="150">
+      <el-table-column
+        fixed="right"
+        label="操作"
+        min-width="150"
+      >
         <template #default="scope">
           <el-button @click="handleClick(scope.row)" type="text" size="small"
             >查看</el-button
@@ -187,7 +200,11 @@
         @current-change="handleCurrentChange"
         :current-page="currentPage4"
         :page-sizes="[10, 20, 30, 40, 50]"
-        :layout="$store.state.app.device == 'mobile' ?'total, prev, pager, next':'total, sizes, prev, pager, next, jumper'"
+        :layout="
+          $store.state.app.device == 'mobile'
+            ? 'total, prev, pager, next'
+            : 'total, sizes, prev, pager, next, jumper'
+        "
         :total="50"
       >
       </el-pagination>
@@ -215,6 +232,13 @@ export default {
         export: true,
         reset: true,
       },
+      showColumns: {
+        id: true,
+        username: true,
+        nickname: true,
+        group_id: true,
+        status: true,
+      },
       tableColumns: [
         {
           label: "ID",
@@ -240,12 +264,7 @@ export default {
           label: "状态",
           property: "status",
           visible: true,
-        },
-        {
-          label: "操作",
-          property: "tools",
-          visible: true,
-        },
+        }
       ],
       allColumnsSelected: true,
       allColumnsSelectedIndeterminate: false,
@@ -350,38 +369,41 @@ export default {
     },
     // 全选列
     handleCheckAllChange(val) {
-      // if (val === false) {
-      //   this.allColumnsSelected = true;
-      //   return;
-      // }
-      // this.tableColumns.forEach((column) => {
-      //   if (!column.visible) {
-      //     column.visible = true;
-      //     this.updateColumnVisible(column);
-      //   }
-      // });
-      // this.allColumnsSelected = val;
-      // this.allColumnsSelectedIndeterminate = false;
+      if (val === false) {
+        this.allColumnsSelected = true;
+        return;
+      }
+      this.tableColumns.forEach((column) => {
+        if (!column.visible) {
+          column.visible = true;
+          this.updateColumnVisible(column);
+        }
+      });
+      this.allColumnsSelected = val;
+      this.allColumnsSelectedIndeterminate = false;
     },
     // 单选列
     handleCheckChange(item) {
-      // let totalCount = 0;
-      // let selectedCount = 0;
-      // this.tableColumns.forEach((column) => {
-      //   ++totalCount;
-      //   selectedCount += column.visible ? 1 : 0;
-      // });
-      // if (selectedCount === 0) {
-      //   console.log("至少选择一项");
-      //   this.$nextTick(function () {
-      //     item.visible = true;
-      //   });
-      //   return;
-      // }
-      // this.allColumnsSelected = selectedCount === totalCount;
-      // this.allColumnsSelectedIndeterminate =
-      //   selectedCount !== totalCount && selectedCount !== 0;
-      // this.updateColumnVisible(item);
+      let totalCount = 0;
+      let selectedCount = 0;
+      this.tableColumns.forEach((column) => {
+        ++totalCount;
+        selectedCount += column.visible ? 1 : 0;
+      });
+      if (selectedCount === 0) {
+        console.log("至少选择一项");
+        this.$nextTick(function () {
+          item.visible = true;
+        });
+        return;
+      }
+      this.allColumnsSelected = selectedCount === totalCount;
+      this.allColumnsSelectedIndeterminate =
+        selectedCount !== totalCount && selectedCount !== 0;
+      this.updateColumnVisible(item);
+    },
+    updateColumnVisible(item) {
+      this.showColumns[item.property] = item.visible;
     },
   },
 };
