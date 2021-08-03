@@ -49,7 +49,7 @@ const WhiteList = ['login', '401', '404'];
 // from 从那个路由过来的
 router.beforeEach(async (to, form) => {
   // 动态修改网页标题
-  if(to.meta.title){
+  if (to.meta.title) {
     const { t } = i18n.global;
     document.title = t(`${to.meta.title}.${to.meta.title}`)
   }
@@ -126,7 +126,7 @@ router.beforeResolve((to, form) => {
 
 // 后置守卫：路由跳转之后
 router.afterEach((to, form) => {
-
+  store.dispatch("user/activeRoute", to.fullPath);
 })
 
 export default router

@@ -53,40 +53,50 @@ const authRoutes = (params) => {
                     component: 'dashboard/index.vue',
                     name: 'dashboard',
                     meta: { title: 'dashboard', icon: 'el-icon-menu' },
+                    redirect: null,
+                    alwaysShow: false,
                 }
             ]
         },
         {
             path: '/auth',
             component: 'layout/index.vue',
-            redirect: 'noRedirect',
+            redirect: null,
             meta: { title: 'auth', icon: 'el-icon-menu' },
-            alwaysShow: false,
+            alwaysShow: true,
             name: 'auth',
             children: [
                 {
                     path: 'admin',
                     component: 'admin/index.vue',
                     name: 'admin',
-                    meta: { title: 'admin', icon: 'el-icon-menu' }
+                    meta: { title: 'admin', icon: 'el-icon-menu' },
+                    redirect: null,
+                    alwaysShow: false,
                 },
                 {
                     path: 'adminLog',
                     component: 'adminLog/index.vue',
                     name: 'adminLog',
-                    meta: { title: 'adminLog', icon: 'el-icon-menu' }
+                    meta: { title: 'adminLog', icon: 'el-icon-menu' },
+                    alwaysShow: false,
+                    redirect: null,
                 },
                 {
                     path: 'adminGroup',
                     component: 'adminGroup/index.vue',
                     name: 'adminGroup',
-                    meta: { title: 'adminGroup', icon: 'el-icon-menu' }
+                    meta: { title: 'adminGroup', icon: 'el-icon-menu' },
+                    alwaysShow: false,
+                    redirect: null,
                 },
                 {
                     path: 'adminRule',
                     component: 'adminRule/index.vue',
                     name: 'adminRule',
-                    meta: { title: 'adminRule', icon: 'el-icon-menu' }
+                    meta: { title: 'adminRule', icon: 'el-icon-menu' },
+                    alwaysShow: false,
+                    redirect: null,
                 }
             ]
         }
