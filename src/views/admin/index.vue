@@ -181,22 +181,22 @@
       </el-table-column>
     </el-table>
     <div class="ym-page">
-      <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage4"
-        :page-sizes="[100, 200, 300, 400]"
-        :page-size="100"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="400"
-      >
-      </el-pagination>
+       <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage4"
+      :page-sizes="[100, 200, 300, 400]"
+      :page-size="100"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="400">
+    </el-pagination>
     </div>
   </div>
 </template>
 
 <script>
 import { adminUser } from "@/api";
+import { mapState } from "vuex";
 
 export default {
   data() {
@@ -322,6 +322,11 @@ export default {
       ],
     };
   },
+  computed: {
+    ...mapState({
+      device: (state) => state.app.device,
+    }),
+  },
   created() {
     adminUser().then((res) => {
       console.log(res);
@@ -389,7 +394,7 @@ export default {
       const columns = table.store.states.columns.value;
       const vm = columns.find((e) => e.property === item.property);
       table.store.commit("removeColumn", vm, null);
-      console.log(table)
+      console.log(table);
       // this.ignoreNextTableColumnsChange = true;
     },
   },

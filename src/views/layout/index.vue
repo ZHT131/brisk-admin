@@ -1,22 +1,24 @@
 <template>
   <div class="ym-body">
-    <el-container style="height: 100%">
-      <asideLayout />
-      <el-container>
-        <el-header>
-          <headerLayout />
-        </el-header>
-        <el-main>
-          <router-view :key="key" v-slot="{ Component }">
-            <transition appear name="fade-transform" mode="out-in">
-              <keep-alive>
-                <component :is="Component" />
-              </keep-alive>
-            </transition>
-          </router-view>
-        </el-main>
+    <el-config-provider :locale="language == 'en' ? enLocale : zhLocale">
+      <el-container style="height: 100%">
+        <asideLayout />
+        <el-container>
+          <el-header>
+            <headerLayout />
+          </el-header>
+          <el-main>
+            <router-view :key="key" v-slot="{ Component }">
+              <transition appear name="fade-transform" mode="out-in">
+                <keep-alive>
+                  <component :is="Component" />
+                </keep-alive>
+              </transition>
+            </router-view>
+          </el-main>
+        </el-container>
       </el-container>
-    </el-container>
+    </el-config-provider>
   </div>
 </template>
 
@@ -25,6 +27,9 @@ import ResizeMixin from "./mixin/ResizeHandler";
 import { mapState } from "vuex";
 import headerLayout from "./components/header/index.vue";
 import asideLayout from "./components/aside/index.vue";
+import enLocale from "element-plus/lib/locale/lang/en";
+import zhLocale from "element-plus/lib/locale/lang/zh-cn";
+
 export default {
   mixins: [ResizeMixin],
   components: {
@@ -32,11 +37,15 @@ export default {
     asideLayout,
   },
   data() {
-    return {};
+    return {
+      enLocale: enLocale,
+      zhLocale: zhLocale,
+    };
   },
   computed: {
     ...mapState({
       sidebar: (state) => state.app.sidebar,
+      language: (state) => state.app.language,
     }),
     key() {
       return this.$route.path;
