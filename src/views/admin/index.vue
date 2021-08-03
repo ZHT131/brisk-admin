@@ -181,22 +181,22 @@
       </el-table-column>
     </el-table>
     <div class="ym-page">
-       <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="currentPage4"
-      :page-sizes="[100, 200, 300, 400]"
-      :page-size="100"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="400">
-    </el-pagination>
+      <el-pagination
+        :small="$store.state.app.device == 'mobile' ? true : false"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="currentPage4"
+        :page-sizes="[10, 20, 30, 40, 50]"
+        :layout="$store.state.app.device == 'mobile' ?'total, prev, pager, next':'total, sizes, prev, pager, next, jumper'"
+        :total="50"
+      >
+      </el-pagination>
     </div>
   </div>
 </template>
 
 <script>
 import { adminUser } from "@/api";
-import { mapState } from "vuex";
 
 export default {
   data() {
@@ -322,11 +322,6 @@ export default {
       ],
     };
   },
-  computed: {
-    ...mapState({
-      device: (state) => state.app.device,
-    }),
-  },
   created() {
     adminUser().then((res) => {
       console.log(res);
@@ -355,47 +350,38 @@ export default {
     },
     // 全选列
     handleCheckAllChange(val) {
-      if (val === false) {
-        this.allColumnsSelected = true;
-        return;
-      }
-      this.tableColumns.forEach((column) => {
-        if (!column.visible) {
-          column.visible = true;
-          this.updateColumnVisible(column);
-        }
-      });
-      this.allColumnsSelected = val;
-      this.allColumnsSelectedIndeterminate = false;
+      // if (val === false) {
+      //   this.allColumnsSelected = true;
+      //   return;
+      // }
+      // this.tableColumns.forEach((column) => {
+      //   if (!column.visible) {
+      //     column.visible = true;
+      //     this.updateColumnVisible(column);
+      //   }
+      // });
+      // this.allColumnsSelected = val;
+      // this.allColumnsSelectedIndeterminate = false;
     },
     // 单选列
     handleCheckChange(item) {
-      let totalCount = 0;
-      let selectedCount = 0;
-      this.tableColumns.forEach((column) => {
-        ++totalCount;
-        selectedCount += column.visible ? 1 : 0;
-      });
-      if (selectedCount === 0) {
-        console.log("至少选择一项");
-        this.$nextTick(function () {
-          item.visible = true;
-        });
-        return;
-      }
-      this.allColumnsSelected = selectedCount === totalCount;
-      this.allColumnsSelectedIndeterminate =
-        selectedCount !== totalCount && selectedCount !== 0;
-      this.updateColumnVisible(item);
-    },
-    // 更新表格列
-    updateColumnVisible(item) {
-      const table = this.$refs.tables;
-      const columns = table.store.states.columns.value;
-      const vm = columns.find((e) => e.property === item.property);
-      table.store.commit("removeColumn", vm, null);
-      console.log(table);
-      // this.ignoreNextTableColumnsChange = true;
+      // let totalCount = 0;
+      // let selectedCount = 0;
+      // this.tableColumns.forEach((column) => {
+      //   ++totalCount;
+      //   selectedCount += column.visible ? 1 : 0;
+      // });
+      // if (selectedCount === 0) {
+      //   console.log("至少选择一项");
+      //   this.$nextTick(function () {
+      //     item.visible = true;
+      //   });
+      //   return;
+      // }
+      // this.allColumnsSelected = selectedCount === totalCount;
+      // this.allColumnsSelectedIndeterminate =
+      //   selectedCount !== totalCount && selectedCount !== 0;
+      // this.updateColumnVisible(item);
     },
   },
 };
