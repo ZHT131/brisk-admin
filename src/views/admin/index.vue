@@ -196,6 +196,8 @@
 </template>
 
 <script>
+import { adminUser } from "@/api";
+
 export default {
   data() {
     return {
@@ -319,6 +321,11 @@ export default {
         },
       ],
     };
+  },
+  created() {
+    adminUser().then((res) => {
+      console.log(res);
+    });
   },
   methods: {
     handleClick(row) {

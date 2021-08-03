@@ -45,7 +45,6 @@
 import ResizeMixin from "../layout/mixin/ResizeHandler";
 import { mapState } from "vuex";
 import { Chart, registerShape } from "@antv/g2";
-import { mokePost } from "@/api";
 
 export default {
   mixins: [ResizeMixin],
@@ -90,11 +89,6 @@ export default {
       ];
       this.chartB.changeData(data1);
     },
-  },
-  created() {
-    mokePost().then((res) => {
-      console.log(res);
-    });
   },
   mounted() {
     const e = document.createEvent("Event");
