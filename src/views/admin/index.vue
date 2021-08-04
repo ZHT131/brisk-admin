@@ -2,49 +2,23 @@
   <div class="ym-main">
     <!-- 搜索框 -->
     <div class="ym-search-box" v-if="showSearch">
-      <el-form
-        ref="searchForm"
-        size="medium"
-        label-width="100px"
-        label-position="left"
-        style="margin-bottom: 20px"
-      >
+      <el-form ref="searchForm" size="medium" label-width="100px" label-position="left" style="margin-bottom: 20px">
         <el-row :gutter="20">
           <el-col :xs="24" :sm="12" :md="6">
             <el-form-item label="表名" prop="table_name" size="small">
-              <el-input
-                placeholder="请输入表名"
-                clearable
-                :style="{ width: '100%' }"
-              />
+              <el-input placeholder="请输入表名" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
             <el-form-item label="测试选择" prop="table_name" size="small">
-              <el-select
-                v-model="searchFormData.ceshiValue"
-                placeholder="请选择"
-                :style="{ width: '100%' }"
-              >
-                <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
-                />
+              <el-select v-model="searchFormData.ceshiValue" placeholder="请选择" :style="{ width: '100%' }">
+                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
               </el-select>
             </el-form-item>
           </el-col>
           <!-- 搜索操作 -->
           <el-col :xs="24" :sm="12" :md="6">
-            <div
-              style="
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: center;
-              "
-            >
+            <div class="ym-row-cen">
               <el-button size="small" type="primary">查询</el-button>
               <el-button size="small">重置</el-button>
             </div>
@@ -52,73 +26,33 @@
         </el-row>
       </el-form>
     </div>
-    <el-row
-      type="flex"
-      justify="space-between"
-      align="middle"
-      style="margin-bottom: 10px"
-    >
+    <el-row type="flex" justify="space-between" align="middle" style="margin-bottom: 10px">
       <el-button-group>
-        <el-button
-          v-if="toolShow.add"
-          type="primary"
-          icon="el-icon-plus"
-          size="small"
-        >
+        <el-button v-if="toolShow.add" type="primary" icon="el-icon-plus" size="small">
           新增
         </el-button>
-        <el-button
-          v-if="toolShow.edit"
-          type="success"
-          icon="el-icon-edit"
-          size="small"
-        >
+        <el-button v-if="toolShow.edit" type="success" icon="el-icon-edit" size="small">
           编辑
         </el-button>
-        <el-button
-          v-if="toolShow.del"
-          type="danger"
-          icon="el-icon-delete"
-          size="small"
-        >
+        <el-button v-if="toolShow.del" type="danger" icon="el-icon-delete" size="small">
           删除
         </el-button>
-        <el-button
-          v-if="toolShow.export"
-          type="warning"
-          icon="el-icon-download"
-          size="small"
-        >
+        <el-button v-if="toolShow.export" type="warning" icon="el-icon-download" size="small">
           导出
         </el-button>
       </el-button-group>
       <el-button-group>
-        <el-button
-          plain
-          type="info"
-          icon="el-icon-search"
-          size="small"
-          @click="changeSearchShow"
-        />
+        <el-button plain type="info" icon="el-icon-search" size="small" @click="changeSearchShow" />
         <el-button icon="el-icon-refresh" size="small" @click="refresh" />
         <el-popover placement="bottom-end" width="150" trigger="click">
           <template #reference>
             <el-button size="small" icon="el-icon-s-grid"></el-button>
           </template>
           <div class="ym-column">
-            <el-checkbox
-              v-model="allColumnsSelected"
-              :indeterminate="allColumnsSelectedIndeterminate"
-              @change="handleCheckAllChange"
-            >
+            <el-checkbox v-model="allColumnsSelected" :indeterminate="allColumnsSelectedIndeterminate" @change="handleCheckAllChange">
               全选
             </el-checkbox>
-            <el-checkbox
-              v-for="item in tableColumns"
-              :key="item.property"
-              v-model="item.visible"
-              @change="handleCheckChange(item)"
-            >
+            <el-checkbox v-for="item in tableColumns" :key="item.property" v-model="item.visible" @change="handleCheckChange(item)">
               {{ item.label }}
             </el-checkbox>
           </div>
@@ -126,116 +60,38 @@
       </el-button-group>
     </el-row>
     <div style="flex: 1">
-      <el-table
-        ref="tables"
-        :data="tableData"
-        border
-        stripe
-        style="width: 100%"
-      >
+      <el-table ref="tables" v-loading="loadingStatus" :data="tableData" border stripe style="width: 100%">
         <el-table-column type="selection" width="60"></el-table-column>
-        <el-table-column
-          v-if="showColumns.id"
-          prop="id"
-          label="ID"
-          min-width="180"
-          sortable
-        ></el-table-column>
-        <el-table-column
-          v-if="showColumns.username"
-          prop="username"
-          label="用户名"
-          min-width="180"
-        ></el-table-column>
-        <el-table-column
-          v-if="showColumns.nickname"
-          prop="nickname"
-          label="昵称"
-          min-width="180"
-        ></el-table-column>
-        <el-table-column
-          v-if="showColumns.group_id"
-          prop="group_id"
-          label="所属组别"
-          min-width="180"
-        >
+        <el-table-column v-if="showColumns.id" prop="id" label="ID" min-width="180" sortable></el-table-column>
+        <el-table-column v-if="showColumns.username" prop="username" label="用户名" min-width="180"></el-table-column>
+        <el-table-column v-if="showColumns.nickname" prop="nickname" label="昵称" min-width="180"></el-table-column>
+        <el-table-column v-if="showColumns.group_id" prop="group_id" label="所属组别" min-width="180">
           <template #default="scope">
             <el-tag size="medium">{{ scope.row.group.name }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column
-          v-if="showColumns.status"
-          prop="status"
-          label="状态"
-          :filters="[
-            { text: '正常', value: '1' },
-            { text: '禁用', value: '2' },
-          ]"
-          :filter-method="filterTag"
-          filter-placement="bottom-end"
-          min-width="180"
-        >
+        <el-table-column v-if="showColumns.status" prop="status" label="状态" :filters="filters" :filter-method="filterTag" filter-placement="bottom-end" min-width="180">
           <template #default="scope">
-            <el-tag
-              :type="scope.row.status === '1' ? 'success' : 'danger'"
-              disable-transitions
-              >{{ scope.row.status_text }}</el-tag
-            >
+            <el-tag :type="scope.row.status == '1' ? 'success' : 'danger'" disable-transitions>{{ scope.row.status_text }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column
-          :fixed="$store.state.app.device == 'mobile' ? false : 'right'"
-          label="操作"
-          width="180"
-        >
+        <el-table-column :fixed="$store.state.app.device == 'mobile' ? false : 'right'" label="操作" width="165">
           <template #default="scope">
             <div class="ym-row">
-              <el-button
-                type="primary"
-                icon="el-icon-view"
-                @click="handleClick(scope.row)"
-                size="small"
-              ></el-button>
-              <el-button
-                type="primary"
-                icon="el-icon-edit"
-                size="small"
-              ></el-button>
-              <el-button
-                type="primary"
-                icon="el-icon-delete"
-                size="small"
-              ></el-button>
-              <el-button
-                type="primary"
-                icon="el-icon-delete"
-                size="small"
-              ></el-button>
-              <el-button
-                type="primary"
-                icon="el-icon-delete"
-                size="small"
-              ></el-button>
+              <el-button type="primary" icon="el-icon-view" @click="handleClick(scope.row)" size="small"></el-button>
+              <el-button type="primary" icon="el-icon-edit" size="small"></el-button>
+              <el-button type="primary" icon="el-icon-delete" size="small"></el-button>
             </div>
           </template>
         </el-table-column>
       </el-table>
     </div>
     <div class="ym-page">
-      <el-pagination
-        :small="$store.state.app.device == 'mobile' ? true : false"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage4"
-        :page-sizes="[10, 20, 30, 40, 50]"
-        :layout="
+      <el-pagination :small="$store.state.app.device == 'mobile' ? true : false" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-size="pageSize" :page-sizes="[10, 20, 30, 40, 50]" :layout="
           $store.state.app.device == 'mobile'
-            ? 'total, prev, pager, next'
-            : 'total, sizes, prev, pager, next, jumper'
-        "
-        :total="50"
-      >
-      </el-pagination>
+            ? pageMobileLayout
+            : pageDesktopLayout
+        " :total="pageTotal"></el-pagination>
     </div>
   </div>
 </template>
@@ -267,6 +123,7 @@ export default {
         group_id: true,
         status: true,
       },
+      loadingStatus: false,
       tableColumns: [
         {
           label: "ID",
@@ -298,7 +155,15 @@ export default {
       allColumnsSelectedIndeterminate: false,
       // 忽略下次表格列变动
       ignoreNextTableColumnsChange: false,
-      currentPage4: 4,
+      pageMobileLayout: "total, prev, pager, next",
+      pageDesktopLayout: "total, sizes, prev, pager, next, jumper",
+      currentPage: 1,
+      pageTotal: 0,
+      pageSize: 10,
+      filters: [
+        { text: "正常", value: "1" },
+        { text: "禁用", value: "2" },
+      ],
       options: [
         {
           value: "选项1",
@@ -321,68 +186,24 @@ export default {
           label: "北京烤鸭",
         },
       ],
-      tableData: [
-        {
-          id: "1",
-          nickname: "小张",
-          username: "xiaozhang",
-          group_id: 1,
-          group: {
-            name: "管理员组",
-          },
-          status: "1",
-          status_text: "正常",
-        },
-        {
-          id: "2",
-          nickname: "小李",
-          username: "xiaoli",
-          group_id: 1,
-          group: {
-            name: "管理员组",
-          },
-          status: "1",
-          status_text: "正常",
-        },
-        {
-          id: "3",
-          nickname: "小王",
-          username: "xiaowang",
-          group_id: 1,
-          group: {
-            name: "管理员组",
-          },
-          status: "1",
-          status_text: "正常",
-        },
-        {
-          id: "4",
-          nickname: "小刘",
-          username: "xiaoliu",
-          group_id: 1,
-          group: {
-            name: "管理员组",
-          },
-          status: "2",
-          status_text: "禁用",
-        },
-      ],
+      tableData: [],
     };
   },
   created() {
-    adminUser().then((res) => {
-      console.log(res);
-    });
+    this.loadData();
   },
   methods: {
     handleClick(row) {
       console.log(row);
     },
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
+      this.pageSize = val;
+      this.currentPage = 1;
+      this.loadData();
     },
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+      this.currentPage = val;
+      this.loadData();
     },
     // 显示/隐藏搜索
     changeSearchShow() {
@@ -390,7 +211,15 @@ export default {
     },
     // 刷新表格数据
     refresh() {
-      // this.loadStatus = true;
+      this.loadData();
+    },
+    loadData() {
+      this.loadingStatus = true;
+      adminUser({ page: this.currentPage, size: this.pageSize }).then((res) => {
+        this.loadingStatus = false;
+        this.tableData = res.rows;
+        this.pageTotal = res.total;
+      });
     },
     filterTag(value, row) {
       return row.status === value;
@@ -465,5 +294,11 @@ export default {
   display: flex;
   flex-direction: column;
   line-height: 30px;
+}
+.ym-row-cen {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 </style>

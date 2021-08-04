@@ -20,7 +20,7 @@ export const authRoutes = (data) => {
 export const adminUser = (data) => {
     return axios({
         url: "api/adminUser",
-        method: "get",
+        method: "post",
         data,
         config: {}
     })
