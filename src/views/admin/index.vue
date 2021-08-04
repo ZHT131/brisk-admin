@@ -2,25 +2,45 @@
   <div class="ym-main">
     <!-- 搜索框 -->
     <div class="ym-search-box" v-if="showSearch">
-      <el-form ref="searchForm" size="medium" label-width="100px" label-position="left" style="margin-bottom: 20px">
+      <el-form ref="searchForm" :model="searchForm" :rules="searchRules" size="medium" label-width="100px" label-position="left" style="margin-bottom: 20px">
         <el-row :gutter="20">
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item label="表名" prop="table_name" size="small">
-              <el-input placeholder="请输入表名" clearable :style="{ width: '100%' }" />
+            <el-form-item label="ID" prop="id" size="small">
+              <el-input placeholder="请输入ID" v-model="searchForm.id" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item label="测试选择" prop="table_name" size="small">
-              <el-select v-model="searchFormData.ceshiValue" placeholder="请选择" :style="{ width: '100%' }">
-                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
+            <el-form-item label="用户名" prop="username" size="small">
+              <el-input placeholder="请输入用户名" v-model="searchForm.username" clearable :style="{ width: '100%' }" />
+            </el-form-item>
+          </el-col>
+          <el-col :xs="24" :sm="12" :md="6">
+            <el-form-item label="昵称" prop="nickname" size="small">
+              <el-input placeholder="请输入昵称" v-model="searchForm.nickname" clearable :style="{ width: '100%' }" />
+            </el-form-item>
+          </el-col>
+          <el-col :xs="24" :sm="12" :md="6">
+            <el-form-item label="组别ID" prop="group_id" size="small">
+              <el-input placeholder="请输入组别ID" v-model="searchForm.group_id" clearable :style="{ width: '100%' }" />
+            </el-form-item>
+          </el-col>
+          <el-col :xs="24" :sm="12" :md="6">
+            <el-form-item label="角色组" prop="group.name" size="small">
+              <el-input placeholder="请输入角色组" v-model="searchForm.group.name" clearable :style="{ width: '100%' }" />
+            </el-form-item>
+          </el-col>
+          <el-col :xs="24" :sm="12" :md="6">
+            <el-form-item label="状态" prop="status" size="small">
+              <el-select v-model="searchForm.status" placeholder="请选择" :style="{ width: '100%' }">
+                <el-option v-for="item in statusFilters" :key="item.value" :label="item.text" :value="item.value" />
               </el-select>
             </el-form-item>
           </el-col>
           <!-- 搜索操作 -->
           <el-col :xs="24" :sm="12" :md="6">
             <div class="ym-row-cen">
-              <el-button size="small" type="primary">查询</el-button>
-              <el-button size="small">重置</el-button>
+              <el-button size="small" type="primary" @click="submitSearchForm">查询</el-button>
+              <el-button size="small" @click="resetSearchForm">重置</el-button>
             </div>
           </el-col>
         </el-row>
@@ -65,12 +85,13 @@
         <el-table-column v-if="showColumns.id" prop="id" label="ID" min-width="180" sortable></el-table-column>
         <el-table-column v-if="showColumns.username" prop="username" label="用户名" min-width="180"></el-table-column>
         <el-table-column v-if="showColumns.nickname" prop="nickname" label="昵称" min-width="180"></el-table-column>
-        <el-table-column v-if="showColumns.group_id" prop="group_id" label="所属组别" min-width="180">
+        <el-table-column v-if="showColumns.group_id" prop="group_id" label="组别ID" min-width="180"></el-table-column>
+        <el-table-column v-if="showColumns.group_name" prop="group.name" label="角色组" min-width="180">
           <template #default="scope">
             <el-tag size="medium">{{ scope.row.group.name }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column v-if="showColumns.status" prop="status" label="状态" :filters="filters" :filter-method="filterTag" filter-placement="bottom-end" min-width="180">
+        <el-table-column v-if="showColumns.status" prop="status" label="状态" :filters="statusFilters" :filter-method="statusFilterTag" filter-placement="bottom-end" min-width="180">
           <template #default="scope">
             <el-tag :type="scope.row.status == '1' ? 'success' : 'danger'" disable-transitions>{{ scope.row.status_text }}</el-tag>
           </template>
@@ -79,8 +100,8 @@
           <template #default="scope">
             <div class="ym-row">
               <el-button type="primary" icon="el-icon-view" @click="handleClick(scope.row)" size="small"></el-button>
-              <el-button type="primary" icon="el-icon-edit" size="small"></el-button>
-              <el-button type="primary" icon="el-icon-delete" size="small"></el-button>
+              <el-button type="success" icon="el-icon-edit" size="small"></el-button>
+              <el-button type="danger" icon="el-icon-delete" size="small"></el-button>
             </div>
           </template>
         </el-table-column>
@@ -103,10 +124,17 @@ export default {
   data() {
     return {
       // 搜索数据
-      searchFormData: {
-        table_name: undefined,
-        ceshiValue: undefined,
+      searchForm: {
+        id: "",
+        username: "",
+        nickname: "",
+        group: {
+          name: "",
+        },
+        group_id: "",
+        status: "",
       },
+      searchRules: {},
       showSearch: false,
       // 主页操作栏显示哪些按钮
       toolShow: {
@@ -121,6 +149,7 @@ export default {
         username: true,
         nickname: true,
         group_id: true,
+        group_name: true,
         status: true,
       },
       loadingStatus: false,
@@ -160,31 +189,9 @@ export default {
       currentPage: 1,
       pageTotal: 0,
       pageSize: 10,
-      filters: [
+      statusFilters: [
         { text: "正常", value: "1" },
         { text: "禁用", value: "2" },
-      ],
-      options: [
-        {
-          value: "选项1",
-          label: "黄金糕",
-        },
-        {
-          value: "选项2",
-          label: "双皮奶",
-        },
-        {
-          value: "选项3",
-          label: "蚵仔煎",
-        },
-        {
-          value: "选项4",
-          label: "龙须面",
-        },
-        {
-          value: "选项5",
-          label: "北京烤鸭",
-        },
       ],
       tableData: [],
     };
@@ -221,7 +228,7 @@ export default {
         this.pageTotal = res.total;
       });
     },
-    filterTag(value, row) {
+    statusFilterTag(value, row) {
       return row.status === value;
     },
     // 全选列
@@ -261,6 +268,19 @@ export default {
     },
     updateColumnVisible(item) {
       this.showColumns[item.property] = item.visible;
+    },
+    submitSearchForm() {
+      this.$refs.searchForm.validate((valid) => {
+        if (valid) {
+          console.log("submit!");
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    },
+    resetSearchForm() {
+      this.$refs.searchForm.resetFields();
     },
   },
 };
