@@ -125,74 +125,102 @@
         </el-popover>
       </el-button-group>
     </el-row>
-    <el-table ref="tables" :data="tableData" border stripe style="width: 100%">
-      <el-table-column type="selection" width="55"></el-table-column>
-      <el-table-column
-        v-if="showColumns.id"
-        prop="id"
-        label="ID"
-        min-width="180"
-        sortable
-      ></el-table-column>
-      <el-table-column
-        v-if="showColumns.username"
-        prop="username"
-        label="用户名"
-        min-width="180"
-      ></el-table-column>
-      <el-table-column
-        v-if="showColumns.nickname"
-        prop="nickname"
-        label="昵称"
-        min-width="180"
-      ></el-table-column>
-      <el-table-column
-        v-if="showColumns.group_id"
-        prop="group_id"
-        label="所属组别"
-        min-width="180"
+    <div style="flex: 1">
+      <el-table
+        ref="tables"
+        :data="tableData"
+        border
+        stripe
+        style="width: 100%"
       >
-        <template #default="scope">
-          <el-tag size="medium">{{ scope.row.group.name }}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column
-        v-if="showColumns.status"
-        prop="status"
-        label="状态"
-        min-width="180"
-        :filters="[
-          { text: '正常', value: '1' },
-          { text: '禁用', value: '2' },
-        ]"
-        :filter-method="filterTag"
-        filter-placement="bottom-end"
-      >
-        <template #default="scope">
-          <el-tag
-            :type="scope.row.status === '1' ? 'success' : 'danger'"
-            disable-transitions
-            >{{ scope.row.status_text }}</el-tag
-          >
-        </template>
-      </el-table-column>
-      <el-table-column
-        fixed="right"
-        label="操作"
-        min-width="150"
-      >
-        <template #default="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small"
-            >查看</el-button
-          >
-          <el-button type="text" size="small">编辑</el-button>
-          <el-button @click="handleClick(scope.row)" type="text" size="small"
-            >查看</el-button
-          >
-          <el-button type="text" size="small">编辑</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+        <el-table-column type="selection" width="60"></el-table-column>
+        <el-table-column
+          v-if="showColumns.id"
+          prop="id"
+          label="ID"
+          min-width="180"
+          sortable
+        ></el-table-column>
+        <el-table-column
+          v-if="showColumns.username"
+          prop="username"
+          label="用户名"
+          min-width="180"
+        ></el-table-column>
+        <el-table-column
+          v-if="showColumns.nickname"
+          prop="nickname"
+          label="昵称"
+          min-width="180"
+        ></el-table-column>
+        <el-table-column
+          v-if="showColumns.group_id"
+          prop="group_id"
+          label="所属组别"
+          min-width="180"
+        >
+          <template #default="scope">
+            <el-tag size="medium">{{ scope.row.group.name }}</el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column
+          v-if="showColumns.status"
+          prop="status"
+          label="状态"
+          :filters="[
+            { text: '正常', value: '1' },
+            { text: '禁用', value: '2' },
+          ]"
+          :filter-method="filterTag"
+          filter-placement="bottom-end"
+          min-width="180"
+        >
+          <template #default="scope">
+            <el-tag
+              :type="scope.row.status === '1' ? 'success' : 'danger'"
+              disable-transitions
+              >{{ scope.row.status_text }}</el-tag
+            >
+          </template>
+        </el-table-column>
+        <el-table-column
+          :fixed="$store.state.app.device == 'mobile' ? false : 'right'"
+          label="操作"
+          width="180"
+        >
+          <template #default="scope">
+            <div class="ym-row">
+              <el-button
+                type="primary"
+                icon="el-icon-view"
+                @click="handleClick(scope.row)"
+                size="small"
+              ></el-button>
+              <el-button
+                type="primary"
+                icon="el-icon-edit"
+                size="small"
+              ></el-button>
+              <el-button
+                type="primary"
+                icon="el-icon-delete"
+                size="small"
+              ></el-button>
+              <el-button
+                type="primary"
+                icon="el-icon-delete"
+                size="small"
+              ></el-button>
+              <el-button
+                type="primary"
+                icon="el-icon-delete"
+                size="small"
+              ></el-button>
+            </div>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
     <div class="ym-page">
       <el-pagination
         :small="$store.state.app.device == 'mobile' ? true : false"
@@ -264,7 +292,7 @@ export default {
           label: "状态",
           property: "status",
           visible: true,
-        }
+        },
       ],
       allColumnsSelected: true,
       allColumnsSelectedIndeterminate: false,
@@ -416,6 +444,15 @@ export default {
 }
 .ym-search-box {
   background: white;
+}
+.ym-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  .el-button {
+    margin: 2px;
+  }
 }
 .ym-page {
   display: flex;
