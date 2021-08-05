@@ -29,4 +29,38 @@ const adminUser = (params) => {
   return data;
 };
 
-export { adminUser };
+const adminGroup = (params) => {
+  let body = JSON.parse(params.body);
+  let data = {
+    page: body.page,
+    size: body.size,
+    rows: [],
+    total: 30,
+  };
+
+  for (let index = 0; index < body.size; index++) {
+    data.rows.push(
+      Mock.mock({
+        id: "@integer(1, 100)",
+        pid: 0,
+        name: "@ctitle",
+        status: 1,
+        status_text: "正常",
+        createtime: "@datetime",
+        children: [
+          {
+            id: "@integer(1, 100)",
+            pid: 1,
+            name: "@ctitle",
+            status: 1,
+            status_text: "正常",
+            createtime: "@datetime",
+          },
+        ],
+      })
+    );
+  }
+  return data;
+};
+
+export { adminUser, adminGroup };

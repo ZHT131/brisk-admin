@@ -4,9 +4,9 @@
       <div class="ym-row">
         <!-- 左侧插槽 -->
         <slot name="left" :row="scope.row" />
-        <el-button type="primary" icon="el-icon-view" @click="handleView(scope.row)" size="small"></el-button>
-        <el-button type="success" icon="el-icon-edit" @click="handleEdit(scope.row)" size="small"></el-button>
-        <el-button type="danger" icon="el-icon-delete" @click="handleDel(scope.row)" size="small"></el-button>
+        <el-button v-if="showOperate.view" type="primary" icon="el-icon-view" @click="handleView(scope.row)" size="small"></el-button>
+        <el-button v-if="showOperate.edit" type="success" icon="el-icon-edit" @click="handleEdit(scope.row)" size="small"></el-button>
+        <el-button v-if="showOperate.del" type="danger" icon="el-icon-delete" @click="handleDel(scope.row)" size="small"></el-button>
         <!-- 右侧插槽 -->
         <slot name="right" :row="scope.row" />
       </div>
@@ -21,7 +21,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .ym-row {
   display: flex;
   flex-direction: row;

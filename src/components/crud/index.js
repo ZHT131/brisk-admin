@@ -33,7 +33,14 @@ function curd(options) {
         statusFilters: [],
         //表格数据
         tableData: [],
+        //请求url
         url: "",
+        //操作栏显示按钮
+        showOperate: {
+          view: true,
+          edit: true,
+          del: true,
+        },
         //导入并合并初始化数据
         ...options,
       };
@@ -251,6 +258,10 @@ var operate = {
     device: {
       type: String,
       default: "",
+    },
+    showOperate: {
+      type: Object,
+      default: {},
     },
   },
   methods: {

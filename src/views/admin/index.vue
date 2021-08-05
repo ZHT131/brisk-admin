@@ -37,48 +37,13 @@
             </el-form-item>
           </el-col>
           <!-- 搜索操作 -->
-          <el-col :xs="24" :sm="12" :md="6">
-            <div class="ym-row-cen">
-              <el-button size="small" type="primary" @click="submitSearchForm">查询</el-button>
-              <el-button size="small" @click="resetSearchForm">重置</el-button>
-            </div>
-          </el-col>
+          <searchBtn @resetSearchForm="resetSearchForm" @submitSearchForm="submitSearchForm" />
         </el-row>
       </el-form>
     </div>
-    <el-row type="flex" justify="space-between" align="middle" style="margin-bottom: 10px">
-      <el-button-group>
-        <el-button v-if="toolShow.add" type="primary" icon="el-icon-plus" size="small">
-          新增
-        </el-button>
-        <el-button v-if="toolShow.edit" type="success" icon="el-icon-edit" size="small">
-          编辑
-        </el-button>
-        <el-button v-if="toolShow.del" type="danger" icon="el-icon-delete" size="small">
-          删除
-        </el-button>
-        <el-button v-if="toolShow.export" type="warning" icon="el-icon-download" size="small">
-          导出
-        </el-button>
-      </el-button-group>
-      <el-button-group>
-        <el-button plain type="info" icon="el-icon-search" size="small" @click="changeSearchShow" />
-        <el-button icon="el-icon-refresh" size="small" @click="refresh" />
-        <el-popover placement="bottom-end" width="150" trigger="click">
-          <template #reference>
-            <el-button size="small" icon="el-icon-s-grid"></el-button>
-          </template>
-          <div class="ym-column">
-            <el-checkbox v-model="allColumnsSelected" :indeterminate="allColumnsSelectedIndeterminate" @change="handleCheckAllChange">
-              全选
-            </el-checkbox>
-            <el-checkbox v-for="item in tableColumns" :key="item.property" v-model="item.visible" @change="handleCheckChange(item)">
-              {{ item.label }}
-            </el-checkbox>
-          </div>
-        </el-popover>
-      </el-button-group>
-    </el-row>
+    <!-- 工具栏 -->
+    <toolBar :toolShow="toolShow" :tableColumns="tableColumns" @handleCheckAllChange="handleCheckAllChange" @handleCheckChange="handleCheckChange" @changeSearchShow="changeSearchShow" @refresh="refresh">
+    </toolBar>
     <div style="flex: 1">
       <el-table ref="tables" v-loading="loadingStatus" :data="tableData" border stripe style="width: 100%">
         <el-table-column type="selection" width="60"></el-table-column>
@@ -96,33 +61,32 @@
             <el-tag :type="scope.row.status == '1' ? 'success' : 'danger'" disable-transitions>{{ scope.row.status_text }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column :fixed="$store.state.app.device == 'mobile' ? false : 'right'" label="操作" width="165">
-          <template #default="scope">
-            <div class="ym-row">
-              <el-button type="primary" icon="el-icon-view" @click="handleClick(scope.row)" size="small"></el-button>
-              <el-button type="success" icon="el-icon-edit" size="small"></el-button>
-              <el-button type="danger" icon="el-icon-delete" size="small"></el-button>
-            </div>
-          </template>
-        </el-table-column>
+        <!--操作栏-->
+        <operate :device="$store.state.app.device" :showOperate="showOperate" @handleView="handleView" @handleEdit="handleEdit" @handleDel="handleDel"></operate>
       </el-table>
     </div>
-    <div class="ym-page">
-      <el-pagination :small="$store.state.app.device == 'mobile' ? true : false" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-size="pageSize" :page-sizes="[10, 20, 30, 40, 50]" :layout="
-          $store.state.app.device == 'mobile'
-            ? pageMobileLayout
-            : pageDesktopLayout
-        " :total="pageTotal"></el-pagination>
-    </div>
+    <!--分页组件-->
+    <pagination :device="$store.state.app.device" :currentPage="currentPage" :pageSize="pageSize" :pageSizes="pageSizes" :pageTotal="pageTotal" :pageMobileLayout="pageMobileLayout" :pageDesktopLayout="pageDesktopLayout" @handleSizeChange="handleSizeChange" @handleCurrentChange="handleCurrentChange" />
   </div>
 </template>
 
 <script>
-import { adminUser } from "@/api";
+import toolBar from "@/components/crud/toolBar.vue";
+import searchBtn from "@/components/crud/searchBtn.vue";
+import crud from "@/components/crud";
+import pagination from "@/components/crud/pagination.vue";
+import operate from "@/components/crud/operate.vue";
 
 export default {
-  data() {
-    return {
+  components: {
+    toolBar,
+    searchBtn,
+    pagination,
+    operate,
+  },
+  mixins: [
+    crud({
+      url: "api/adminUser",
       // 搜索数据
       searchForm: {
         id: "",
@@ -134,16 +98,9 @@ export default {
         group_id: "",
         status: "",
       },
+      //搜索规则
       searchRules: {},
-      showSearch: false,
-      // 主页操作栏显示哪些按钮
-      toolShow: {
-        add: true,
-        edit: true,
-        del: true,
-        export: true,
-        reset: true,
-      },
+      //显示、隐藏列
       showColumns: {
         id: true,
         username: true,
@@ -152,7 +109,7 @@ export default {
         group_name: true,
         status: true,
       },
-      loadingStatus: false,
+      //列筛选数据
       tableColumns: [
         {
           label: "ID",
@@ -170,8 +127,13 @@ export default {
           visible: true,
         },
         {
-          label: "所属组别",
+          label: "组别ID",
           property: "group_id",
+          visible: true,
+        },
+        {
+          label: "角色组",
+          property: "group_name",
           visible: true,
         },
         {
@@ -180,107 +142,24 @@ export default {
           visible: true,
         },
       ],
-      allColumnsSelected: true,
-      allColumnsSelectedIndeterminate: false,
-      // 忽略下次表格列变动
-      ignoreNextTableColumnsChange: false,
-      pageMobileLayout: "total, prev, pager, next",
-      pageDesktopLayout: "total, sizes, prev, pager, next, jumper",
-      currentPage: 1,
-      pageTotal: 0,
-      pageSize: 10,
+      //状态筛选数据
       statusFilters: [
         { text: "正常", value: "1" },
         { text: "禁用", value: "2" },
       ],
-      tableData: [],
-    };
+    }),
+  ],
+  data() {
+    return {};
   },
-  created() {
-    this.loadData();
-  },
+  created() {},
   methods: {
     handleClick(row) {
       console.log(row);
     },
-    handleSizeChange(val) {
-      this.pageSize = val;
-      this.currentPage = 1;
-      this.loadData();
-    },
-    handleCurrentChange(val) {
-      this.currentPage = val;
-      this.loadData();
-    },
-    // 显示/隐藏搜索
-    changeSearchShow() {
-      this.showSearch = !this.showSearch;
-    },
-    // 刷新表格数据
-    refresh() {
-      this.loadData();
-    },
-    loadData() {
-      this.loadingStatus = true;
-      adminUser({ page: this.currentPage, size: this.pageSize }).then((res) => {
-        this.loadingStatus = false;
-        this.tableData = res.rows;
-        this.pageTotal = res.total;
-      });
-    },
+
     statusFilterTag(value, row) {
       return row.status === value;
-    },
-    // 全选列
-    handleCheckAllChange(val) {
-      if (val === false) {
-        this.allColumnsSelected = true;
-        return;
-      }
-      this.tableColumns.forEach((column) => {
-        if (!column.visible) {
-          column.visible = true;
-          this.updateColumnVisible(column);
-        }
-      });
-      this.allColumnsSelected = val;
-      this.allColumnsSelectedIndeterminate = false;
-    },
-    // 单选列
-    handleCheckChange(item) {
-      let totalCount = 0;
-      let selectedCount = 0;
-      this.tableColumns.forEach((column) => {
-        ++totalCount;
-        selectedCount += column.visible ? 1 : 0;
-      });
-      if (selectedCount === 0) {
-        console.log("至少选择一项");
-        this.$nextTick(function () {
-          item.visible = true;
-        });
-        return;
-      }
-      this.allColumnsSelected = selectedCount === totalCount;
-      this.allColumnsSelectedIndeterminate =
-        selectedCount !== totalCount && selectedCount !== 0;
-      this.updateColumnVisible(item);
-    },
-    updateColumnVisible(item) {
-      this.showColumns[item.property] = item.visible;
-    },
-    submitSearchForm() {
-      this.$refs.searchForm.validate((valid) => {
-        if (valid) {
-          console.log("submit!");
-        } else {
-          console.log("error submit!!");
-          return false;
-        }
-      });
-    },
-    resetSearchForm() {
-      this.$refs.searchForm.resetFields();
     },
   },
 };
@@ -293,32 +172,5 @@ export default {
 }
 .ym-search-box {
   background: white;
-}
-.ym-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-  .el-button {
-    margin: 2px;
-  }
-}
-.ym-page {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-  margin-top: 20px;
-}
-.ym-column {
-  display: flex;
-  flex-direction: column;
-  line-height: 30px;
-}
-.ym-row-cen {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
 }
 </style>

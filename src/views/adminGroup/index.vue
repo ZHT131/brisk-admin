@@ -10,23 +10,13 @@
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item label="用户名" prop="username" size="small">
-              <el-input placeholder="请输入用户名" v-model="searchForm.username" clearable :style="{ width: '100%' }" />
+            <el-form-item label="父级ID" prop="pid" size="small">
+              <el-input placeholder="请输入父级ID" v-model="searchForm.pid" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item label="昵称" prop="nickname" size="small">
-              <el-input placeholder="请输入昵称" v-model="searchForm.nickname" clearable :style="{ width: '100%' }" />
-            </el-form-item>
-          </el-col>
-          <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item label="组别ID" prop="group_id" size="small">
-              <el-input placeholder="请输入组别ID" v-model="searchForm.group_id" clearable :style="{ width: '100%' }" />
-            </el-form-item>
-          </el-col>
-          <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item label="角色组" prop="group.name" size="small">
-              <el-input placeholder="请输入角色组" v-model="searchForm.group.name" clearable :style="{ width: '100%' }" />
+            <el-form-item label="角色名称" prop="name" size="small">
+              <el-input placeholder="请输入角色名称" v-model="searchForm.name" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
@@ -45,26 +35,18 @@
     <toolBar :toolShow="toolShow" :tableColumns="tableColumns" @handleCheckAllChange="handleCheckAllChange" @handleCheckChange="handleCheckChange" @changeSearchShow="changeSearchShow" @refresh="refresh">
     </toolBar>
     <div style="flex: 1">
-      <el-table ref="tables" v-loading="loadingStatus" :data="tableData" border stripe style="width: 100%">
+      <el-table ref="tables" v-loading="loadingStatus" :data="tableData" border stripe row-key="id" default-expand-all :tree-props="{children: 'children'}" style="width: 100%">
         <el-table-column type="selection" width="60"></el-table-column>
         <el-table-column v-if="showColumns.id" prop="id" label="ID" min-width="180" sortable></el-table-column>
-        <el-table-column v-if="showColumns.username" prop="username" label="用户名" min-width="180"></el-table-column>
-        <el-table-column v-if="showColumns.nickname" prop="nickname" label="昵称" min-width="180"></el-table-column>
-        <el-table-column v-if="showColumns.group_id" prop="group_id" label="组别ID" min-width="180"></el-table-column>
-        <el-table-column v-if="showColumns.group_name" prop="group.name" label="角色组" min-width="180">
-          <template #default="scope">
-            <el-tag size="medium">{{ scope.row.group.name }}</el-tag>
-          </template>
-        </el-table-column>
+        <el-table-column v-if="showColumns.pid" prop="pid" label="父级ID" min-width="180"></el-table-column>
+        <el-table-column v-if="showColumns.name" prop="name" label="角色名称" min-width="180"></el-table-column>
         <el-table-column v-if="showColumns.status" prop="status" label="状态" :filters="statusFilters" :filter-method="statusFilterTag" filter-placement="bottom-end" min-width="180">
           <template #default="scope">
             <el-tag :type="scope.row.status == '1' ? 'success' : 'danger'" disable-transitions>{{ scope.row.status_text }}</el-tag>
           </template>
         </el-table-column>
         <!--操作栏-->
-        <operate :device="$store.state.app.device" @handleView="handleView" @handleEdit="handleEdit" @handleDel="handleDel">
-
-        </operate>
+        <operate :device="$store.state.app.device" :showOperate="showOperate" @handleView="handleView" @handleEdit="handleEdit" @handleDel="handleDel"></operate>
       </el-table>
     </div>
     <!--分页组件-->
@@ -88,16 +70,12 @@ export default {
   },
   mixins: [
     crud({
-      url: "api/adminUser",
+      url: "api/adminGroup",
       // 搜索数据
       searchForm: {
         id: "",
-        username: "",
-        nickname: "",
-        group: {
-          name: "",
-        },
-        group_id: "",
+        pid: "",
+        name: "",
         status: "",
       },
       //搜索规则
@@ -105,10 +83,8 @@ export default {
       //显示、隐藏列
       showColumns: {
         id: true,
-        username: true,
-        nickname: true,
-        group_id: true,
-        group_name: true,
+        pid: true,
+        name: true,
         status: true,
       },
       //列筛选数据
@@ -119,18 +95,13 @@ export default {
           visible: true,
         },
         {
-          label: "用户名",
-          property: "username",
+          label: "父级ID",
+          property: "pid",
           visible: true,
         },
         {
-          label: "昵称",
-          property: "nickname",
-          visible: true,
-        },
-        {
-          label: "所属组别",
-          property: "group_id",
+          label: "角色名称",
+          property: "name",
           visible: true,
         },
         {
@@ -144,6 +115,12 @@ export default {
         { text: "正常", value: "1" },
         { text: "禁用", value: "2" },
       ],
+      //操作栏显示按钮
+      showOperate: {
+        view: false,
+        edit: true,
+        del: true,
+      },
     }),
   ],
   data() {
