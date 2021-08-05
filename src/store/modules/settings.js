@@ -1,7 +1,7 @@
 
 const state = {
-  appName: 'YM Admin',//logo名称
-  logogram: 'YM',//logo名称简写
+  appName: 'T-Admin',//logo名称
+  logogram: 'T',//logo名称简写
   /**
    * @type {boolean} true | false
    * @description 是否显示右侧设置页
