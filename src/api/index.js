@@ -16,12 +16,3 @@ export const authRoutes = (data) => {
         config: {}
     })
 }
-
-export const adminUser = (data) => {
-    return axios({
-        url: "api/adminUser",
-        method: "post",
-        data,
-        config: {}
-    })
-}
