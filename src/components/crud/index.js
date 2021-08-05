@@ -11,7 +11,6 @@ function curd(options) {
           edit: true,
           del: true,
           export: true,
-          reset: true,
         },
         //显示/隐藏列数据
         showColumns: {},

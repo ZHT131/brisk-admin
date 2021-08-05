@@ -154,10 +154,6 @@ export default {
   },
   created() {},
   methods: {
-    handleClick(row) {
-      console.log(row);
-    },
-
     statusFilterTag(value, row) {
       return row.status === value;
     },
