@@ -68,7 +68,7 @@
     <!--分页组件-->
     <pagination :device="$store.state.app.device" :currentPage="currentPage" :pageSize="pageSize" :pageSizes="pageSizes" :pageTotal="pageTotal" :pageMobileLayout="pageMobileLayout" :pageDesktopLayout="pageDesktopLayout" @handleSizeChange="handleSizeChange" @handleCurrentChange="handleCurrentChange" />
     <el-dialog title="编辑" top="10vh" :fullscreen="$store.state.app.device=='mobile'?true:false" v-model="dialogFormVisible">
-      <el-scrollbar max-height="400px">
+      <el-scrollbar :max-height="$store.state.app.device=='mobile'?'70vh':'55vh'">
         <el-form :model="form" size="medium">
           <el-form-item label="活动名称">
             <el-input v-model="form.name" autocomplete="off"></el-input>
