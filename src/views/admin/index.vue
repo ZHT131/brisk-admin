@@ -69,69 +69,24 @@
     <pagination :device="$store.state.app.device" :currentPage="currentPage" :pageSize="pageSize" :pageSizes="pageSizes" :pageTotal="pageTotal" :pageMobileLayout="pageMobileLayout" :pageDesktopLayout="pageDesktopLayout" @handleSizeChange="handleSizeChange" @handleCurrentChange="handleCurrentChange" />
     <el-dialog title="编辑" top="10vh" :fullscreen="$store.state.app.device=='mobile'?true:false" v-model="dialogFormVisible">
       <el-scrollbar :max-height="$store.state.app.device=='mobile'?'70vh':'55vh'">
-        <el-form :model="form" size="medium">
-          <el-form-item label="活动名称">
-            <el-input v-model="form.name" autocomplete="off"></el-input>
+        <el-form :model="form" label-width="80px" label-position="left" size="medium">
+          <el-form-item label="用户名">
+            <el-input v-model="form.username" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="活动区域">
-            <el-select v-model="form.region" placeholder="请选择活动区域">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
+          <el-form-item label="昵称">
+            <el-input v-model="form.nickname" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="角色组">
+            <el-select v-model="form.group_id" placeholder="请选择组别">
+              <el-option label="超级管理员" value="shanghai"></el-option>
+              <el-option label="管理员" value="beijing"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="活动名称">
-            <el-input v-model="form.name" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="活动区域">
-            <el-select v-model="form.region" placeholder="请选择活动区域">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="活动名称">
-            <el-input v-model="form.name" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="活动区域">
-            <el-select v-model="form.region" placeholder="请选择活动区域">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="活动名称">
-            <el-input v-model="form.name" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="活动区域">
-            <el-select v-model="form.region" placeholder="请选择活动区域">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="活动名称">
-            <el-input v-model="form.name" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="活动区域">
-            <el-select v-model="form.region" placeholder="请选择活动区域">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="活动名称">
-            <el-input v-model="form.name" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="活动区域">
-            <el-select v-model="form.region" placeholder="请选择活动区域">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="活动名称">
-            <el-input v-model="form.name" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item label="活动区域">
-            <el-select v-model="form.region" placeholder="请选择活动区域">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
-            </el-select>
+          <el-form-item label="状态">
+            <el-radio-group v-model="form.status">
+              <el-radio :label="1">正常</el-radio>
+              <el-radio :label="2">禁用</el-radio>
+            </el-radio-group>
           </el-form-item>
         </el-form>
       </el-scrollbar>
@@ -228,14 +183,10 @@ export default {
     return {
       dialogFormVisible: false,
       form: {
-        name: "",
-        region: "",
-        date1: "",
-        date2: "",
-        delivery: false,
-        type: [],
-        resource: "",
-        desc: "",
+        username: "",
+        nickname: "",
+        group_id: "",
+        status: "",
       },
     };
   },
