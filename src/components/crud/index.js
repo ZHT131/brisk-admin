@@ -145,6 +145,7 @@ function curd(options) {
       //编辑
       handleEdit(row) {
         console.log(row);
+        this.dialogFormVisible = true;
       },
       //删除
       handleDel(row) {
