@@ -30,7 +30,7 @@
             {{$t("toolBar.select_all")}}
           </el-checkbox>
           <el-checkbox v-for="item in tableColumns" :key="item.property" v-model="item.visible" @change="checkChange(item)">
-            {{ item.label }}
+            {{ $t(item.label) }}
           </el-checkbox>
         </div>
       </el-popover>

@@ -29,8 +29,6 @@ function curd(options) {
         pageTotal: 0,
         pageSize: 10,
         pageSizes: [10, 20, 30, 40, 50],
-        //状态数据
-        statusFilters: [],
         //表格数据
         tableData: [],
         //请求url
