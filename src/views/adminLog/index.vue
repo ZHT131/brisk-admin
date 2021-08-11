@@ -235,9 +235,7 @@ export default {
   },
   created() {},
   methods: {
-    statusFilterTag(value, row) {
-      return row.status === value;
-    },
+   
   },
 };
 </script>
