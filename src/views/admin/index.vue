@@ -110,10 +110,10 @@
       <template #form>
         <el-form ref="editForm" :model="editForm" label-width="80px" label-position="left" size="medium">
           <el-form-item :label="$t('admin.field.username')">
-            <el-input v-model="editForm.username" autocomplete="off"></el-input>
+            <el-input v-model="editForm.username"  :placeholder="$t('admin.field.username')"></el-input>
           </el-form-item>
           <el-form-item :label="$t('admin.field.nickname')">
-            <el-input v-model="editForm.nickname" autocomplete="off"></el-input>
+            <el-input v-model="editForm.nickname"  :placeholder="$t('admin.field.nickname')"></el-input>
           </el-form-item>
           <el-form-item :label="$t('admin.field.group_id')">
             <el-select v-model="editForm.group_id" :placeholder="$t('admin.component.select_placeholder')">

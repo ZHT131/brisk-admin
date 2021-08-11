@@ -41,7 +41,7 @@ const adminGroup = (params) => {
   for (let index = 0; index < body.size; index++) {
     data.rows.push(
       Mock.mock({
-        id: "@integer(1, 100)",
+        id: "@integer(1, 100000)",
         pid: 0,
         name: "@ctitle",
         status: 1,
