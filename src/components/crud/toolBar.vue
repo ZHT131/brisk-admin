@@ -4,16 +4,16 @@
       <!-- 左侧插槽 -->
       <slot name="left" />
       <el-button v-if="toolShow.add" type="primary" icon="el-icon-plus" size="small" @click="$emit('handleAdd')">
-        新增
+        {{$t("toolBar.add")}}
       </el-button>
       <el-button v-if="toolShow.edit" type="success" icon="el-icon-edit" size="small" @click="$emit('handleSelectEdit')">
-        编辑
+        {{$t("toolBar.edit")}}
       </el-button>
       <el-button v-if="toolShow.del" type="danger" icon="el-icon-delete" size="small" @click="$emit('handleSelectDel')">
-        删除
+        {{$t("toolBar.delete")}}
       </el-button>
       <el-button v-if="toolShow.export" type="warning" icon="el-icon-download" size="small" @click="$emit('handleExport')">
-        导出
+        {{$t("toolBar.export")}}
       </el-button>
       <!-- 右侧插槽 -->
       <slot name="right" />
@@ -27,7 +27,7 @@
         </template>
         <div class="ym-column">
           <el-checkbox v-model="allColumnsSelected" :indeterminate="allColumnsSelectedIndeterminate" @change="checkAllChange">
-            全选
+            {{$t("toolBar.select_all")}}
           </el-checkbox>
           <el-checkbox v-for="item in tableColumns" :key="item.property" v-model="item.visible" @change="checkChange(item)">
             {{ item.label }}

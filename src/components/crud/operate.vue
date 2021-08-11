@@ -1,5 +1,5 @@
 <template>
-  <el-table-column :fixed="device == 'mobile' ? false : 'right'" label="操作" width="165">
+  <el-table-column :fixed="device == 'mobile' ? false : 'right'" :label="$t('table.operate')" width="165">
     <template #default="scope">
       <div class="ym-row">
         <!-- 左侧插槽 -->

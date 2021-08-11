@@ -164,11 +164,15 @@ function curd(options) {
         if (this.multipleSelection.length === 0) {
           return ElMessage("请先选择需要删除的数据");
         }
-        this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
-          type: "warning",
-        })
+        this.$confirm(
+          this.$t("delConfirm.delmsg"),
+          this.$t("delConfirm.title"),
+          {
+            confirmButtonText: this.$t("delConfirm.comfirm"),
+            cancelButtonText: this.$t("delConfirm.cancle"),
+            type: "warning",
+          }
+        )
           .then(() => {
             this.$message({
               type: "success",
@@ -196,11 +200,15 @@ function curd(options) {
       //删除
       handleDel(row) {
         console.log(row);
-        this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
-          type: "warning",
-        })
+        this.$confirm(
+          this.$t("delConfirm.delmsg"),
+          this.$t("delConfirm.title"),
+          {
+            confirmButtonText: this.$t("delConfirm.comfirm"),
+            cancelButtonText: this.$t("delConfirm.cancle"),
+            type: "warning",
+          }
+        )
           .then(() => {
             this.$message({
               type: "success",

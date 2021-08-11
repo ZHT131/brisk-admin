@@ -5,7 +5,7 @@ import adminGroup_en from "./adminGroup/index_en"
 import adminLog_en from "./adminLog/index_en"
 import adminRule_en from "./adminRule/index_en"
 import auth_en from "./auth/index_en"
-
+import crud_en from "./crud/index_en"
 export default {
     app:{
         home:'home'
@@ -28,4 +28,5 @@ export default {
     ...adminLog_en,
     ...adminRule_en,
     ...auth_en,
+    ...crud_en,
 }

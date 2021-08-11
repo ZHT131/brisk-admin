@@ -5,6 +5,8 @@ import adminGroup_zh from "./adminGroup/index_zh"
 import adminLog_zh from "./adminLog/index_zh"
 import adminRule_zh from "./adminRule/index_zh"
 import auth_zh from "./auth/index_zh"
+import crud_zh from "./crud/index_zh"
+
 export default {
     app:{
         home:'首页'
@@ -27,4 +29,5 @@ export default {
     ...adminLog_zh,
     ...adminRule_zh,
     ...auth_zh,
+    ...crud_zh,
 }

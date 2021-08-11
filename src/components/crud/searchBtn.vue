@@ -2,8 +2,8 @@
 <template>
   <el-col :xs="24" :sm="12" :md="6">
     <div class="ym-row-cen">
-      <el-button size="small" type="primary" @click="submitSearchForm">查询</el-button>
-      <el-button size="small" @click="resetSearchForm">重置</el-button>
+      <el-button size="small" type="primary" @click="submitSearchForm">{{$t('searchBtn.query')}}</el-button>
+      <el-button size="small" @click="resetSearchForm">{{$t('searchBtn.reset')}}</el-button>
     </div>
   </el-col>
 </template>
