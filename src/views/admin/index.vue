@@ -49,10 +49,10 @@
       <template #form>
         <el-form ref="addForm" :model="addForm" label-width="80px" label-position="left" size="medium">
           <el-form-item :label="$t('admin.field.username')">
-            <el-input v-model="addForm.username" autocomplete="off"></el-input>
+            <el-input v-model="addForm.username" :placeholder="$t('admin.field.username')"></el-input>
           </el-form-item>
           <el-form-item :label="$t('admin.field.nickname')">
-            <el-input v-model="addForm.nickname" autocomplete="off"></el-input>
+            <el-input v-model="addForm.nickname" :placeholder="$t('admin.field.nickname')"></el-input>
           </el-form-item>
           <el-form-item :label="$t('admin.field.group_id')">
             <el-select v-model="addForm.group_id" :placeholder="$t('admin.component.select_placeholder')">
@@ -96,6 +96,9 @@
       <template #form>
         <el-table :data="detailData" style="width: 100%">
           <el-table-column prop="name" :label="$t('admin.component.detail_title')" width="180">
+            <template #default="scope">
+              <span>{{ $t(scope.row.name) }}</span>
+            </template>
           </el-table-column>
           <el-table-column prop="content" :label="$t('admin.component.detail_content')" width="180">
           </el-table-column>
@@ -229,27 +232,27 @@ export default {
       },
       detailData: [
         {
-          name: "ID",
+          name: "admin.field.id",
           content: "1",
         },
         {
-          name: "用户名",
+          name: "admin.field.username",
           content: "zhangsan",
         },
         {
-          name: "昵称",
+          name: "admin.field.nickname",
           content: "张三",
         },
         {
-          name: "组别ID",
+          name: "admin.field.group_id",
           content: "1",
         },
         {
-          name: "角色组",
+          name: "admin.field.group.name",
           content: "管理员",
         },
         {
-          name: "状态",
+          name: "admin.field.status",
           content: "正常",
         },
       ],
