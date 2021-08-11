@@ -3,16 +3,16 @@
     <el-button-group>
       <!-- 左侧插槽 -->
       <slot name="left" />
-      <el-button v-if="toolShow.add" type="primary" icon="el-icon-plus" size="small">
+      <el-button v-if="toolShow.add" type="primary" icon="el-icon-plus" size="small" @click="$emit('handleAdd')">
         新增
       </el-button>
-      <el-button v-if="toolShow.edit" type="success" icon="el-icon-edit" size="small">
+      <el-button v-if="toolShow.edit" type="success" icon="el-icon-edit" size="small" @click="$emit('handleSelectEdit')">
         编辑
       </el-button>
-      <el-button v-if="toolShow.del" type="danger" icon="el-icon-delete" size="small">
+      <el-button v-if="toolShow.del" type="danger" icon="el-icon-delete" size="small" @click="$emit('handleSelectDel')">
         删除
       </el-button>
-      <el-button v-if="toolShow.export" type="warning" icon="el-icon-download" size="small">
+      <el-button v-if="toolShow.export" type="warning" icon="el-icon-download" size="small" @click="$emit('handleExport')">
         导出
       </el-button>
       <!-- 右侧插槽 -->

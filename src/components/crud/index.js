@@ -1,4 +1,5 @@
 import { comReq } from "@/api/common.js";
+import { ElMessage } from "element-plus";
 function curd(options) {
   return {
     data() {
@@ -40,6 +41,10 @@ function curd(options) {
           edit: true,
           del: true,
         },
+        addDialogFormVisible: false,
+        editDialogFormVisible: false,
+        detailDialogFormVisible: false,
+        multipleSelection: [],
         //导入并合并初始化数据
         ...options,
       };
@@ -138,18 +143,112 @@ function curd(options) {
         this.currentPage = val;
         this.getList();
       },
+      //表格选择变化
+      selectionChange(val) {
+        this.multipleSelection = val;
+      },
+      //新增
+      handleAdd() {
+        this.addDialogFormVisible = true;
+      },
+      //选择编辑
+      handleSelectEdit() {
+        if (this.multipleSelection.length === 0) {
+          return ElMessage("请先选择需要编辑的数据");
+        }
+        this.editForm = this.multipleSelection[0];
+        this.editDialogFormVisible = true;
+      },
+      //选择删除
+      handleSelectDel() {
+        if (this.multipleSelection.length === 0) {
+          return ElMessage("请先选择需要删除的数据");
+        }
+        this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning",
+        })
+          .then(() => {
+            this.$message({
+              type: "success",
+              message: "删除成功!",
+            });
+          })
+          .catch(() => {
+            this.$message({
+              type: "info",
+              message: "已取消删除",
+            });
+          });
+      },
+      //导出
+      handleExport() {},
       //查看
       handleView(row) {
-        console.log(row);
+        this.detailDialogFormVisible = true;
       },
       //编辑
       handleEdit(row) {
-        console.log(row);
-        this.dialogFormVisible = true;
+        this.editForm = row;
+        this.editDialogFormVisible = true;
       },
       //删除
       handleDel(row) {
         console.log(row);
+        this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning",
+        })
+          .then(() => {
+            this.$message({
+              type: "success",
+              message: "删除成功!",
+            });
+          })
+          .catch(() => {
+            this.$message({
+              type: "info",
+              message: "已取消删除",
+            });
+          });
+      },
+      //提交新增
+      addSubmit() {
+        console.log(this.addForm);
+        ElMessage.success({
+          message: "演示执行新增提交",
+          type: "success",
+        });
+        this.addDialogFormVisible = false;
+      },
+      //取消新增
+      addCancle() {
+        this.$refs.addForm.resetFields();
+        this.addDialogFormVisible = false;
+      },
+      //提交编辑
+      editSubmit() {
+        console.log(this.addForm);
+        ElMessage.success({
+          message: "演示执行编辑提交",
+          type: "success",
+        });
+        this.editDialogFormVisible = false;
+      },
+      //取消编辑
+      editCancle() {
+        this.$refs.editForm.resetFields();
+        this.editDialogFormVisible = false;
+      },
+      //详情确认
+      detailCancle() {
+        this.detailDialogFormVisible = false;
+      },
+      //详情取消
+      detailSubmit() {
+        this.detailDialogFormVisible = false;
       },
     },
   };

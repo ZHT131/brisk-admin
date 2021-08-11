@@ -42,10 +42,36 @@
       </el-form>
     </div>
     <!-- 工具栏 -->
-    <toolBar :toolShow="toolShow" :tableColumns="tableColumns" @handleCheckAllChange="handleCheckAllChange" @handleCheckChange="handleCheckChange" @changeSearchShow="changeSearchShow" @refresh="refresh">
+    <toolBar :toolShow="toolShow" :tableColumns="tableColumns" @handleAdd="handleAdd" @handleSelectEdit="handleSelectEdit" @handleSelectDel="handleSelectDel" @handleCheckAllChange="handleCheckAllChange" @handleCheckChange="handleCheckChange" @changeSearchShow="changeSearchShow" @refresh="refresh">
     </toolBar>
+    <!-- 新增弹窗 -->
+    <dialogcom title="新增" :device="$store.state.app.device" :showDialog="addDialogFormVisible" @cancle="addCancle" @submit="addSubmit">
+      <template #form>
+        <el-form ref="addForm" :model="addForm" label-width="80px" label-position="left" size="medium">
+          <el-form-item label="用户名">
+            <el-input v-model="addForm.username" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="昵称">
+            <el-input v-model="addForm.nickname" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="角色组">
+            <el-select v-model="addForm.group_id" placeholder="请选择组别">
+              <el-option label="超级管理员" value="shanghai"></el-option>
+              <el-option label="管理员" value="beijing"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="状态">
+            <el-radio-group v-model="addForm.status">
+              <el-radio :label="1">正常</el-radio>
+              <el-radio :label="2">禁用</el-radio>
+            </el-radio-group>
+          </el-form-item>
+        </el-form>
+      </template>
+    </dialogcom>
+    <!-- 表格 -->
     <div style="flex: 1">
-      <el-table ref="tables" v-loading="loadingStatus" :data="tableData" border stripe style="width: 100%">
+      <el-table ref="tables" v-loading="loadingStatus" :data="tableData" @selection-change="selectionChange" border stripe style="width: 100%">
         <el-table-column type="selection" width="60"></el-table-column>
         <el-table-column v-if="showColumns.id" prop="id" label="ID" min-width="180" sortable></el-table-column>
         <el-table-column v-if="showColumns.username" prop="username" label="用户名" min-width="180"></el-table-column>
@@ -67,36 +93,42 @@
     </div>
     <!--分页组件-->
     <pagination :device="$store.state.app.device" :currentPage="currentPage" :pageSize="pageSize" :pageSizes="pageSizes" :pageTotal="pageTotal" :pageMobileLayout="pageMobileLayout" :pageDesktopLayout="pageDesktopLayout" @handleSizeChange="handleSizeChange" @handleCurrentChange="handleCurrentChange" />
-    <el-dialog title="编辑" top="10vh" :fullscreen="$store.state.app.device=='mobile'?true:false" v-model="dialogFormVisible">
-      <el-scrollbar :max-height="$store.state.app.device=='mobile'?'70vh':'55vh'">
-        <el-form :model="form" label-width="80px" label-position="left" size="medium">
+    <!-- 编辑弹窗组件 -->
+    <dialogcom title="详情" :device="$store.state.app.device" :showDialog="detailDialogFormVisible" @cancle="detailCancle" @submit="detailSubmit">
+      <template #form>
+        <el-table :data="detailData" style="width: 100%">
+          <el-table-column prop="name" label="标题" width="180">
+          </el-table-column>
+          <el-table-column prop="content" label="内容" width="180">
+          </el-table-column>
+        </el-table>
+      </template>
+    </dialogcom>
+    <!-- 编辑弹窗组件 -->
+    <dialogcom title="编辑" :device="$store.state.app.device" :showDialog="editDialogFormVisible" @cancle="editCancle" @submit="editSubmit">
+      <template #form>
+        <el-form ref="editForm" :model="editForm" label-width="80px" label-position="left" size="medium">
           <el-form-item label="用户名">
-            <el-input v-model="form.username" autocomplete="off"></el-input>
+            <el-input v-model="editForm.username" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="昵称">
-            <el-input v-model="form.nickname" autocomplete="off"></el-input>
+            <el-input v-model="editForm.nickname" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="角色组">
-            <el-select v-model="form.group_id" placeholder="请选择组别">
+            <el-select v-model="editForm.group_id" placeholder="请选择组别">
               <el-option label="超级管理员" value="shanghai"></el-option>
               <el-option label="管理员" value="beijing"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="状态">
-            <el-radio-group v-model="form.status">
+            <el-radio-group v-model="editForm.status">
               <el-radio :label="1">正常</el-radio>
               <el-radio :label="2">禁用</el-radio>
             </el-radio-group>
           </el-form-item>
         </el-form>
-      </el-scrollbar>
-      <template #footer>
-        <span class="dialog-footer">
-          <el-button @click="dialogFormVisible = false" size="small">取 消</el-button>
-          <el-button type="primary" @click="dialogFormVisible = false" size="small">确 定</el-button>
-        </span>
       </template>
-    </el-dialog>
+    </dialogcom>
   </div>
 </template>
 
@@ -106,6 +138,7 @@ import searchBtn from "@/components/crud/searchBtn.vue";
 import crud from "@/components/crud";
 import pagination from "@/components/crud/pagination.vue";
 import operate from "@/components/crud/operate.vue";
+import dialogcom from "@/components/crud/dialogcom.vue";
 
 export default {
   components: {
@@ -113,6 +146,7 @@ export default {
     searchBtn,
     pagination,
     operate,
+    dialogcom,
   },
   mixins: [
     crud({
@@ -181,13 +215,44 @@ export default {
   ],
   data() {
     return {
-      dialogFormVisible: false,
-      form: {
+      addForm: {
         username: "",
         nickname: "",
         group_id: "",
         status: "",
       },
+      editForm: {
+        username: "",
+        nickname: "",
+        group_id: "",
+        status: "",
+      },
+      detailData: [
+        {
+          name: "ID",
+          content: "1",
+        },
+        {
+          name: "用户名",
+          content: "zhangsan",
+        },
+        {
+          name: "昵称",
+          content: "张三",
+        },
+        {
+          name: "组别ID",
+          content: "1",
+        },
+        {
+          name: "角色组",
+          content: "管理员",
+        },
+        {
+          name: "状态",
+          content: "正常",
+        },
+      ],
     };
   },
   created() {},
