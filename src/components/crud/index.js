@@ -43,6 +43,10 @@ function curd(options) {
         editDialogFormVisible: false,
         detailDialogFormVisible: false,
         multipleSelection: [],
+        exportLoading: false, //导出按钮动画
+        filename: "", //导出文件名
+        autoWidth: true, //导出自动宽度
+        bookType: "xlsx", //导出文件类型
         //导入并合并初始化数据
         ...options,
       };
@@ -185,7 +189,55 @@ function curd(options) {
           });
       },
       //导出
-      handleExport() {},
+      handleExport(type) {
+        this.bookType = type;
+        this.exportLoading = true;
+        let tHeader = [];
+        let filterVal = [];
+        this.tableColumns.map((item) => {
+          tHeader.push(this.$t(item.label));
+          filterVal.push(item.property);
+        });
+        import("@/vendor/Export2Excel").then((excel) => {
+          const list = this.tableData;
+          const data = this.formatJson(filterVal, list);
+          excel.export_json_to_excel({
+            header: tHeader,
+            data,
+            filename: this.filename,
+            autoWidth: this.autoWidth,
+            bookType: this.bookType,
+          });
+          this.exportLoading = false;
+        });
+      },
+      //处理并获取导出数据
+      formatJson(filterVal, jsonData) {
+        return jsonData.map((v) =>
+          filterVal.map((j) => {
+            if (j.indexOf("_dot_") != -1) {
+              let arr = j.split("_dot_");
+              let val = this.exportTreeFilter(v, arr);
+              return val;
+            } else {
+              return v[j];
+            }
+          })
+        );
+      },
+      //递归处理关联嵌套数据
+      exportTreeFilter(v, arr) {
+        if (arr.length > 0) {
+          let newarr = arr;
+          for (let index = 0; index < arr.length; index++) {
+            const item = arr[index];
+            newarr.splice(index, 1);
+            return this.exportTreeFilter(v[item], newarr);
+          }
+        } else {
+          return v;
+        }
+      },
       //查看
       handleView(row) {
         this.detailDialogFormVisible = true;
@@ -335,6 +387,10 @@ var tools = {
       default: true,
     },
     allColumnsSelectedIndeterminate: {
+      type: Boolean,
+      default: false,
+    },
+    exportLoading: {
       type: Boolean,
       default: false,
     },

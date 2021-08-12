@@ -12,16 +12,25 @@
       <el-button v-if="toolShow.del" type="danger" icon="el-icon-delete" size="small" @click="$emit('handleSelectDel')">
         {{$t("toolBar.delete")}}
       </el-button>
-      <el-button v-if="toolShow.export" type="warning" icon="el-icon-download" size="small" @click="$emit('handleExport')">
-        {{$t("toolBar.export")}}
-      </el-button>
+      <el-popover v-if="toolShow.export" placement="bottom-end" trigger="click">
+        <template #reference>
+          <el-button type="warning" icon="el-icon-download" size="small" :loading="exportLoading">
+            {{$t("toolBar.export")}}
+          </el-button>
+        </template>
+        <div class="ym-column">
+          <div class="export-item" @click="$emit('handleExport','xlsx')">xlsx</div>
+          <div class="export-item" @click="$emit('handleExport','csv')">csv</div>
+          <div class="export-item" @click="$emit('handleExport','txt')">txt</div>
+        </div>
+      </el-popover>
       <!-- 右侧插槽 -->
       <slot name="right" />
     </el-button-group>
     <el-button-group>
       <el-button plain type="info" icon="el-icon-search" size="small" @click="changeSearchShow" />
       <el-button icon="el-icon-refresh" size="small" @click="refresh" />
-      <el-popover placement="bottom-end" width="150" trigger="click">
+      <el-popover placement="bottom-end" trigger="click">
         <template #reference>
           <el-button size="small" icon="el-icon-s-grid"></el-button>
         </template>
@@ -50,5 +59,15 @@ export default {
   display: flex;
   flex-direction: column;
   line-height: 30px;
+  .export-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    background: #f8f8f8;
+    margin: 2px;
+    cursor: pointer;
+  }
 }
 </style>

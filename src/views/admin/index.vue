@@ -42,7 +42,7 @@
       </el-form>
     </div>
     <!-- 工具栏 -->
-    <toolBar :toolShow="toolShow" :tableColumns="tableColumns" @handleAdd="handleAdd" @handleSelectEdit="handleSelectEdit" @handleSelectDel="handleSelectDel" @handleCheckAllChange="handleCheckAllChange" @handleCheckChange="handleCheckChange" @changeSearchShow="changeSearchShow" @refresh="refresh">
+    <toolBar :toolShow="toolShow" :tableColumns="tableColumns" :exportLoading="exportLoading" @handleAdd="handleAdd" @handleSelectEdit="handleSelectEdit" @handleSelectDel="handleSelectDel" @handleExport="handleExport" @handleCheckAllChange="handleCheckAllChange" @handleCheckChange="handleCheckChange" @changeSearchShow="changeSearchShow" @refresh="refresh">
     </toolBar>
     <!-- 新增弹窗 -->
     <dialogcom :title="$t('admin.component.addlog_add_title')" :device="$store.state.app.device" :showDialog="addDialogFormVisible" @cancle="addCancle" @submit="addSubmit">
@@ -75,7 +75,7 @@
         <el-table-column v-if="showColumns.username" prop="username" :label="$t('admin.field.username')" min-width="180"></el-table-column>
         <el-table-column v-if="showColumns.nickname" prop="nickname" :label="$t('admin.field.nickname')" min-width="180"></el-table-column>
         <el-table-column v-if="showColumns.group_id" prop="group_id" :label="$t('admin.field.group_id')" min-width="180"></el-table-column>
-        <el-table-column v-if="showColumns.group_name" prop="group.name" :label="$t('admin.field.group.name')" min-width="180">
+        <el-table-column v-if="showColumns.group_dot_name" prop="group.name" :label="$t('admin.field.group.name')" min-width="180">
           <template #default="scope">
             <el-tag size="medium">{{ scope.row.group.name }}</el-tag>
           </template>
@@ -169,7 +169,7 @@ export default {
         username: true,
         nickname: true,
         group_id: true,
-        group_name: true,
+        group_dot_name: true,
         status: true,
       },
       //列筛选数据
@@ -196,7 +196,7 @@ export default {
         },
         {
           label: "admin.field.group.name",
-          property: "group_name",
+          property: "group_dot_name",
           visible: true,
         },
         {
