@@ -48,21 +48,21 @@
     <dialogcom :title="$t('adminLog.component.addlog_add_title')" :device="$store.state.app.device" :showDialog="addDialogFormVisible" @cancle="addCancle" @submit="addSubmit">
       <template #form>
         <el-form ref="addForm" :model="addForm" label-width="80px" label-position="left" size="medium">
-          <el-form-item :label="$t('adminLog.field.username')">
-            <el-input v-model="addForm.username" :placeholder="$t('adminLog.field.username')"></el-input>
+          <el-form-item :label="$root.$t('adminLog.field.username')">
+            <el-input v-model="addForm.username" :placeholder="$root.$t('adminLog.field.username')"></el-input>
           </el-form-item>
-          <el-form-item :label="$t('adminLog.field.title')">
-            <el-input v-model="addForm.title" :placeholder="$t('adminLog.field.title')"></el-input>
+          <el-form-item :label="$root.$t('adminLog.field.title')">
+            <el-input v-model="addForm.title" :placeholder="$root.$t('adminLog.field.title')"></el-input>
           </el-form-item>
-          <el-form-item :label="$t('adminLog.field.path_url')">
-            <el-input v-model="addForm.path_url" :placeholder="$t('adminLog.field.path_url')"></el-input>
+          <el-form-item :label="$root.$t('adminLog.field.path_url')">
+            <el-input v-model="addForm.path_url" :placeholder="$root.$t('adminLog.field.path_url')"></el-input>
           </el-form-item>
-          <el-form-item :label="$t('adminLog.field.ip')">
-            <el-input v-model="addForm.ip" :placeholder="$t('adminLog.field.ip')"></el-input>
+          <el-form-item :label="$root.$t('adminLog.field.ip')">
+            <el-input v-model="addForm.ip" :placeholder="$root.$t('adminLog.field.ip')"></el-input>
           </el-form-item>
-          <el-form-item :label="$t('adminLog.field.status')">
+          <el-form-item :label="$root.$t('adminLog.field.status')">
             <el-radio-group v-model="addForm.status">
-              <el-radio v-for="item in statusFilters" :key="item.value" :label="item.value">{{$t('adminLog.field.'+item.label)}}</el-radio>
+              <el-radio v-for="item in statusFilters" :key="item.value" :label="item.value">{{$root.$t('adminLog.field.'+item.label)}}</el-radio>
             </el-radio-group>
           </el-form-item>
         </el-form>
@@ -91,12 +91,12 @@
     <dialogcom :title="$t('adminLog.component.addlog_detail_title')" :device="$store.state.app.device" :showDialog="detailDialogFormVisible" @cancle="detailCancle" @submit="detailSubmit">
       <template #form>
         <el-table :data="detailData" style="width: 100%">
-          <el-table-column prop="name" :label="$t('adminLog.component.detail_title')" width="180">
+          <el-table-column prop="name" :label="$root.$t('adminLog.component.detail_title')" width="180">
             <template #default="scope">
-              <span>{{ $t(scope.row.name) }}</span>
+              <span>{{ $root.$t(scope.row.name) }}</span>
             </template>
           </el-table-column>
-          <el-table-column prop="content" :label="$t('adminLog.component.detail_content')" width="180">
+          <el-table-column prop="content" :label="$root.$t('adminLog.component.detail_content')" width="180">
           </el-table-column>
         </el-table>
       </template>

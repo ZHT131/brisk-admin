@@ -38,15 +38,15 @@
     <dialogcom :title="$t('adminRule.component.addlog_add_title')" :device="$store.state.app.device" :showDialog="addDialogFormVisible" @cancle="addCancle" @submit="addSubmit">
       <template #form>
         <el-form ref="addForm" :model="addForm" label-width="80px" label-position="left" size="medium">
-          <el-form-item :label="$t('adminRule.field.title')">
-            <el-input v-model="addForm.title" :placeholder="$t('adminRule.field.title')"></el-input>
+          <el-form-item :label="$root.$t('adminRule.field.title')">
+            <el-input v-model="addForm.title" :placeholder="$root.$t('adminRule.field.title')"></el-input>
           </el-form-item>
-          <el-form-item :label="$t('adminRule.field.rule')">
-            <el-input v-model="addForm.rule" :placeholder="$t('adminRule.field.rule')"></el-input>
+          <el-form-item :label="$root.$t('adminRule.field.rule')">
+            <el-input v-model="addForm.rule" :placeholder="$root.$t('adminRule.field.rule')"></el-input>
           </el-form-item>
-          <el-form-item :label="$t('adminRule.field.status')">
+          <el-form-item :label="$root.$t('adminRule.field.status')">
             <el-radio-group v-model="addForm.status">
-              <el-radio v-for="item in statusFilters" :key="item.value" :label="item.value">{{$t('adminRule.field.'+item.label)}}</el-radio>
+              <el-radio v-for="item in statusFilters" :key="item.value" :label="item.value">{{$root.$t('adminRule.field.'+item.label)}}</el-radio>
             </el-radio-group>
           </el-form-item>
         </el-form>
@@ -73,12 +73,12 @@
     <dialogcom :title="$t('adminRule.component.addlog_detail_title')" :device="$store.state.app.device" :showDialog="detailDialogFormVisible" @cancle="detailCancle" @submit="detailSubmit">
       <template #form>
         <el-table :data="detailData" style="width: 100%">
-          <el-table-column prop="name" :label="$t('adminRule.component.detail_title')" width="180">
+          <el-table-column prop="name" :label="$root.$t('adminRule.component.detail_title')" width="180">
             <template #default="scope">
-              <span>{{ $t(scope.row.name) }}</span>
+              <span>{{ $root.$t(scope.row.name) }}</span>
             </template>
           </el-table-column>
-          <el-table-column prop="content" :label="$t('adminRule.component.detail_content')" width="180">
+          <el-table-column prop="content" :label="$root.$t('adminRule.component.detail_content')" width="180">
           </el-table-column>
         </el-table>
       </template>
@@ -87,15 +87,15 @@
     <dialogcom :title="$t('adminRule.component.addlog_edit_title')" :device="$store.state.app.device" :showDialog="editDialogFormVisible" @cancle="editCancle" @submit="editSubmit">
       <template #form>
         <el-form ref="editForm" :model="editForm" label-width="80px" label-position="left" size="medium">
-          <el-form-item :label="$t('adminRule.field.title')">
-            <el-input v-model="editForm.title" :placeholder="$t('adminRule.field.title')"></el-input>
+          <el-form-item :label="$root.$t('adminRule.field.title')">
+            <el-input v-model="editForm.title" :placeholder="$root.$t('adminRule.field.title')"></el-input>
           </el-form-item>
-          <el-form-item :label="$t('adminRule.field.rule')">
-            <el-input v-model="editForm.rule" :placeholder="$t('adminRule.field.rule')"></el-input>
+          <el-form-item :label="$root.$t('adminRule.field.rule')">
+            <el-input v-model="editForm.rule" :placeholder="$root.$t('adminRule.field.rule')"></el-input>
           </el-form-item>
-          <el-form-item :label="$t('adminRule.field.status')">
+          <el-form-item :label="$root.$t('adminRule.field.status')">
             <el-radio-group v-model="editForm.status">
-              <el-radio v-for="item in statusFilters" :key="item.value" :label="item.value">{{$t('adminRule.field.'+item.label)}}</el-radio>
+              <el-radio v-for="item in statusFilters" :key="item.value" :label="item.value">{{$root.$t('adminRule.field.'+item.label)}}</el-radio>
             </el-radio-group>
           </el-form-item>
         </el-form>
@@ -118,7 +118,7 @@ export default {
     searchBtn,
     pagination,
     operate,
-    dialogcom
+    dialogcom,
   },
   mixins: [
     crud({

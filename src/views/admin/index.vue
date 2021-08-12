@@ -48,20 +48,20 @@
     <dialogcom :title="$t('admin.component.addlog_add_title')" :device="$store.state.app.device" :showDialog="addDialogFormVisible" @cancle="addCancle" @submit="addSubmit">
       <template #form>
         <el-form ref="addForm" :model="addForm" label-width="80px" label-position="left" size="medium">
-          <el-form-item :label="$t('admin.field.username')">
-            <el-input v-model="addForm.username" :placeholder="$t('admin.field.username')"></el-input>
+          <el-form-item :label="$root.$t('admin.field.username')">
+            <el-input v-model="addForm.username" :placeholder="$root.$t('admin.field.username')"></el-input>
           </el-form-item>
-          <el-form-item :label="$t('admin.field.nickname')">
-            <el-input v-model="addForm.nickname" :placeholder="$t('admin.field.nickname')"></el-input>
+          <el-form-item :label="$root.$t('admin.field.nickname')">
+            <el-input v-model="addForm.nickname" :placeholder="$root.$t('admin.field.nickname')"></el-input>
           </el-form-item>
-          <el-form-item :label="$t('admin.field.group_id')">
-            <el-select v-model="addForm.group_id" :placeholder="$t('admin.component.select_placeholder')">
+          <el-form-item :label="$root.$t('admin.field.group_id')">
+            <el-select v-model="addForm.group_id" :placeholder="$root.$t('admin.component.select_placeholder')">
               <el-option v-for="item in groupFilters" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
           </el-form-item>
-          <el-form-item :label="$t('admin.field.status')">
+          <el-form-item :label="$root.$t('admin.field.status')">
             <el-radio-group v-model="addForm.status">
-              <el-radio v-for="item in statusFilters" :key="item.value" :label="item.value">{{$t('admin.field.'+item.label)}}</el-radio>
+              <el-radio v-for="item in statusFilters" :key="item.value" :label="item.value">{{$root.$t('admin.field.'+item.label)}}</el-radio>
             </el-radio-group>
           </el-form-item>
         </el-form>
@@ -95,12 +95,12 @@
     <dialogcom :title="$t('admin.component.addlog_detail_title')" :device="$store.state.app.device" :showDialog="detailDialogFormVisible" @cancle="detailCancle" @submit="detailSubmit">
       <template #form>
         <el-table :data="detailData" style="width: 100%">
-          <el-table-column prop="name" :label="$t('admin.component.detail_title')" width="180">
+          <el-table-column prop="name" :label="$root.$t('admin.component.detail_title')" width="180">
             <template #default="scope">
-              <span>{{ $t(scope.row.name) }}</span>
+              <span>{{ $root.$t(scope.row.name) }}</span>
             </template>
           </el-table-column>
-          <el-table-column prop="content" :label="$t('admin.component.detail_content')" width="180">
+          <el-table-column prop="content" :label="$root.$t('admin.component.detail_content')" width="180">
           </el-table-column>
         </el-table>
       </template>
@@ -109,20 +109,20 @@
     <dialogcom :title="$t('admin.component.addlog_edit_title')" :device="$store.state.app.device" :showDialog="editDialogFormVisible" @cancle="editCancle" @submit="editSubmit">
       <template #form>
         <el-form ref="editForm" :model="editForm" label-width="80px" label-position="left" size="medium">
-          <el-form-item :label="$t('admin.field.username')">
-            <el-input v-model="editForm.username"  :placeholder="$t('admin.field.username')"></el-input>
+          <el-form-item :label="$root.$t('admin.field.username')">
+            <el-input v-model="editForm.username" :placeholder="$root.$t('admin.field.username')"></el-input>
           </el-form-item>
-          <el-form-item :label="$t('admin.field.nickname')">
-            <el-input v-model="editForm.nickname"  :placeholder="$t('admin.field.nickname')"></el-input>
+          <el-form-item :label="$root.$t('admin.field.nickname')">
+            <el-input v-model="editForm.nickname" :placeholder="$root.$t('admin.field.nickname')"></el-input>
           </el-form-item>
-          <el-form-item :label="$t('admin.field.group_id')">
-            <el-select v-model="editForm.group_id" :placeholder="$t('admin.component.select_placeholder')">
+          <el-form-item :label="$root.$t('admin.field.group_id')">
+            <el-select v-model="editForm.group_id" :placeholder="$root.$t('admin.component.select_placeholder')">
               <el-option v-for="item in groupFilters" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
           </el-form-item>
-          <el-form-item :label="$t('admin.field.status')">
+          <el-form-item :label="$root.$t('admin.field.status')">
             <el-radio-group v-model="editForm.status">
-              <el-radio v-for="item in statusFilters" :key="item.value" :label="item.value">{{$t('admin.field.'+item.label)}}</el-radio>
+              <el-radio v-for="item in statusFilters" :key="item.value" :label="item.value">{{$root.$t('admin.field.'+item.label)}}</el-radio>
             </el-radio-group>
           </el-form-item>
         </el-form>
@@ -259,9 +259,7 @@ export default {
     };
   },
   created() {},
-  methods: {
-   
-  },
+  methods: {},
 };
 </script>
 
