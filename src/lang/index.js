@@ -20,7 +20,7 @@ const messages = {
 };
 
 const i18n = createI18n({
-  locale: Cookies.get("language") == "en" ? enLocale.name : zhLocale.name,
+  locale: Cookies.get("language") == "en" ? enLocale.name : zhLocale.name,//加入判断修复刷新页面不渲染选中语言的问题
   fallbackLocale: enLocale.name,
   messages,
 });
