@@ -1,44 +1,26 @@
 <template>
   <div class="ym-body">
-    <el-row
-      type="flex"
-      class="row-bg"
-      justify="center"
-      align="middle"
-      style="height: 100%"
-    >
+    <el-row type="flex" class="row-bg" justify="center" align="middle" style="height: 100%">
       <el-col :xs="18" :sm="18" :md="6">
         <div class="login-box">
           <el-image class="login-bg" src="/src/assets/loginbg.png"></el-image>
           <div class="login">
-            <el-form
-              class="login-form"
-              ref="form"
-              :model="form"
-              label-width="80px"
-              label-position="left"
-            >
-              <el-form-item label-width="50px">
+            <el-form class="login-form" ref="form" :model="form" label-width="80px" label-position="left">
+              <el-form-item label-width="50px" prop="username">
                 <template #label>
                   <div class="loginIcon">
                     <i class="el-icon-user"></i>
                   </div>
                 </template>
-                <el-input
-                  v-model="form.username"
-                  :placeholder="$t('login.usernamePlaceholder')"
-                ></el-input>
+                <el-input v-model="form.username" :placeholder="$t('login.usernamePlaceholder')"></el-input>
               </el-form-item>
-              <el-form-item label-width="50px">
+              <el-form-item label-width="50px" prop="password">
                 <template #label>
                   <div class="loginIcon">
                     <i class="el-icon-lock"></i>
                   </div>
                 </template>
-                <el-input
-                  v-model="form.password"
-                  :placeholder="$t('login.passwordPlaceholder')"
-                ></el-input>
+                <el-input v-model="form.password" :placeholder="$t('login.passwordPlaceholder')"></el-input>
               </el-form-item>
               <el-button class="loginbtn" type="primary" @click="onSubmit">{{
                 $t("login.loginBtn")
@@ -53,6 +35,8 @@
 
 <script>
 import { login } from "@/api";
+import { ElMessage } from "element-plus";
+
 export default {
   data() {
     return {
@@ -62,11 +46,15 @@ export default {
       },
     };
   },
-  created() {
-     
-  },
+  created() {},
   methods: {
     onSubmit() {
+      if (this.form.username == "") {
+        return ElMessage(this.$t("login.usernamePlaceholder"));
+      }
+      if (this.form.password == "") {
+        return ElMessage(this.$t("login.passwordPlaceholder"));
+      }
       login(this.form).then((res) => {
         console.log(res);
         if (res.code == 1) {
