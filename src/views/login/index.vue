@@ -25,6 +25,8 @@
               <el-button class="loginbtn" type="primary" @click="onSubmit">{{
                 $t("login.loginBtn")
               }}</el-button>
+              <el-alert style="margin-top:20px" title="账户：admin或editor 密码：随便填" type="success">
+              </el-alert>
             </el-form>
           </div>
         </div>

@@ -11,7 +11,7 @@ export const login = (data) => {
 export const authRoutes = (data) => {
     return axios({
         url: "api/authRoutes",
-        method: "get",
+        method: "post",
         data,
         config: {}
     })
