@@ -45,9 +45,13 @@ const actions = {
     Cookies.set("activeRoute", path);
   },
   getUserRoutes({ state, commit }) {
+    let userinfo = state.userinfo;
+    if (typeof state.userinfo === "string") {
+      userinfo = JSON.parse(userinfo);
+    }
     return new Promise((resolve, reject) => {
       authRoutes({
-        group: state.userinfo.group,
+        group: userinfo.group,
       })
         .then((res) => {
           let routes = res.data;

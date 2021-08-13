@@ -23,6 +23,12 @@ export default {
         passwordPlaceholder: 'Please enter the password',
         loginBtn: 'login'
     },
+    401:{
+        401:'401'
+    },
+    404:{
+        404:'404'
+    },
     ...error_page_en,
     ...dashboard_en,
     ...admin_en,
