@@ -132,6 +132,51 @@ const authRoutes = (params) => {
           },
         ],
       },
+      //嵌套路由示例
+      {
+        path: "/nested",
+        component: "layout/index.vue",
+        name: "nested",
+        redirect: null,
+        meta: { title: "nested", icon: "el-icon-menu" },
+        alwaysShow: true,
+        children: [
+          {
+            path: "menu",
+            component: "noComponent",
+            name: "menu",
+            meta: { title: "menu", icon: "el-icon-menu" },
+            redirect: null,
+            alwaysShow: true,
+            children: [
+              {
+                path: "menu2",
+                component: "menu1/index.vue",
+                name: "menu2",
+                meta: { title: "menu2", icon: "el-icon-menu" },
+                redirect: null,
+                alwaysShow: false,
+              },
+              {
+                path: "menu3",
+                component: "menu1/index.vue",
+                name: "menu3",
+                meta: { title: "menu3", icon: "el-icon-menu" },
+                redirect: null,
+                alwaysShow: false,
+              },
+            ],
+          },
+          {
+            path: "menu1",
+            component: "menu1/index.vue",
+            name: "menu1",
+            meta: { title: "menu1", icon: "el-icon-menu" },
+            redirect: null,
+            alwaysShow: false,
+          },
+        ],
+      },
     ];
     return {
       code: 1,
@@ -208,6 +253,51 @@ const authRoutes = (params) => {
             component: "404/index.vue",
             name: "page404",
             meta: { title: "page404", icon: "el-icon-menu" },
+            redirect: null,
+            alwaysShow: false,
+          },
+        ],
+      },
+      //嵌套路由示例
+      {
+        path: "/nested",
+        component: "layout/index.vue",
+        name: "nested",
+        redirect: null,
+        meta: { title: "nested", icon: "el-icon-menu" },
+        alwaysShow: true,
+        children: [
+          {
+            path: "menu1",
+            component: "noComponent",
+            name: "menu1",
+            meta: { title: "menu1", icon: "el-icon-menu" },
+            redirect: null,
+            alwaysShow: true,
+            children: [
+              {
+                path: "menu4",
+                component: "nested/menu1/menu4.vue",
+                name: "menu4",
+                meta: { title: "menu4", icon: "el-icon-menu" },
+                redirect: null,
+                alwaysShow: false,
+              },
+              {
+                path: "menu3",
+                component: "nested/menu1/menu3.vue",
+                name: "menu3",
+                meta: { title: "menu3", icon: "el-icon-menu" },
+                redirect: null,
+                alwaysShow: false,
+              },
+            ],
+          },
+          {
+            path: "menu2",
+            component: "nested/menu2/menu2.vue",
+            name: "menu2",
+            meta: { title: "menu2", icon: "el-icon-menu" },
             redirect: null,
             alwaysShow: false,
           },

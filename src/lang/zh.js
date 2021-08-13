@@ -7,6 +7,7 @@ import adminLog_zh from "./adminLog/index_zh";
 import adminRule_zh from "./adminRule/index_zh";
 import auth_zh from "./auth/index_zh";
 import crud_zh from "./crud/index_zh";
+import nested_zh from "./nested/index_zh";
 
 export default {
   app: {
@@ -38,4 +39,5 @@ export default {
   ...adminRule_zh,
   ...auth_zh,
   ...crud_zh,
+  ...nested_zh,
 };
