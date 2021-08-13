@@ -1,4 +1,5 @@
 //zh
+import error_page_zh from "./error_page/index_zh"
 import dashboard_zh from './dashboard/index_zh'
 import admin_zh from "./admin/index_zh"
 import adminGroup_zh from "./adminGroup/index_zh"
@@ -23,6 +24,7 @@ export default {
         passwordPlaceholder: '请输入密码',
         loginBtn: '登录'
     },
+    ...error_page_zh,
     ...dashboard_zh,
     ...admin_zh,
     ...adminGroup_zh,

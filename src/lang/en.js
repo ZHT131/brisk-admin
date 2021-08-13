@@ -1,4 +1,5 @@
 //en
+import error_page_en from "./error_page/index_en"
 import dashboard_en from "./dashboard/index_en"
 import admin_en from "./admin/index_en"
 import adminGroup_en from "./adminGroup/index_en"
@@ -22,6 +23,7 @@ export default {
         passwordPlaceholder: 'Please enter the password',
         loginBtn: 'login'
     },
+    ...error_page_en,
     ...dashboard_en,
     ...admin_en,
     ...adminGroup_en,

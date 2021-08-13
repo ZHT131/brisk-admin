@@ -4,7 +4,7 @@ import { singleAsyncRoutes } from "../../utils/index";
 
 const state = {
   token: Cookies.get("token"),
-  userinfo: null,
+  userinfo: Cookies.get("userinfo"),
   routes: [],
   singleRoutes: [],
   activeRoute: Cookies.get("activeRoute") ? Cookies.get("activeRoute") : "/",
@@ -33,6 +33,7 @@ const actions = {
     commit("SET_TOKEN", userinfo.token);
     commit("SET_USERINFO", userinfo);
     Cookies.set("token", userinfo.token);
+    Cookies.set("userinfo", userinfo);
   },
   loginOutSet({ commit }) {
     commit("SET_TOKEN", null);
