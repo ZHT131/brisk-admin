@@ -1,3 +1,4 @@
+import { h } from "vue";
 import { isExternal } from "./validate";
 //先进行views下所有vue文件动态导入声明，以便后台动态返回路由进行本地动态导入,目前这个只支持一层文件夹，如需多层请追加 /*
 const modules = import.meta.glob("../views/*/*.vue");
@@ -7,14 +8,13 @@ const modules = import.meta.glob("../views/*/*.vue");
  */
 export function filterAsyncRoutes(routes) {
   const res = [];
-
   routes.forEach((route) => {
     let tmp = { ...route };
     if (tmp.children) {
       tmp.children = filterAsyncRoutes(tmp.children);
     }
     if (tmp.component == "noComponent") {
-      tmp.component = { render: h => h("router-view") };
+      tmp.component = modules[`../views/layout/component.vue`];
     } else {
       tmp.component = modules[`../views/${route.component}`];
     }

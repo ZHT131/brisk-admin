@@ -151,7 +151,7 @@ const authRoutes = (params) => {
             children: [
               {
                 path: "menu2",
-                component: "menu1/index.vue",
+                component: "menu2/index.vue",
                 name: "menu2",
                 meta: { title: "menu2", icon: "el-icon-menu" },
                 redirect: null,
@@ -159,7 +159,7 @@ const authRoutes = (params) => {
               },
               {
                 path: "menu3",
-                component: "menu1/index.vue",
+                component: "menu3/index.vue",
                 name: "menu3",
                 meta: { title: "menu3", icon: "el-icon-menu" },
                 redirect: null,
@@ -268,24 +268,24 @@ const authRoutes = (params) => {
         alwaysShow: true,
         children: [
           {
-            path: "menu1",
+            path: "menu",
             component: "noComponent",
-            name: "menu1",
-            meta: { title: "menu1", icon: "el-icon-menu" },
+            name: "menu",
+            meta: { title: "menu", icon: "el-icon-menu" },
             redirect: null,
             alwaysShow: true,
             children: [
               {
-                path: "menu4",
-                component: "nested/menu1/menu4.vue",
-                name: "menu4",
-                meta: { title: "menu4", icon: "el-icon-menu" },
+                path: "menu2",
+                component: "menu2/index.vue",
+                name: "menu2",
+                meta: { title: "menu2", icon: "el-icon-menu" },
                 redirect: null,
                 alwaysShow: false,
               },
               {
                 path: "menu3",
-                component: "nested/menu1/menu3.vue",
+                component: "menu3/index.vue",
                 name: "menu3",
                 meta: { title: "menu3", icon: "el-icon-menu" },
                 redirect: null,
@@ -294,10 +294,10 @@ const authRoutes = (params) => {
             ],
           },
           {
-            path: "menu2",
-            component: "nested/menu2/menu2.vue",
-            name: "menu2",
-            meta: { title: "menu2", icon: "el-icon-menu" },
+            path: "menu1",
+            component: "menu1/index.vue",
+            name: "menu1",
+            meta: { title: "menu1", icon: "el-icon-menu" },
             redirect: null,
             alwaysShow: false,
           },
