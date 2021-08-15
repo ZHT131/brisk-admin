@@ -28,7 +28,7 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>{{
+            <el-dropdown-item @click="toProfile()">{{
               $t("userDropdown.userinfo")
             }}</el-dropdown-item>
             <el-dropdown-item @click="loginOut()">{{
@@ -53,11 +53,13 @@ export default {
     ...mapState({
       sidebar: (state) => state.app.sidebar,
       language: (state) => state.app.language,
-      userinfo: (state) => state.user.userinfo,
+      userinfo: (state) =>
+        typeof state.user.userinfo === "string"
+          ? JSON.parse(state.user.userinfo)
+          : state.user.userinfo,
     }),
   },
-  created(){
-    console.log(this.userinfo)
+  created() {
   },
   methods: {
     outSide() {
@@ -73,6 +75,9 @@ export default {
     },
     toScreenfull() {
       screenfull.toggle();
+    },
+    toProfile() {
+      this.$router.push("/profile");
     },
   },
 };

@@ -8,6 +8,8 @@ import adminRule_en from "./adminRule/index_en"
 import auth_en from "./auth/index_en"
 import crud_en from "./crud/index_en"
 import nested_en from "./nested/index_en"
+import profile_en from "./profile/index_en"
+
 export default {
     app:{
         home:'home'
@@ -39,4 +41,5 @@ export default {
     ...auth_en,
     ...crud_en,
     ...nested_en,
+    ...profile_en,
 }

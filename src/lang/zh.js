@@ -8,6 +8,7 @@ import adminRule_zh from "./adminRule/index_zh";
 import auth_zh from "./auth/index_zh";
 import crud_zh from "./crud/index_zh";
 import nested_zh from "./nested/index_zh";
+import profile_zh from "./profile/index_zh";
 
 export default {
   app: {
@@ -40,4 +41,5 @@ export default {
   ...auth_zh,
   ...crud_zh,
   ...nested_zh,
+  ...profile_zh,
 };
