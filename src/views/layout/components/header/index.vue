@@ -24,7 +24,7 @@
       </el-dropdown>
       <el-dropdown>
         <span class="el-dropdown-link">
-          admin<i class="el-icon-arrow-down el-icon--right"></i>
+          {{userinfo&&userinfo.nickname}}<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <template #dropdown>
           <el-dropdown-menu>
@@ -53,7 +53,11 @@ export default {
     ...mapState({
       sidebar: (state) => state.app.sidebar,
       language: (state) => state.app.language,
+      userinfo: (state) => state.user.userinfo,
     }),
+  },
+  created(){
+    console.log(this.userinfo)
   },
   methods: {
     outSide() {

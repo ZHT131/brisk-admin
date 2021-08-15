@@ -7,14 +7,14 @@ const login = (params) => {
       token: "admin-token",
       avatar:
         "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif",
-      name: "Admin",
+      nickname: "Admin",
       group: "admin",
     },
     editor: {
       token: "editor-token",
       avatar:
         "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif",
-      name: "Editor",
+      nickname: "Editor",
       group: "editor",
     },
   };
