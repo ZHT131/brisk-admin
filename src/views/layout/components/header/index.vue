@@ -37,6 +37,9 @@
           </el-dropdown-menu>
         </template>
       </el-dropdown>
+      <div class="header-set" @click="changeShowSet">
+        <i class="el-icon-setting"></i>
+      </div>
     </div>
   </div>
 </template>
@@ -52,6 +55,7 @@ export default {
   computed: {
     ...mapState({
       sidebar: (state) => state.app.sidebar,
+      showSet: (state) => state.app.showSet,
       language: (state) => state.app.language,
       userinfo: (state) =>
         typeof state.user.userinfo === "string"
@@ -79,7 +83,10 @@ export default {
       this.$router.push("/profile");
     },
     refRoute() {
-     this.$emit('refRoute');
+      this.$emit("refRoute");
+    },
+    changeShowSet() {
+      this.$store.dispatch("app/setShowSet", !this.showSet);
     },
   },
 };
@@ -107,7 +114,9 @@ export default {
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    flex: 1;
+    .header-set {
+      margin-left: 20px;
+    }
   }
 }
 </style>

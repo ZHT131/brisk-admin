@@ -3,6 +3,7 @@
     <el-config-provider :locale="language == 'en' ? enLocale : zhLocale">
       <el-container style="height: 100%">
         <asideLayout />
+        <settingLayout />
         <el-container>
           <el-header>
             <headerLayout @refRoute="refRoute" />
@@ -34,6 +35,7 @@ import ResizeMixin from "./mixin/ResizeHandler";
 import { mapState } from "vuex";
 import headerLayout from "./components/header/index.vue";
 import asideLayout from "./components/aside/index.vue";
+import settingLayout from "./components/setting/index.vue";
 import enLocale from "element-plus/lib/locale/lang/en";
 import zhLocale from "element-plus/lib/locale/lang/zh-cn";
 
@@ -42,6 +44,7 @@ export default {
   components: {
     headerLayout,
     asideLayout,
+    settingLayout,
   },
   data() {
     return {
