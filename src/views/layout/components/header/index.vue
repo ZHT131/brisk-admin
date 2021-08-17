@@ -4,8 +4,8 @@
       <div class="header-tool" @click="outSide">
         <i class="el-icon-s-fold" style="font-size: 22px"></i>
       </div>
-      <div class="header-tab">
-        <!-- 准备用来放置tab标签页 -->
+      <div class="header-refresh" @click="refRoute">
+        <i class="el-icon-refresh-right" style="font-size: 22px"></i>
       </div>
     </div>
     <div class="header-right">
@@ -59,8 +59,7 @@ export default {
           : state.user.userinfo,
     }),
   },
-  created() {
-  },
+  created() {},
   methods: {
     outSide() {
       this.$store.dispatch("app/toggleSidebar", !this.sidebar);
@@ -78,6 +77,9 @@ export default {
     },
     toProfile() {
       this.$router.push("/profile");
+    },
+    refRoute() {
+     this.$emit('refRoute');
     },
   },
 };

@@ -1,11 +1,8 @@
 <template>
-  <el-menu
-    :default-active="activeRoute"
-    router
-    :collapse="device == 'desktop' ? sidebar : false"
-    @select="selectMenu"
-  >
-    <menuItem v-for="item in routes" :key="item.path" :item="item" />
+  <el-menu :default-active="activeRoute" router :collapse="device == 'desktop' ? sidebar : false" @select="selectMenu">
+    <template v-for="item in routes" :key="item.path">
+      <menuItem v-if="!item.hidden" :item="item" />
+    </template>
   </el-menu>
 </template>
 
@@ -27,9 +24,7 @@ export default {
       activeRoute: (state) => state.user.activeRoute,
     }),
   },
-  created() {
-   
-  },
+  created() {},
   methods: {
     selectMenu(index, path) {
       this.$store.dispatch("user/activeRoute", index);

@@ -77,7 +77,7 @@ const authRoutes = (params) => {
             path: "index",
             component: "profile/index.vue",
             name: "profileIndex",
-            meta: { title: "profile", icon: "el-icon-menu" },
+            meta: { title: "profileIndex", icon: "el-icon-menu" },
             redirect: null,
             alwaysShow: false,
           },

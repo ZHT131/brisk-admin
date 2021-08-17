@@ -5,10 +5,17 @@
         <asideLayout />
         <el-container>
           <el-header>
-            <headerLayout />
+            <headerLayout @refRoute="refRoute" />
           </el-header>
           <el-main>
-            <router-view :key="key" v-slot="{ Component }">
+            <div class="ym-breadcrumb">
+              <el-breadcrumb separator="/">
+                <el-breadcrumb-item v-for="(item,index) in levelList" :key="index">
+                  {{$t(item.name + "." + item.meta.title)}}
+                </el-breadcrumb-item>
+              </el-breadcrumb>
+            </div>
+            <router-view :key="key" v-slot="{ Component }" v-if="routeStatus">
               <transition appear name="fade-transform" mode="out-in">
                 <keep-alive>
                   <component :is="Component" />
@@ -40,7 +47,17 @@ export default {
     return {
       enLocale: enLocale,
       zhLocale: zhLocale,
+      levelList: [],
+      routeStatus: true,
     };
+  },
+  watch: {
+    $route(route) {
+      this.getBreadcrumb();
+    },
+  },
+  created() {
+    this.getBreadcrumb();
   },
   computed: {
     ...mapState({
@@ -51,7 +68,19 @@ export default {
       return this.$route.path;
     },
   },
-  methods: {},
+  methods: {
+    getBreadcrumb() {
+      let matched = this.$route.matched;
+      this.levelList = matched;
+    },
+    //刷新当前页
+    refRoute() {
+      this.routeStatus = false;
+      this.$nextTick(() => {
+        this.routeStatus = true;
+      });
+    },
+  },
 };
 </script>
 
@@ -64,6 +93,9 @@ export default {
 
 .el-main {
   background-color: #e9eef3;
+}
+.ym-breadcrumb {
+  padding-bottom: 20px;
 }
 </style>
 <style>
