@@ -39,4 +39,7 @@ export default {
   text-align: left;
   width: 220px;
 }
+.el-menu {
+  border: none !important;
+}
 </style>

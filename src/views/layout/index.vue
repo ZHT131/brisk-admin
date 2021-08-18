@@ -5,7 +5,7 @@
         <asideLayout />
         <settingLayout />
         <el-container>
-          <el-header>
+          <el-header :style="{'background':skinChoose.navBackground}">
             <headerLayout @refRoute="refRoute" />
           </el-header>
           <el-main>
@@ -66,6 +66,7 @@ export default {
     ...mapState({
       sidebar: (state) => state.app.sidebar,
       language: (state) => state.app.language,
+      skinChoose: (state) => state.settings.skinChoose,
     }),
     key() {
       return this.$route.path;

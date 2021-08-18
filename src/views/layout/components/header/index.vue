@@ -1,5 +1,5 @@
 <template>
-  <div class="ym-header" :style="{'background':skinChoose.navBackground}">
+  <div class="ym-header">
     <div class="header-left">
       <div class="header-tool" @click="outSide">
         <i class="el-icon-s-fold" style="font-size: 22px" :style="{'color':skinChoose.navColor}"></i>
