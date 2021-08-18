@@ -2,8 +2,8 @@ import Cookies from "js-cookie";
 import skin from "../../utils/skin";
 
 const state = {
-  appName: "T-Admin", //logo名称
-  logogram: "T", //logo名称简写
+  appName: "Brisk-Admin", //logo名称
+  logogram: "Brisk", //logo名称简写
   skinChoose: Cookies.get("skinChoose")
     ? skin[Cookies.get("skinChoose")]
     : skin.aside_white_nav_white,
