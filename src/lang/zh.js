@@ -13,6 +13,7 @@ import profile_zh from "./profile/index_zh";
 export default {
   app: {
     home: "首页",
+    setting_title: "应用设置",
   },
   userDropdown: {
     userinfo: "个人资料",

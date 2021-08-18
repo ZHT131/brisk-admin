@@ -12,7 +12,8 @@ import profile_en from "./profile/index_en"
 
 export default {
     app:{
-        home:'home'
+        home:'home',
+        setting_title:'setting',
     },
     userDropdown: {
         userinfo: 'userinfo',

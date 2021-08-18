@@ -6,5 +6,6 @@ const getters = {
   routes: state => state.user.routes,
   singleRoutes: state => state.user.singleRoutes,
   activeRoute: state => state.user.activeRoute,
+  skinChoose: state => state.settings.skinChoose,
 }
 export default getters

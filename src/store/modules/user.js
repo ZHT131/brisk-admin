@@ -4,7 +4,7 @@ import { singleAsyncRoutes } from "../../utils/index";
 
 const state = {
   token: Cookies.get("token"),
-  userinfo: Cookies.get("userinfo"),
+  userinfo: Cookies.get("userinfo") ? JSON.parse(Cookies.get("userinfo")) : {},
   routes: [],
   singleRoutes: [],
   activeRoute: Cookies.get("activeRoute") ? Cookies.get("activeRoute") : "/",
@@ -33,7 +33,7 @@ const actions = {
     commit("SET_TOKEN", userinfo.token);
     commit("SET_USERINFO", userinfo);
     Cookies.set("token", userinfo.token);
-    Cookies.set("userinfo", userinfo);
+    Cookies.set("userinfo", JSON.stringify(userinfo));
   },
   loginOutSet({ commit }) {
     commit("SET_TOKEN", null);
@@ -46,9 +46,6 @@ const actions = {
   },
   getUserRoutes({ state, commit }) {
     let userinfo = state.userinfo;
-    if (typeof state.userinfo === "string") {
-      userinfo = JSON.parse(userinfo);
-    }
     return new Promise((resolve, reject) => {
       authRoutes({
         group: userinfo.group,

@@ -1,34 +1,18 @@
 <template>
-  <el-drawer
-    :model-value="sidebar"
-    direction="ltr"
-    :size="220"
-    :show-close="false"
-    :withHeader="false"
-    :before-close="handleClose"
-    destroy-on-close
-    v-if="device == 'mobile'"
-  >
-    <el-aside
-      :width="sidebar ? 'auto' : '220px'"
-      style="height: 100%; overflow: hidden"
-    >
+  <el-drawer :model-value="sidebar" direction="ltr" :size="220" :show-close="false" :withHeader="false" :before-close="handleClose" destroy-on-close v-if="device == 'mobile'">
+    <el-aside :width="sidebar ? 'auto' : '220px'" style="height: 100%; overflow: hidden;" :style="{'background':skinChoose.asideBackground}">
       <div class="logo">
-        <span>{{ appName }}</span>
+        <span :style="{'color':skinChoose.asideColor}">{{ appName }}</span>
       </div>
       <el-scrollbar>
         <MenuLayout />
       </el-scrollbar>
     </el-aside>
   </el-drawer>
-  <el-aside
-    :width="sidebar ? 'auto' : '220px'"
-    style="height: 100%; overflow: hidden"
-    v-else
-  >
+  <el-aside :width="sidebar ? 'auto' : '220px'" style="height: 100%; overflow: hidden;" :style="{'background':skinChoose.asideBackground}" v-else>
     <div class="logo">
-      <span v-if="!sidebar">{{ appName }}</span>
-      <span v-else>{{ logogram }}</span>
+      <span v-if="!sidebar" :style="{'color':skinChoose.asideColor}">{{ appName }}</span>
+      <span v-else :style="{'color':skinChoose.asideColor}">{{ logogram }}</span>
     </div>
     <el-scrollbar>
       <MenuLayout />
@@ -50,6 +34,7 @@ export default {
       logogram: (state) => state.settings.logogram,
       sidebar: (state) => state.app.sidebar,
       device: (state) => state.app.device,
+      skinChoose: (state) => state.settings.skinChoose,
     }),
   },
   methods: {

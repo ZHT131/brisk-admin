@@ -1,5 +1,5 @@
 <template>
-  <el-menu :default-active="activeRoute" router :collapse="device == 'desktop' ? sidebar : false" @select="selectMenu">
+  <el-menu :default-active="activeRoute" router :collapse="device == 'desktop' ? sidebar : false" @select="selectMenu" :background-color="skinChoose.asideBackground" :text-color="skinChoose.asideColor">
     <template v-for="item in routes" :key="item.path">
       <menuItem v-if="!item.hidden" :item="item" />
     </template>
@@ -22,6 +22,7 @@ export default {
       device: (state) => state.app.device,
       routes: (state) => state.user.routes,
       activeRoute: (state) => state.user.activeRoute,
+      skinChoose: (state) => state.settings.skinChoose,
     }),
   },
   created() {},

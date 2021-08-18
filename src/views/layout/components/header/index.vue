@@ -1,17 +1,17 @@
 <template>
-  <div class="ym-header">
+  <div class="ym-header" :style="{'background':skinChoose.navBackground}">
     <div class="header-left">
       <div class="header-tool" @click="outSide">
-        <i class="el-icon-s-fold" style="font-size: 22px"></i>
+        <i class="el-icon-s-fold" style="font-size: 22px" :style="{'color':skinChoose.navColor}"></i>
       </div>
       <div class="header-refresh" @click="refRoute">
-        <i class="el-icon-refresh-right" style="font-size: 22px"></i>
+        <i class="el-icon-refresh-right" style="font-size: 22px" :style="{'color':skinChoose.navColor}"></i>
       </div>
     </div>
     <div class="header-right">
-      <i class="el-icon-full-screen" @click="toScreenfull"></i>
+      <i class="el-icon-full-screen" @click="toScreenfull" :style="{'color':skinChoose.navColor}"></i>
       <el-dropdown>
-        <span class="el-dropdown-link">
+        <span :style="{'color':skinChoose.navColor}">
           {{ language == "en" ? "English" : "中文" }}
           <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
@@ -23,7 +23,7 @@
         </template>
       </el-dropdown>
       <el-dropdown>
-        <span class="el-dropdown-link">
+        <span :style="{'color':skinChoose.navColor}">
           {{userinfo&&userinfo.nickname}}<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <template #dropdown>
@@ -38,7 +38,7 @@
         </template>
       </el-dropdown>
       <div class="header-set" @click="changeShowSet">
-        <i class="el-icon-setting"></i>
+        <i class="el-icon-setting" :style="{'color':skinChoose.navColor}"></i>
       </div>
     </div>
   </div>
@@ -57,6 +57,7 @@ export default {
       sidebar: (state) => state.app.sidebar,
       showSet: (state) => state.app.showSet,
       language: (state) => state.app.language,
+      skinChoose: (state) => state.settings.skinChoose,
       userinfo: (state) =>
         typeof state.user.userinfo === "string"
           ? JSON.parse(state.user.userinfo)
