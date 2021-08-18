@@ -1,5 +1,5 @@
 <template>
-  <el-drawer :size="300" :model-value="showSet" direction="rtl" :withHeader="false" destroy-on-close>
+  <el-drawer :size="300" :model-value="showSet" direction="rtl" :withHeader="false" :before-close="handleClose" destroy-on-close>
     <div class="drawer_title">
       <span>{{$t('app.setting_title')}}</span>
       <i class="el-icon-close" @click="handleClose"></i>
