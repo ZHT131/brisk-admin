@@ -1,11 +1,18 @@
 <template>
   <div class="ym-imgbox">
-    <el-image src="/src/assets/401.png"></el-image>
+    <el-image :src="img401"></el-image>
   </div>
 </template>
 
 <script>
-export default {};
+import img401 from "@/assets/401.png";
+export default {
+  data() {
+    return {
+      img401,
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -3,7 +3,7 @@
     <el-row type="flex" class="row-bg" justify="center" align="middle" style="height: 100%">
       <el-col :xs="18" :sm="18" :md="6">
         <div class="login-box">
-          <el-image class="login-bg" src="/src/assets/loginbg.png"></el-image>
+          <el-image class="login-bg" :src="loginbg"></el-image>
           <div class="login">
             <el-form class="login-form" ref="form" :model="form" label-width="80px" label-position="left">
               <el-form-item label-width="50px" prop="username">
@@ -38,10 +38,12 @@
 <script>
 import { login } from "@/api";
 import { ElMessage } from "element-plus";
+import loginbg from "@/assets/loginbg.png";
 
 export default {
   data() {
     return {
+      loginbg: loginbg,
       form: {
         username: "",
         password: "",
