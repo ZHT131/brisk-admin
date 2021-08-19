@@ -99,6 +99,10 @@ export default {
       this.bChart();
     });
   },
+  beforeUnmount() {
+    this.chart.destroy();
+    this.chartB.destroy();
+  },
   methods: {
     zChart() {
       const data = [
