@@ -62,7 +62,7 @@
 
 <script>
 import { mapState } from "vuex";
-import skin from "@/utils/skin.js";
+import skin from "@/settings/skin.js";
 export default {
   data() {
     return {};

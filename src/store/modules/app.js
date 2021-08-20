@@ -1,10 +1,11 @@
 import Cookies from "js-cookie";
+import settings from "../../settings/settings";
 
 const state = {
   sidebar: false,
   showSet: false,
   device: "desktop",
-  language: Cookies.get("language") ? Cookies.get("language") : "zh-cn",
+  language: Cookies.get("language") ? Cookies.get("language") : settings.LANGUAGE,
 };
 
 const mutations = {

@@ -1,17 +1,13 @@
 import Cookies from "js-cookie";
-import skin from "../../utils/skin";
-
+import skin from "../../settings/skin";
+import settings from "../../settings/settings";
 const state = {
-  appName: "Brisk-Admin", //logo名称
-  logogram: "Brisk", //logo名称简写
+  appName: settings.APP_NAME, //logo名称
+  logogram: settings.LOGO_GRAM, //logo名称简写
   skinChoose: Cookies.get("skinChoose")
     ? skin[Cookies.get("skinChoose")]
-    : skin.aside_white_nav_white,
-  /**
-   * @type {boolean} true | false
-   * @description 是否需要标签栏
-   */
-  tagsView: true,
+    : skin[settings.SKIN_CHOOSE],
+  // tagsView: true, //是否需要标签栏
 };
 
 const mutations = {
