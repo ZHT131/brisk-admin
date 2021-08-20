@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import img404 from "@/assets/404.png";
+import img404 from "@/assets/images/404.png";
 export default {
   data() {
     return {

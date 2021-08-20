@@ -38,7 +38,7 @@
 <script>
 import { login } from "@/api";
 import { ElMessage } from "element-plus";
-import loginbg from "@/assets/loginbg.png";
+import loginbg from "@/assets/images/loginbg.png";
 
 export default {
   data() {
