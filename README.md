@@ -11,13 +11,13 @@
 - **国际化** 内置国际化方案
 
 ## 在线预览
-- [brisk-admin](https://naive-ui-admin.vercel.app)
+- [brisk-admin](http://brisk-admin.ybym.top/)
 
 账号：admin或editor，密码：123456（随意）
 
 ## 文档
 
-[文档地址](https://naive-ui-admin-docs.vercel.app) 
+[文档地址](http://brisk-admin-doc.ybym.top/) 
 
 ## 准备
 
