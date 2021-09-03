@@ -1,46 +1,34 @@
 //en
-import error_page_en from "./error_page/index_en"
-import dashboard_en from "./dashboard/index_en"
-import admin_en from "./admin/index_en"
-import adminGroup_en from "./adminGroup/index_en"
-import adminLog_en from "./adminLog/index_en"
-import adminRule_en from "./adminRule/index_en"
-import auth_en from "./auth/index_en"
-import crud_en from "./crud/index_en"
-import nested_en from "./nested/index_en"
-import profile_en from "./profile/index_en"
+const modulesFiles = import.meta.globEager("./modules/*/index_en.js");
+const modules = Object.keys(modulesFiles).reduce((modules, modulePath) => {
+  const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, "$1");
+  const value = modulesFiles[modulePath];
+  Object.assign(modules, value.default);
+  return modules;
+}, {});
 
 export default {
-    app:{
-        home:'home',
-        setting_title:'setting',
-    },
-    userDropdown: {
-        userinfo: 'userinfo',
-        loginout: 'loginout',
-    },
-    login: {
-        login:'login',
-        username: 'username',
-        password: 'password',
-        usernamePlaceholder: 'please enter user name',
-        passwordPlaceholder: 'Please enter the password',
-        loginBtn: 'login'
-    },
-    401:{
-        401:'401'
-    },
-    404:{
-        404:'404'
-    },
-    ...error_page_en,
-    ...dashboard_en,
-    ...admin_en,
-    ...adminGroup_en,
-    ...adminLog_en,
-    ...adminRule_en,
-    ...auth_en,
-    ...crud_en,
-    ...nested_en,
-    ...profile_en,
-}
+  app: {
+    home: "home",
+    setting_title: "setting",
+  },
+  userDropdown: {
+    userinfo: "userinfo",
+    loginout: "loginout",
+  },
+  login: {
+    login: "login",
+    username: "username",
+    password: "password",
+    usernamePlaceholder: "please enter user name",
+    passwordPlaceholder: "Please enter the password",
+    loginBtn: "login",
+  },
+  401: {
+    401: "401",
+  },
+  404: {
+    404: "404",
+  },
+  ...modules,
+};

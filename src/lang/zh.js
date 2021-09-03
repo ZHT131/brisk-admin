@@ -1,14 +1,11 @@
 //zh
-import error_page_zh from "./error_page/index_zh";
-import dashboard_zh from "./dashboard/index_zh";
-import admin_zh from "./admin/index_zh";
-import adminGroup_zh from "./adminGroup/index_zh";
-import adminLog_zh from "./adminLog/index_zh";
-import adminRule_zh from "./adminRule/index_zh";
-import auth_zh from "./auth/index_zh";
-import crud_zh from "./crud/index_zh";
-import nested_zh from "./nested/index_zh";
-import profile_zh from "./profile/index_zh";
+const modulesFiles = import.meta.globEager("./modules/*/index_zh.js");
+const modules = Object.keys(modulesFiles).reduce((modules, modulePath) => {
+  const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, "$1");
+  const value = modulesFiles[modulePath];
+  Object.assign(modules, value.default);
+  return modules;
+}, {});
 
 export default {
   app: {
@@ -33,14 +30,5 @@ export default {
   404: {
     404: "404",
   },
-  ...error_page_zh,
-  ...dashboard_zh,
-  ...admin_zh,
-  ...adminGroup_zh,
-  ...adminLog_zh,
-  ...adminRule_zh,
-  ...auth_zh,
-  ...crud_zh,
-  ...nested_zh,
-  ...profile_zh,
+  ...modules,
 };
