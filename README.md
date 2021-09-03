@@ -1,6 +1,6 @@
 ## 简介
 
-[Brisk-Admin](https://github.com/ZHT131/brisk-admin) 是一个基于 [Vue3.0](https://github.com/vuejs/vue-next)、[Vite](https://github.com/vitejs/vite)、 [element-plus](https://element-plus.gitee.io/)、JavaScript的中后台解决方案，它使用了最新的前端技术栈，并提炼了典型的业务页面，包括二次封装组件、动态路由菜单、国际化、动态换肤等功能，它可以帮助你快速搭建中后台项目，该项目使用最新的前端技术栈，使用javascript语法保留了对不熟悉typescript语法用户的友好，同时框架很适合轻松上手使用，希望给你带来帮助。
+[Brisk-Admin](https://github.com/ZHT131/brisk-admin) 是一个基于 [Vue3.0](https://github.com/vuejs/vue-next)、[Vite](https://github.com/vitejs/vite)、 [element-plus](https://element-plus.gitee.io/)、JavaScript的中后台解决方案，支持移动端响应式布局，它使用了最新的前端技术栈，并提炼了典型的业务页面，包括二次封装组件、动态路由菜单、国际化、动态换肤等功能，它可以帮助你快速搭建中后台项目，该项目使用最新的前端技术栈，使用javascript语法保留了对不熟悉typescript语法用户的友好，同时框架很适合轻松上手使用，希望给你带来帮助。
 
 ## 特性
 - **最新技术栈**：使用 Vue3/vite2 等前端前沿技术开发
