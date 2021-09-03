@@ -1,5 +1,5 @@
 <template>
-  <el-menu :default-active="activeRoute" router :collapse="device == 'desktop' ? sidebar : false" @select="selectMenu" :background-color="skinChoose.asideBackground" :text-color="skinChoose.asideColor">
+  <el-menu :default-active="activeRoute" router :collapse="device == 'desktop' ? sidebar : false" @select="selectMenu" :background-color="skinChoose.asideBackground" :text-color="skinChoose.asideColor" :active-text-color="skinChoose.activeColor">
     <template v-for="item in routes" :key="item.path">
       <menuItem v-if="!item.hidden" :item="item" />
     </template>
