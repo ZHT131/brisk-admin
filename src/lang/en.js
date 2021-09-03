@@ -1,7 +1,6 @@
 //en
 const modulesFiles = import.meta.globEager("./modules/*/index_en.js");
 const modules = Object.keys(modulesFiles).reduce((modules, modulePath) => {
-  const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, "$1");
   const value = modulesFiles[modulePath];
   Object.assign(modules, value.default);
   return modules;

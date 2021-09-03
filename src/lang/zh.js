@@ -1,7 +1,6 @@
 //zh
 const modulesFiles = import.meta.globEager("./modules/*/index_zh.js");
 const modules = Object.keys(modulesFiles).reduce((modules, modulePath) => {
-  const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, "$1");
   const value = modulesFiles[modulePath];
   Object.assign(modules, value.default);
   return modules;
