@@ -3,13 +3,13 @@
     <i :class="item.meta.icon" :style="{'color':activeRoute==getPath()?skinChoose.activeColor:skinChoose.asideColor}"></i>
     <template #title>{{ $t(item.name + "." + item.meta.title) }}</template>
   </el-menu-item>
-  <el-submenu v-else :index="item.path">
+  <el-sub-menu v-else :index="item.path">
     <template #title>
       <i :class="item.meta.icon" :style="{'color':activeRoute==getPath()?skinChoose.activeColor:skinChoose.asideColor}"></i>
       <span>{{ $t(item.name + "." + item.meta.title) }}</span>
     </template>
     <menuItem v-for="child in item.children" :key="child.path" :item="child" :parentPath="getPath()" />
-  </el-submenu>
+  </el-sub-menu>
 </template>
 
 <script>
