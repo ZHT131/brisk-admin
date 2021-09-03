@@ -1,5 +1,5 @@
 <template>
-  <router-view :key="key" v-slot="{ Component }">
+  <router-view v-slot="{ Component }">
     <transition appear name="fade-transform" mode="out-in">
       <keep-alive>
         <component :is="Component" />
@@ -14,9 +14,7 @@ export default {
     return {};
   },
   computed: {
-    key() {
-      return this.$route.path;
-    },
+    
   },
   methods: {},
 };

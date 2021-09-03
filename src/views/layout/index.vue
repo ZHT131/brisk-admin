@@ -16,7 +16,7 @@
                 </el-breadcrumb-item>
               </el-breadcrumb>
             </div>
-            <router-view :key="key" v-slot="{ Component }" v-if="routeStatus">
+            <router-view v-slot="{ Component }" v-if="routeStatus">
               <transition appear name="fade-transform" mode="out-in">
                 <keep-alive>
                   <component :is="Component" />
@@ -68,9 +68,6 @@ export default {
       language: (state) => state.app.language,
       skinChoose: (state) => state.settings.skinChoose,
     }),
-    key() {
-      return this.$route.path;
-    },
   },
   methods: {
     getBreadcrumb() {

@@ -4,7 +4,7 @@
       <div class="logo">
         <span :style="{'color':skinChoose.asideColor}">{{ appName }}</span>
       </div>
-      <el-scrollbar>
+      <el-scrollbar style="height:calc(100% - 60px)">
         <MenuLayout />
       </el-scrollbar>
     </el-aside>
@@ -14,7 +14,7 @@
       <span v-if="!sidebar" :style="{'color':skinChoose.asideColor}">{{ appName }}</span>
       <span v-else :style="{'color':skinChoose.asideColor}">{{ logogram }}</span>
     </div>
-    <el-scrollbar>
+    <el-scrollbar style="height:calc(100% - 60px)">
       <MenuLayout />
     </el-scrollbar>
   </el-aside>
