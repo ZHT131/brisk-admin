@@ -1,20 +1,20 @@
 <template>
   <el-drawer :model-value="sidebar" direction="ltr" :size="220" :show-close="false" :withHeader="false" :before-close="handleClose" destroy-on-close v-if="device == 'mobile'">
-    <el-aside :width="sidebar ? 'auto' : '220px'" style="height: 100%; overflow: hidden;" :style="{'background':skinChoose.asideBackground}">
+    <el-aside :width="sidebar ? 'auto' : '220px'" style="height: calc(100vh); overflow: hidden;" :style="{'background':skinChoose.asideBackground}">
       <div class="logo">
         <span :style="{'color':skinChoose.asideColor}">{{ appName }}</span>
       </div>
-      <el-scrollbar style="height:calc(100% - 60px)">
+      <el-scrollbar style="height:calc(100vh - 60px)">
         <MenuLayout />
       </el-scrollbar>
     </el-aside>
   </el-drawer>
-  <el-aside :width="sidebar ? 'auto' : '220px'" style="height: 100%; overflow: hidden;" :style="{'background':skinChoose.asideBackground}" v-else>
+  <el-aside :width="sidebar ? 'auto' : '220px'" style="height: calc(100vh); overflow: hidden;" :style="{'background':skinChoose.asideBackground}" v-else>
     <div class="logo">
       <span v-if="!sidebar" :style="{'color':skinChoose.asideColor}">{{ appName }}</span>
       <span v-else :style="{'color':skinChoose.asideColor}">{{ logogram }}</span>
     </div>
-    <el-scrollbar style="height:calc(100% - 60px)">
+    <el-scrollbar style="height:calc(100vh - 60px)">
       <MenuLayout />
     </el-scrollbar>
   </el-aside>

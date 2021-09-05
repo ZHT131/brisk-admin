@@ -14,5 +14,8 @@ export default {
     },
     menu3:{
         menu3:'menu3'
+    },
+    menu4:{
+        menu4:'menu4'
     }
 }

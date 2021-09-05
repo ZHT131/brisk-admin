@@ -170,11 +170,21 @@ const authRoutes = (params) => {
             children: [
               {
                 path: "menu2",
-                component: "menu2/index.vue",
+                component: "noComponent",
                 name: "menu2",
                 meta: { title: "menu2", icon: "el-icon-menu" },
                 redirect: null,
-                alwaysShow: false,
+                alwaysShow: true,
+                children: [
+                  {
+                    path: "menu4",
+                    component: "menu4/index.vue",
+                    name: "menu4",
+                    meta: { title: "menu4", icon: "el-icon-menu" },
+                    redirect: null,
+                    alwaysShow: false,
+                  },
+                ],
               },
               {
                 path: "menu3",

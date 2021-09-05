@@ -14,12 +14,22 @@ export function filterAsyncRoutes(routes) {
       tmp.children = filterAsyncRoutes(tmp.children);
     }
     if (tmp.component == "noComponent") {
-      tmp.component = modules[`../views/layout/component.vue`];
+      tmp.component = modules[`../views/layout/nestedComponent.vue`];
     } else {
       tmp.component = modules[`../views/${route.component}`];
     }
     res.push(tmp);
   });
+  return res;
+}
+
+/**
+ * 嵌套路由超过3级后的平到第三级
+ * @param routes asyncRoutes
+ */
+export function sameLevelRoutes(routes) {
+  var res = [];
+  
   return res;
 }
 
