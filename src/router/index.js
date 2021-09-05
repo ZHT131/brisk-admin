@@ -2,7 +2,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Cookies from "js-cookie";
 import store from "../store";
-import { filterAsyncRoutes } from "../utils/index";
+import { filterAsyncRoutes, sameLevelRoutes } from "../utils/index";
 import i18n from "../lang/index";
 import NProgress from "nprogress"; // progress bar
 import "nprogress/nprogress.css"; // progress bar style
@@ -79,6 +79,7 @@ router.beforeEach(async (to, form) => {
     console.log("routes must be a non-null array!");
   }
   let routes = filterAsyncRoutes(accessRoutes);
+  // sameLevelRoutes(routes);
   //添加之前判断要跳转的路由是否存在
   let has_route = router.hasRoute(to.name);
   //根据权限添加路由

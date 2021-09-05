@@ -29,7 +29,25 @@ export function filterAsyncRoutes(routes) {
  */
 export function sameLevelRoutes(routes) {
   var res = [];
-  
+  for (let i = 0; i < routes.length; i++) {
+    const level1 = routes[i];
+    if (level1.children) {
+      for (let j = 0; j < level1.children.length; j++) {
+        const level2 = level1.children[j];
+        if (level2.children) {
+          for (let k = 0; k < level2.children.length; k++) {
+            const level3 = level2.children[k];
+            if (level3.children) {
+              // console.log(level3.children);
+              const childs = singleAsyncRoutes(level3.children);
+              routes[i].children[j].children.concat(childs);
+            }
+          }
+        }
+      }
+    }
+  }
+  // console.log(routes);
   return res;
 }
 
