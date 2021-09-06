@@ -79,7 +79,17 @@ router.beforeEach(async (to, form) => {
     console.log("routes must be a non-null array!");
   }
   let routes = filterAsyncRoutes(accessRoutes);
-  // sameLevelRoutes(routes);
+  // 将三级及以上路由数据拍平成二级
+  routes.map((item) => {
+    if (item.children) {
+      item.children = sameLevelRoutes(item.children, [
+        {
+          path: item.path,
+          title: item.meta.title,
+        },
+      ]);
+    }
+  });
   //添加之前判断要跳转的路由是否存在
   let has_route = router.hasRoute(to.name);
   //根据权限添加路由

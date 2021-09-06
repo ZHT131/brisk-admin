@@ -74,7 +74,6 @@ const actions = {
         keepAliveRoutes.push(item.name);
       }
     });
-    console.log(keepAliveRoutes);
     commit("SET_KEEPALIVEROUTES", keepAliveRoutes);
   },
 };

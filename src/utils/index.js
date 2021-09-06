@@ -24,30 +24,69 @@ export function filterAsyncRoutes(routes) {
 }
 
 /**
- * 嵌套路由超过3级后的平到第三级
+ * 将多层嵌套路由处理成平级
  * @param routes asyncRoutes
  */
-export function sameLevelRoutes(routes) {
-  var res = [];
-  for (let i = 0; i < routes.length; i++) {
-    const level1 = routes[i];
-    if (level1.children) {
-      for (let j = 0; j < level1.children.length; j++) {
-        const level2 = level1.children[j];
-        if (level2.children) {
-          for (let k = 0; k < level2.children.length; k++) {
-            const level3 = level2.children[k];
-            if (level3.children) {
-              // console.log(level3.children);
-              const childs = singleAsyncRoutes(level3.children);
-              routes[i].children[j].children.concat(childs);
+export function sameLevelRoutes(routes, breadcrumb, baseUrl = "") {
+  let res = [];
+  routes.forEach((route) => {
+    const tmp = { ...route };
+    if (tmp.children) {
+      let childrenBaseUrl = "";
+      if (baseUrl == "") {
+        childrenBaseUrl = tmp.path;
+      } else if (tmp.path != "") {
+        childrenBaseUrl = `${baseUrl}/${tmp.path}`;
+      }
+      let childrenBreadcrumb = deepClone(breadcrumb);
+      if (route.meta.breadcrumb !== false) {
+        childrenBreadcrumb.push({
+          path: childrenBaseUrl,
+          title: route.meta.title,
+        });
+      }
+      let tmpRoute = deepClone(route);
+      tmpRoute.path = childrenBaseUrl;
+      tmpRoute.meta.breadcrumbNeste = childrenBreadcrumb;
+      delete tmpRoute.children;
+      res.push(tmpRoute);
+      let childrenRoutes = sameLevelRoutes(
+        tmp.children,
+        childrenBreadcrumb,
+        childrenBaseUrl
+      );
+      childrenRoutes.map((item) => {
+        // 如果 path 一样则覆盖，因为子路由的 path 可能设置为空，导致和父路由一样，直接注册会提示路由重复
+        if (res.some((v) => v.path == item.path)) {
+          res.forEach((v, i) => {
+            if (v.path == item.path) {
+              res[i] = item;
             }
-          }
+          });
+        } else {
+          res.push(item);
+        }
+      });
+    } else {
+      if (baseUrl != "") {
+        if (tmp.path != "") {
+          tmp.path = `${baseUrl}/${tmp.path}`;
+        } else {
+          tmp.path = baseUrl;
         }
       }
+      // 处理面包屑导航
+      let tmpBreadcrumb = deepClone(breadcrumb);
+      if (tmp.meta.breadcrumb !== false) {
+        tmpBreadcrumb.push({
+          path: tmp.path,
+          title: tmp.meta.title,
+        });
+      }
+      tmp.meta.breadcrumbNeste = tmpBreadcrumb;
+      res.push(tmp);
     }
-  }
-  // console.log(routes);
+  });
   return res;
 }
 
@@ -80,4 +119,39 @@ export function singleAsyncRoutes(routes) {
     }
   });
   return res;
+}
+/**
+ * 深拷贝
+ */
+export function deepClone(target) {
+  // 定义一个变量
+  let result;
+  // 如果当前需要深拷贝的是一个对象的话
+  if (typeof target === "object") {
+    // 如果是一个数组的话
+    if (Array.isArray(target)) {
+      result = []; // 将result赋值为一个数组，并且执行遍历
+      for (let i in target) {
+        // 递归克隆数组中的每一项
+        result.push(deepClone(target[i]));
+      }
+      // 判断如果当前的值是null的话；直接赋值为null
+    } else if (target === null) {
+      result = null;
+      // 判断如果当前的值是一个RegExp对象的话，直接赋值
+    } else if (target.constructor === RegExp) {
+      result = target;
+    } else {
+      // 否则是普通对象，直接for in循环，递归赋值对象的所有值
+      result = {};
+      for (let i in target) {
+        result[i] = deepClone(target[i]);
+      }
+    }
+    // 如果不是对象的话，就是基本数据类型，那么直接赋值
+  } else {
+    result = target;
+  }
+  // 返回最终结果
+  return result;
 }
