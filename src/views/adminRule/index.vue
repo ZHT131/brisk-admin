@@ -113,6 +113,7 @@ import operate from "@/components/crud/operate.vue";
 import dialogcom from "@/components/crud/dialogcom.vue";
 
 export default {
+  name:"adminRule",
   components: {
     toolBar,
     searchBtn,

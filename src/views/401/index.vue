@@ -7,6 +7,7 @@
 <script>
 import img401 from "@/assets/images/401.png";
 export default {
+  name:"401",
   data() {
     return {
       img401,

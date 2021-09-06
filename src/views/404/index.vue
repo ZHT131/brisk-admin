@@ -7,6 +7,7 @@
 <script>
 import img404 from "@/assets/images/404.png";
 export default {
+  name:"404",
   data() {
     return {
       img404,

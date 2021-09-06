@@ -103,6 +103,7 @@ import operate from "@/components/crud/operate.vue";
 import dialogcom from "@/components/crud/dialogcom.vue";
 
 export default {
+  name:"adminGroup",
   components: {
     toolBar,
     searchBtn,

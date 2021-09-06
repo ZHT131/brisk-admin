@@ -18,9 +18,10 @@
             </div>
             <router-view v-slot="{ Component }" v-if="routeStatus">
               <transition appear name="fade-transform" mode="out-in">
-                <keep-alive>
+                <keep-alive v-if="keepAliveRoutes" :include="keepAliveRoutes">
                   <component :is="Component" :key="key" />
                 </keep-alive>
+                <component v-else :is="Component" :key="key" />
               </transition>
             </router-view>
           </el-main>
@@ -40,6 +41,7 @@ import enLocale from "element-plus/lib/locale/lang/en";
 import zhLocale from "element-plus/lib/locale/lang/zh-cn";
 
 export default {
+  name:'layout',
   mixins: [ResizeMixin],
   components: {
     headerLayout,
@@ -60,6 +62,7 @@ export default {
     },
   },
   created() {
+    console.log(this.keepAliveRoutes)
     this.getBreadcrumb();
   },
   computed: {
@@ -67,6 +70,7 @@ export default {
       sidebar: (state) => state.app.sidebar,
       language: (state) => state.app.language,
       skinChoose: (state) => state.settings.skinChoose,
+      keepAliveRoutes: (state) => state.user.keepAliveRoutes,
     }),
     key() {
       return this.$route.path;

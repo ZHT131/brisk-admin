@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name:"menu3",
   data() {
     return {
       input:'',

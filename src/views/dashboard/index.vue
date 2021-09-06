@@ -47,6 +47,7 @@ import { mapState } from "vuex";
 import { Chart, registerShape } from "@antv/g2";
 
 export default {
+  name:"dashboard",
   mixins: [ResizeMixin],
   data() {
     return {

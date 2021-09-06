@@ -41,6 +41,7 @@ import { ElMessage } from "element-plus";
 import loginbg from "@/assets/images/loginbg.png";
 
 export default {
+  name:"login",
   data() {
     return {
       loginbg: loginbg,

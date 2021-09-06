@@ -8,6 +8,7 @@ const state = {
   routes: [],
   singleRoutes: [],
   activeRoute: Cookies.get("activeRoute") ? Cookies.get("activeRoute") : "/",
+  keepAliveRoutes: [],
 };
 
 const mutations = {
@@ -22,6 +23,9 @@ const mutations = {
   },
   SET_SINGLEROUTES: (state, routes) => {
     state.singleRoutes = routes;
+  },
+  SET_KEEPALIVEROUTES: (state, routes) => {
+    state.keepAliveRoutes = routes;
   },
   SET_ACTIVEROUTE: (state, activeRoute) => {
     state.activeRoute = activeRoute;
@@ -44,7 +48,7 @@ const actions = {
     commit("SET_ACTIVEROUTE", path);
     Cookies.set("activeRoute", path);
   },
-  getUserRoutes({ state, commit }) {
+  getUserRoutes({ state, commit, dispatch }) {
     let userinfo = state.userinfo;
     return new Promise((resolve, reject) => {
       authRoutes({
@@ -55,12 +59,23 @@ const actions = {
           commit("SET_ROUTES", routes);
           let single = singleAsyncRoutes(routes);
           commit("SET_SINGLEROUTES", single);
+          dispatch("getKeepAlive");
           resolve(routes);
         })
         .catch((err) => {
           reject(false);
         });
     });
+  },
+  getKeepAlive({ state, commit }) {
+    let keepAliveRoutes = [];
+    state.singleRoutes.map((item) => {
+      if (item.meta.keepAlive) {
+        keepAliveRoutes.push(item.name);
+      }
+    });
+    console.log(keepAliveRoutes);
+    commit("SET_KEEPALIVEROUTES", keepAliveRoutes);
   },
 };
 

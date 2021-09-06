@@ -4,6 +4,7 @@
 
 <script>
 export default {
+  name:"menu2",
   created(){
     console.log('menu2缓存了吗？')
   }
