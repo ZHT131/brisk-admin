@@ -61,7 +61,6 @@ export default {
         return ElMessage(this.$t("login.passwordPlaceholder"));
       }
       login(this.form).then((res) => {
-        console.log(res);
         if (res.code == 1) {
           this.$store.dispatch("user/loginSet", res.data);
           this.$router.push("dashboard");

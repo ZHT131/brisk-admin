@@ -8,14 +8,8 @@
           <el-header :style="{'background':skinChoose.navBackground}">
             <headerLayout @refRoute="refRoute" />
           </el-header>
+          <tabsLayout />
           <el-main>
-            <div class="ym-breadcrumb">
-              <el-breadcrumb separator="/">
-                <el-breadcrumb-item v-for="(item,index) in levelList" :key="index">
-                  {{$t(item.name + "." + item.meta.title)}}
-                </el-breadcrumb-item>
-              </el-breadcrumb>
-            </div>
             <router-view v-slot="{ Component }" v-if="routeStatus">
               <transition appear name="fade-transform" mode="out-in">
                 <keep-alive v-if="keepAliveRoutes" :include="keepAliveRoutes">
@@ -39,14 +33,15 @@ import asideLayout from "./components/aside/index.vue";
 import settingLayout from "./components/setting/index.vue";
 import enLocale from "element-plus/lib/locale/lang/en";
 import zhLocale from "element-plus/lib/locale/lang/zh-cn";
-
+import tabsLayout from "./components/tabs/index.vue";
 export default {
-  name:'layout',
+  name: "layout",
   mixins: [ResizeMixin],
   components: {
     headerLayout,
     asideLayout,
     settingLayout,
+    tabsLayout,
   },
   data() {
     return {
@@ -62,7 +57,6 @@ export default {
     },
   },
   created() {
-    console.log(this.keepAliveRoutes)
     this.getBreadcrumb();
   },
   computed: {
@@ -102,9 +96,6 @@ export default {
 .el-main {
   background-color: #e9eef3;
 }
-.ym-breadcrumb {
-  padding-bottom: 20px;
-}
 </style>
 <style>
 .is-horizontal {
@@ -113,5 +104,19 @@ export default {
 .el-dropdown {
   font-size: 12px;
   margin-left: 20px;
+}
+.el-tabs__nav,
+.el-tabs__item {
+  border: none !important;
+}
+.el-tabs__header {
+  margin: 0;
+}
+.el-tabs__item.is-active,
+.el-tabs__item:hover {
+  -webkit-mask-image: url("../../assets/images/tabs.png");
+  -webkit-mask-size: 100% 100%;
+  outline: none;
+  background: #e6e6e6;
 }
 </style>
