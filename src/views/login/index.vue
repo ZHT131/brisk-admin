@@ -41,7 +41,7 @@ import { ElMessage } from "element-plus";
 import loginbg from "@/assets/images/loginbg.png";
 
 export default {
-  name:"login",
+  name: "login",
   data() {
     return {
       loginbg: loginbg,
@@ -63,6 +63,7 @@ export default {
       login(this.form).then((res) => {
         if (res.code == 1) {
           this.$store.dispatch("user/loginSet", res.data);
+          this.$store.dispatch("app/refTabs");
           this.$router.push("dashboard");
         }
       });

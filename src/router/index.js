@@ -93,12 +93,8 @@ router.beforeEach(async (to, form) => {
   //添加之前判断要跳转的路由是否存在
   let has_route = router.hasRoute(to.name);
   //根据权限添加路由
-  let allRoutes = router.getRoutes();
   routes.forEach((item) => {
-    // 防止重复添加路由
-    if (allRoutes.findIndex((value) => value.path === item.path) == -1) {
-      router.addRoute(item);
-    }
+    router.addRoute(item);
   });
   //删除用户权限中已不存在的路由
   let newallRoutes = router.getRoutes();
@@ -135,6 +131,13 @@ router.beforeResolve((to, form) => {});
 
 // 后置守卫：路由跳转之后
 router.afterEach((to, form) => {
+  if (to.meta.tabShow) {
+    store.dispatch("app/addTabs", {
+      fullPath: to.fullPath,
+      name: to.name,
+      meta: to.meta,
+    });
+  }
   store.dispatch("user/activeRoute", to.fullPath);
 });
 

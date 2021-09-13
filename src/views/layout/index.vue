@@ -105,18 +105,4 @@ export default {
   font-size: 12px;
   margin-left: 20px;
 }
-.el-tabs__nav,
-.el-tabs__item {
-  border: none !important;
-}
-.el-tabs__header {
-  margin: 0;
-}
-.el-tabs__item.is-active,
-.el-tabs__item:hover {
-  -webkit-mask-image: url("../../assets/images/tabs.png");
-  -webkit-mask-size: 100% 100%;
-  outline: none;
-  background: #e6e6e6;
-}
 </style>

@@ -48,12 +48,22 @@ const actions = {
   setShowSet({ commit }, showSet) {
     commit("SET_SHOWSET", showSet);
   },
+  //登录重置标签
+  refTabs({ state, commit }) {
+    let tabsList = [];
+    commit("SET_TABACTIVE", "");
+    commit("SET_TABSLIST", tabsList);
+    localStorage.setItem("tabsList", JSON.stringify(tabsList));
+    localStorage.setItem("tabActive", "");
+  },
   //初始化标签
   initTabs({ state, commit }) {
     let tabsList = JSON.parse(localStorage.getItem("tabsList"));
     let tabActive = localStorage.getItem("tabActive");
-    commit("SET_TABACTIVE", tabActive);
-    commit("SET_TABSLIST", tabsList);
+    if (tabsList && tabActive) {
+      commit("SET_TABACTIVE", tabActive);
+      commit("SET_TABSLIST", tabsList);
+    }
   },
   //添加标签
   addTabs({ state, commit }, route) {
@@ -82,16 +92,19 @@ const actions = {
     localStorage.setItem("tabsList", JSON.stringify(tabsList));
   },
   // 关闭当前页
-  closeCurrentTab({ state, commit }, fullPath) {
+  closeCurrentTab({ state, commit }, obj) {
     let tabsList = state.tabsList;
-    const index = tabsList.findIndex((item) => item.fullPath == fullPath);
+    const index = tabsList.findIndex((item) => item.fullPath == obj.fullPath);
     tabsList.splice(index, 1);
     commit("SET_TABSLIST", tabsList);
     //打开最后一个tab页面
     commit("SET_TABACTIVE", tabsList[tabsList.length - 1].fullPath);
     localStorage.setItem("tabsList", JSON.stringify(tabsList));
     localStorage.setItem("tabActive", tabsList[tabsList.length - 1].fullPath);
-  }
+    if (obj.type == "current") {
+      router.push({ path: tabsList[tabsList.length - 1].fullPath });
+    }
+  },
 };
 
 export default {
