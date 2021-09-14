@@ -10,12 +10,11 @@
           </el-header>
           <tabsLayout />
           <el-main>
-            <router-view v-slot="{ Component , route }" v-if="routeStatus">
+            <router-view v-slot="{ Component , route }">
               <transition appear name="fade-transform" mode="out-in">
                 <keep-alive :include="keepAliveRoutes">
-                  <component :is="Component" :key="route.fullPath" />
+                  <component :is="Component" :key="route.fullPath===refRoutePath?'':route.fullPath" />
                 </keep-alive>
-                <!-- <component v-else :is="Component" :key="route.fullPath" /> -->
               </transition>
             </router-view>
           </el-main>
@@ -48,7 +47,7 @@ export default {
       enLocale: enLocale,
       zhLocale: zhLocale,
       levelList: [],
-      routeStatus: true,
+      refRoutePath: "",
     };
   },
   watch: {
@@ -74,9 +73,19 @@ export default {
     },
     //刷新当前页
     refRoute() {
-      this.routeStatus = false;
+      let keeps = this.keepAliveRoutes;
+      const keepindex = keeps.findIndex((item) => item == this.$route.name);
+      if (keepindex > -1) {
+        keeps.splice(keepindex, 1);
+        this.$store.dispatch("user/setKeepAlive", keeps);
+      }
+      this.refRoutePath = this.$route.fullPath;
       this.$nextTick(() => {
-        this.routeStatus = true;
+        this.refRoutePath = "";
+        if (keepindex > -1) {
+          //恢复原始keepalive
+          this.$store.dispatch("user/getKeepAlive");
+        }
       });
     },
   },
