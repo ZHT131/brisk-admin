@@ -39,5 +39,25 @@ const skin = {
     navColor: "#000000",
     activeColor: "#409EFF",
   },
+  aside_yellow_nav_white: {
+    className: "aside_yellow_nav_white",
+    asideBackground: "#f39c12",
+    asideColor: "#ffffff",
+    logoColor: "#ffffff",
+    logoBackground: "#f39c12",
+    navBackground: "#ffffff",
+    navColor: "#000000",
+    activeColor: "#409EFF",
+  },
+  aside_white_nav_yellow: {
+    className: "aside_white_nav_yellow",
+    asideBackground: "#ffffff",
+    asideColor: "#000000",
+    logoColor: "#ffffff",
+    logoBackground: "#f39c12",
+    navBackground: "#f39c12",
+    navColor: "#ffffff",
+    activeColor: "#409EFF",
+  },
 };
 export default skin;

@@ -44,7 +44,6 @@ export default {
   },
 };
 </script>
-
 <style lang="scss" scoped>
 .el-aside {
   overflow-x: hidden !important;

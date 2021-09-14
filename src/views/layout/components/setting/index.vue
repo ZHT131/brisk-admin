@@ -63,6 +63,34 @@
             </div>
           </div>
         </el-col>
+        <el-col :span="12">
+          <div class="aside_yellow_nav_white" @click="changeSkin('aside_yellow_nav_white')">
+            <div class="aside">
+              <div class="logo"></div>
+            </div>
+            <div class="right">
+              <div class="nav"></div>
+              <div class="cont"></div>
+            </div>
+            <div class="skin-select" v-if="skinChoose.className=='aside_yellow_nav_white'">
+              <i class="el-icon-check"></i>
+            </div>
+          </div>
+        </el-col>
+        <el-col :span="12">
+          <div class="aside_white_nav_yellow" @click="changeSkin('aside_white_nav_yellow')">
+            <div class="aside">
+              <div class="logo"></div>
+            </div>
+            <div class="right">
+              <div class="nav"></div>
+              <div class="cont"></div>
+            </div>
+            <div class="skin-select" v-if="skinChoose.className=='aside_white_nav_yellow'">
+              <i class="el-icon-check"></i>
+            </div>
+          </div>
+        </el-col>
       </el-row>
     </div>
   </el-drawer>
@@ -239,6 +267,68 @@ export default {
       .nav {
         height: 10px;
         background-color: #ffffff;
+        border-bottom: 1px solid #e6e6e6;
+      }
+      .cont {
+        height: 89px;
+        background-color: #ffffff;
+      }
+    }
+  }
+  .aside_yellow_nav_white {
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0px 0px 10px #666666;
+    width: 100%;
+    position: relative;
+    .aside {
+      width: 20px;
+      background-color: #f39c12;
+      height: 100px;
+      .logo {
+        width: 20px;
+        height: 10px;
+        background-color: #f39c12;
+      }
+    }
+    .right {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      .nav {
+        height: 10px;
+        background-color: #ffffff;
+        border-bottom: 1px solid #e6e6e6;
+      }
+      .cont {
+        height: 89px;
+        background-color: #ffffff;
+      }
+    }
+  }
+  .aside_white_nav_yellow {
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0px 0px 10px #666666;
+    width: 100%;
+    position: relative;
+    .aside {
+      width: 20px;
+      background-color: #ffffff;
+      height: 100px;
+      .logo {
+        width: 20px;
+        height: 10px;
+        background-color: #f39c12;
+      }
+    }
+    .right {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      .nav {
+        height: 10px;
+        background-color: #f39c12;
         border-bottom: 1px solid #e6e6e6;
       }
       .cont {
