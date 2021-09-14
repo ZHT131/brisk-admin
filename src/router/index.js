@@ -72,40 +72,33 @@ router.beforeEach(async (to, form) => {
     NProgress.done();
     return "/dashboard";
   }
-  //获取用户对应菜单权限
-  const accessRoutes = await store.dispatch("user/getUserRoutes");
-  // routes must be a non-empty array
-  if (!accessRoutes || accessRoutes.length <= 0) {
-    console.log("routes must be a non-null array!");
-  }
-  let routes = filterAsyncRoutes(accessRoutes);
-  // 将三级及以上路由数据拍平成二级
-  routes.map((item) => {
-    if (item.children) {
-      item.children = sameLevelRoutes(item.children, [
-        {
-          path: item.path,
-          title: item.meta.title,
-        },
-      ]);
+  //是否已同步路由规则
+  if (!store.state.user.getIsDynamicRoute) {
+    //获取用户对应菜单权限
+    const accessRoutes = await store.dispatch("user/getUserRoutes");
+    // routes must be a non-empty array
+    if (!accessRoutes || accessRoutes.length <= 0) {
+      console.log("routes must be a non-null array!");
     }
-  });
+    let routes = filterAsyncRoutes(accessRoutes);
+    // 将三级及以上路由数据拍平成二级
+    routes.map((item) => {
+      if (item.children) {
+        item.children = sameLevelRoutes(item.children, [
+          {
+            path: item.path,
+            title: item.meta.title,
+          },
+        ]);
+      }
+    });
+    //根据权限添加路由
+    routes.forEach((item) => {
+      router.addRoute(item);
+    });
+  }
   //添加之前判断要跳转的路由是否存在
   let has_route = router.hasRoute(to.name);
-  //根据权限添加路由
-  routes.forEach((item) => {
-    router.addRoute(item);
-  });
-  //删除用户权限中已不存在的路由
-  let newallRoutes = router.getRoutes();
-  let singleRoutes = store.state.user.singleRoutes;
-  newallRoutes.forEach((item) => {
-    if (singleRoutes.findIndex((value) => value.path === item.path) == -1) {
-      if (!WhiteList.includes(item.name)) {
-        router.removeRoute(item.name);
-      }
-    }
-  });
   //判断是否存在执行重定向避免刷新页面404
   if (has_route) {
     NProgress.done();
@@ -139,6 +132,8 @@ router.afterEach((to, form) => {
     });
   }
   store.dispatch("user/activeRoute", to.fullPath);
+  //恢复原始keepalive
+  store.dispatch("user/getKeepAlive");
 });
 
 export default router;

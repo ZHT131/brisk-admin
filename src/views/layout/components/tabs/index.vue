@@ -36,6 +36,7 @@ export default {
     ...mapState({
       tabActive: (state) => state.app.tabActive,
       tabsList: (state) => state.app.tabsList,
+      keepAliveRoutes: (state) => state.user.keepAliveRoutes,
     }),
   },
   created() {
@@ -46,27 +47,39 @@ export default {
       this.$store.dispatch("app/clickTab", e.index);
     },
     tabRemove(e) {
+      let keeps = this.keepAliveRoutes;
+      const tabindex = this.tabsList.findIndex((item) => item.fullPath == e);
+      let routeName = this.tabsList[tabindex].name;
+      const keepindex = keeps.findIndex((item) => item == routeName);
+      keeps.splice(keepindex, 1);
+      this.$store.dispatch("user/setKeepAlive", keeps);
       if (e == this.$route.fullPath) {
-        return this.$store.dispatch("app/closeCurrentTab", {
+        this.$store.dispatch("app/closeCurrentTab", {
           fullPath: e,
           type: "current",
         });
+      } else {
+        this.$store.dispatch("app/closeCurrentTab", {
+          fullPath: e,
+          type: "other",
+        });
       }
-      return this.$store.dispatch("app/closeCurrentTab", {
-        fullPath: e,
-        type: "other",
-      });
     },
     closeCurrent() {
       if (this.tabsList.length == 1) {
         return ElMessage("最少保留一个标签哦！");
       }
+      let keeps = this.keepAliveRoutes;
+      const keepindex = keeps.findIndex((item) => item == this.$route.name);
+      keeps.splice(keepindex, 1);
+      this.$store.dispatch("user/setKeepAlive", keeps);
       this.$store.dispatch("app/closeCurrentTab", {
         fullPath: this.$route.fullPath,
         type: "current",
       });
     },
     closeOther() {
+      this.$store.dispatch("user/setKeepAlive", [this.$route.name]);
       this.$store.dispatch("app/closeOtherTabs", {
         fullPath: this.$route.fullPath,
       });

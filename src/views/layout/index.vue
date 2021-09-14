@@ -10,12 +10,12 @@
           </el-header>
           <tabsLayout />
           <el-main>
-            <router-view v-slot="{ Component }" v-if="routeStatus">
+            <router-view v-slot="{ Component , route }" v-if="routeStatus">
               <transition appear name="fade-transform" mode="out-in">
-                <keep-alive v-if="keepAliveRoutes" :include="keepAliveRoutes">
-                  <component :is="Component" :key="key" />
+                <keep-alive :include="keepAliveRoutes">
+                  <component :is="Component" :key="route.fullPath" />
                 </keep-alive>
-                <component v-else :is="Component" :key="key" />
+                <!-- <component v-else :is="Component" :key="route.fullPath" /> -->
               </transition>
             </router-view>
           </el-main>
@@ -66,9 +66,6 @@ export default {
       skinChoose: (state) => state.settings.skinChoose,
       keepAliveRoutes: (state) => state.user.keepAliveRoutes,
     }),
-    key() {
-      return this.$route.path;
-    },
   },
   methods: {
     getBreadcrumb() {

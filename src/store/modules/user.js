@@ -9,6 +9,7 @@ const state = {
   singleRoutes: [],
   activeRoute: Cookies.get("activeRoute") ? Cookies.get("activeRoute") : "/",
   keepAliveRoutes: [],
+  getIsDynamicRoute: false,
 };
 
 const mutations = {
@@ -29,6 +30,9 @@ const mutations = {
   },
   SET_ACTIVEROUTE: (state, activeRoute) => {
     state.activeRoute = activeRoute;
+  },
+  SET_DYNAMICROUTE: (state, status) => {
+    state.getIsDynamicRoute = status;
   },
 };
 
@@ -59,6 +63,7 @@ const actions = {
           commit("SET_ROUTES", routes);
           let single = singleAsyncRoutes(routes);
           commit("SET_SINGLEROUTES", single);
+          commit("SET_DYNAMICROUTE", true);
           dispatch("getKeepAlive");
           resolve(routes);
         })
@@ -75,6 +80,12 @@ const actions = {
       }
     });
     commit("SET_KEEPALIVEROUTES", keepAliveRoutes);
+  },
+  setKeepAlive({ commit }, keepAliveRoutes) {
+    commit("SET_KEEPALIVEROUTES", keepAliveRoutes);
+  },
+  setDynamicRoute({ commit }, status) {
+    commit("SET_DYNAMICROUTE", status);
   },
 };
 
