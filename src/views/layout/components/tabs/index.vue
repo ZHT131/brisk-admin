@@ -4,8 +4,10 @@
       <el-tabs :model-value="tabActive" type="card" :closable="tabsList.length>1?true:false" @tab-remove="tabRemove" @tab-click="tabClick">
         <el-tab-pane :key="item.fullPath" v-for="(item) in tabsList" :name="item.fullPath">
           <template #label>
-            <i class="el-icon-date"></i>
-            <span style="margin-left:3px">{{ $t(item.name + "." + item.meta.title) }}</span>
+            <div class="tab-label">
+              <i :class="item.meta.icon"></i>
+              <span style="margin-left:5px">{{ $t(item.name + "." + item.meta.title) }}</span>
+            </div>
           </template>
         </el-tab-pane>
       </el-tabs>
@@ -96,6 +98,12 @@ export default {
   .tabs-left {
     flex: 1;
     overflow: hidden;
+    .tab-label {
+      display: inline-block;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 13px;
+    }
   }
   .tabs-menu {
     padding: 9px 20px 9px 9px;

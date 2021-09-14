@@ -53,7 +53,7 @@ const authRoutes = (params) => {
         redirect: "/dashboard",
         meta: {
           title: "home",
-          icon: "el-icon-menu",
+          icon: "ri-home-line",
           keepAlive: false,
           tabShow: false,
         },
@@ -66,7 +66,7 @@ const authRoutes = (params) => {
             name: "dashboard",
             meta: {
               title: "dashboard",
-              icon: "el-icon-menu",
+              icon: "ri-home-line",
               keepAlive: true,
               tabShow: true,
             },
@@ -81,7 +81,7 @@ const authRoutes = (params) => {
         redirect: "/profile/index",
         meta: {
           title: "profile",
-          icon: "el-icon-menu",
+          icon: "ri-home-line",
           keepAlive: false,
           tabShow: false,
         },
@@ -95,7 +95,7 @@ const authRoutes = (params) => {
             name: "profileIndex",
             meta: {
               title: "profileIndex",
-              icon: "el-icon-menu",
+              icon: "ri-home-line",
               keepAlive: true,
               tabShow: true,
             },
@@ -110,7 +110,7 @@ const authRoutes = (params) => {
         redirect: null,
         meta: {
           title: "auth",
-          icon: "el-icon-menu",
+          icon: "ri-file-user-line",
           keepAlive: false,
           tabShow: false,
         },
@@ -123,7 +123,7 @@ const authRoutes = (params) => {
             name: "admin",
             meta: {
               title: "admin",
-              icon: "el-icon-menu",
+              icon: "ri-admin-line",
               keepAlive: true,
               tabShow: true,
             },
@@ -136,7 +136,7 @@ const authRoutes = (params) => {
             name: "adminLog",
             meta: {
               title: "adminLog",
-              icon: "el-icon-menu",
+              icon: "ri-file-list-line",
               keepAlive: true,
               tabShow: true,
             },
@@ -149,7 +149,7 @@ const authRoutes = (params) => {
             name: "adminGroup",
             meta: {
               title: "adminGroup",
-              icon: "el-icon-menu",
+              icon: "ri-group-line",
               keepAlive: true,
               tabShow: true,
             },
@@ -162,7 +162,7 @@ const authRoutes = (params) => {
             name: "adminRule",
             meta: {
               title: "adminRule",
-              icon: "el-icon-menu",
+              icon: "ri-menu-line",
               keepAlive: true,
               tabShow: true,
             },
@@ -178,7 +178,7 @@ const authRoutes = (params) => {
         redirect: null,
         meta: {
           title: "error_page",
-          icon: "el-icon-menu",
+          icon: "ri-error-warning-line",
           keepAlive: false,
           tabShow: false,
         },
@@ -190,7 +190,7 @@ const authRoutes = (params) => {
             name: "page401",
             meta: {
               title: "page401",
-              icon: "el-icon-menu",
+              icon: "ri-error-warning-line",
               keepAlive: true,
               tabShow: true,
             },
@@ -203,7 +203,7 @@ const authRoutes = (params) => {
             name: "page404",
             meta: {
               title: "page404",
-              icon: "el-icon-menu",
+              icon: "ri-error-warning-line",
               keepAlive: true,
               tabShow: true,
             },
@@ -220,7 +220,7 @@ const authRoutes = (params) => {
         redirect: null,
         meta: {
           title: "nested",
-          icon: "el-icon-menu",
+          icon: "ri-stack-fill",
           keepAlive: false,
           tabShow: false,
         },
@@ -232,7 +232,7 @@ const authRoutes = (params) => {
             name: "menu",
             meta: {
               title: "menu",
-              icon: "el-icon-menu",
+              icon: "ri-apps-2-fill",
               keepAlive: false,
               tabShow: false,
             },
@@ -245,7 +245,7 @@ const authRoutes = (params) => {
                 name: "menu2",
                 meta: {
                   title: "menu2",
-                  icon: "el-icon-menu",
+                  icon: "ri-apps-2-fill",
                   keepAlive: false,
                   tabShow: false,
                 },
@@ -258,7 +258,7 @@ const authRoutes = (params) => {
                     name: "menu4",
                     meta: {
                       title: "menu4",
-                      icon: "el-icon-menu",
+                      icon: "ri-apps-2-fill",
                       keepAlive: true,
                       tabShow: true,
                     },
@@ -273,7 +273,7 @@ const authRoutes = (params) => {
                 name: "menu3",
                 meta: {
                   title: "menu3",
-                  icon: "el-icon-menu",
+                  icon: "ri-apps-2-fill",
                   keepAlive: true,
                   tabShow: true,
                 },
@@ -288,7 +288,7 @@ const authRoutes = (params) => {
             name: "menu1",
             meta: {
               title: "menu1",
-              icon: "el-icon-menu",
+              icon: "ri-apps-2-fill",
               keepAlive: true,
               tabShow: true,
             },
@@ -315,7 +315,7 @@ const authRoutes = (params) => {
         redirect: "/dashboard",
         meta: {
           title: "home",
-          icon: "el-icon-menu",
+          icon: "ri-home-line",
           keepAlive: false,
           tabShow: false,
         },
@@ -328,7 +328,7 @@ const authRoutes = (params) => {
             name: "dashboard",
             meta: {
               title: "dashboard",
-              icon: "el-icon-menu",
+              icon: "ri-home-line",
               keepAlive: true,
               tabShow: true,
             },
@@ -343,7 +343,7 @@ const authRoutes = (params) => {
         redirect: "/profile/index",
         meta: {
           title: "profile",
-          icon: "el-icon-menu",
+          icon: "ri-home-line",
           keepAlive: false,
           tabShow: false,
         },
@@ -357,7 +357,7 @@ const authRoutes = (params) => {
             name: "profileIndex",
             meta: {
               title: "profileIndex",
-              icon: "el-icon-menu",
+              icon: "ri-home-line",
               keepAlive: true,
               tabShow: true,
             },
@@ -372,7 +372,7 @@ const authRoutes = (params) => {
         redirect: null,
         meta: {
           title: "auth",
-          icon: "el-icon-menu",
+          icon: "ri-file-user-line",
           keepAlive: false,
           tabShow: false,
         },
@@ -385,7 +385,7 @@ const authRoutes = (params) => {
             name: "admin",
             meta: {
               title: "admin",
-              icon: "el-icon-menu",
+              icon: "ri-admin-line",
               keepAlive: true,
               tabShow: true,
             },
@@ -398,7 +398,7 @@ const authRoutes = (params) => {
             name: "adminLog",
             meta: {
               title: "adminLog",
-              icon: "el-icon-menu",
+              icon: "ri-file-list-line",
               keepAlive: true,
               tabShow: true,
             },
@@ -414,7 +414,7 @@ const authRoutes = (params) => {
         redirect: null,
         meta: {
           title: "error_page",
-          icon: "el-icon-menu",
+          icon: "ri-error-warning-line",
           keepAlive: false,
           tabShow: false,
         },
@@ -426,7 +426,7 @@ const authRoutes = (params) => {
             name: "page401",
             meta: {
               title: "page401",
-              icon: "el-icon-menu",
+              icon: "ri-error-warning-line",
               keepAlive: true,
               tabShow: true,
             },
@@ -439,7 +439,7 @@ const authRoutes = (params) => {
             name: "page404",
             meta: {
               title: "page404",
-              icon: "el-icon-menu",
+              icon: "ri-error-warning-line",
               keepAlive: true,
               tabShow: true,
             },
@@ -456,7 +456,7 @@ const authRoutes = (params) => {
         redirect: null,
         meta: {
           title: "nested",
-          icon: "el-icon-menu",
+          icon: "ri-stack-fill",
           keepAlive: false,
           tabShow: false,
         },
@@ -468,7 +468,7 @@ const authRoutes = (params) => {
             name: "menu",
             meta: {
               title: "menu",
-              icon: "el-icon-menu",
+              icon: "ri-apps-2-fill",
               keepAlive: false,
               tabShow: false,
             },
@@ -481,7 +481,7 @@ const authRoutes = (params) => {
                 name: "menu2",
                 meta: {
                   title: "menu2",
-                  icon: "el-icon-menu",
+                  icon: "ri-apps-2-fill",
                   keepAlive: false,
                   tabShow: false,
                 },
@@ -494,7 +494,7 @@ const authRoutes = (params) => {
                     name: "menu4",
                     meta: {
                       title: "menu4",
-                      icon: "el-icon-menu",
+                      icon: "ri-apps-2-fill",
                       keepAlive: true,
                       tabShow: true,
                     },
@@ -509,7 +509,7 @@ const authRoutes = (params) => {
                 name: "menu3",
                 meta: {
                   title: "menu3",
-                  icon: "el-icon-menu",
+                  icon: "ri-apps-2-fill",
                   keepAlive: true,
                   tabShow: true,
                 },
@@ -524,7 +524,7 @@ const authRoutes = (params) => {
             name: "menu1",
             meta: {
               title: "menu1",
-              icon: "el-icon-menu",
+              icon: "ri-apps-2-fill",
               keepAlive: true,
               tabShow: true,
             },

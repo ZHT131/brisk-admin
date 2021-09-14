@@ -13,6 +13,7 @@
     "js-cookie": "^3.0.1",
     "mockjs": "^1.1.0",
     "nprogress": "^0.2.0",
+    "remixicon": "^2.5.0",
     "screenfull": "^5.1.0",
     "vue": "^3.2.8",
     "vue-i18n": "^9.1.7",
