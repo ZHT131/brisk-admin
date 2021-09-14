@@ -9,7 +9,9 @@
       <el-row :gutter="20">
         <el-col :span="12">
           <div class="aside_white_nav_white" @click="changeSkin('aside_white_nav_white')">
-            <div class="aside"></div>
+            <div class="aside">
+              <div class="logo"></div>
+            </div>
             <div class="right">
               <div class="nav"></div>
               <div class="cont"></div>
@@ -21,7 +23,9 @@
         </el-col>
         <el-col :span="12">
           <div class="aside_black_nav_white" @click="changeSkin('aside_black_nav_white')">
-            <div class="aside"></div>
+            <div class="aside">
+              <div class="logo"></div>
+            </div>
             <div class="right">
               <div class="nav"></div>
               <div class="cont"></div>
@@ -32,20 +36,24 @@
           </div>
         </el-col>
         <el-col :span="12">
-          <div class="aside_black_nav_black" @click="changeSkin('aside_black_nav_black')">
-            <div class="aside"></div>
+          <div class="aside_white_nav_black" @click="changeSkin('aside_white_nav_black')">
+            <div class="aside">
+              <div class="logo"></div>
+            </div>
             <div class="right">
               <div class="nav"></div>
               <div class="cont"></div>
             </div>
-            <div class="skin-select" v-if="skinChoose.className=='aside_black_nav_black'">
+            <div class="skin-select" v-if="skinChoose.className=='aside_white_nav_black'">
               <i class="el-icon-check"></i>
             </div>
           </div>
         </el-col>
         <el-col :span="12">
           <div class="aside_purple_nav_white" @click="changeSkin('aside_purple_nav_white')">
-            <div class="aside"></div>
+            <div class="aside">
+              <div class="logo"></div>
+            </div>
             <div class="right">
               <div class="nav"></div>
               <div class="cont"></div>
@@ -125,6 +133,11 @@ export default {
       background-color: #ffffff;
       height: 100px;
       border-right: 1px solid #e6e6e6;
+      .logo {
+        width: 20px;
+        height: 10px;
+        background-color: #ffffff;
+      }
     }
     .right {
       display: flex;
@@ -151,6 +164,11 @@ export default {
       width: 20px;
       background-color: #222d32;
       height: 100px;
+      .logo {
+        width: 20px;
+        height: 10px;
+        background-color: #222d32;
+      }
     }
     .right {
       display: flex;
@@ -167,7 +185,7 @@ export default {
       }
     }
   }
-  .aside_black_nav_black {
+  .aside_white_nav_black {
     display: flex;
     flex-direction: row;
     box-shadow: 0px 0px 10px #666666;
@@ -175,8 +193,13 @@ export default {
     position: relative;
     .aside {
       width: 20px;
-      background-color: #222d32;
+      background-color: #ffffff;
       height: 100px;
+      .logo {
+        width: 20px;
+        height: 10px;
+        background-color: #222d32;
+      }
     }
     .right {
       display: flex;
@@ -203,6 +226,11 @@ export default {
       width: 20px;
       background-color: #605ca8;
       height: 100px;
+      .logo {
+        width: 20px;
+        height: 10px;
+        background-color: #605ca8;
+      }
     }
     .right {
       display: flex;
