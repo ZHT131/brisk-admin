@@ -2,14 +2,14 @@
   <div class="ym-header">
     <div class="header-left">
       <div class="header-tool" @click="outSide">
-        <i class="el-icon-s-fold" style="font-size: 22px" :style="{'color':skinChoose.navColor}"></i>
+        <i class="ri-indent-decrease" style="font-size: 18px" :style="{'color':skinChoose.navColor}"></i>
       </div>
       <div class="header-refresh" @click="refRoute">
-        <i class="el-icon-refresh-right" style="font-size: 22px" :style="{'color':skinChoose.navColor}"></i>
+        <i class="ri-refresh-line" style="font-size: 18px" :style="{'color':skinChoose.navColor}"></i>
       </div>
     </div>
     <div class="header-right">
-      <i class="el-icon-full-screen" @click="toScreenfull" :style="{'color':skinChoose.navColor}"></i>
+      <i class="ri-fullscreen-fill" @click="toScreenfull" :style="{'color':skinChoose.navColor}"></i>
       <el-dropdown>
         <span :style="{'color':skinChoose.navColor}">
           {{ language == "en" ? "English" : "中文" }}
@@ -38,7 +38,7 @@
         </template>
       </el-dropdown>
       <div class="header-set" @click="changeShowSet">
-        <i class="el-icon-setting" :style="{'color':skinChoose.navColor}"></i>
+        <i class="ri-settings-fill" :style="{'color':skinChoose.navColor}"></i>
       </div>
     </div>
   </div>

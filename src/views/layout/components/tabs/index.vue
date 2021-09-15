@@ -14,7 +14,7 @@
     </div>
     <el-dropdown placement="bottom-start">
       <div class="tabs-menu">
-        <i class="el-icon-menu" style="font-size:20px"></i>
+        <i class="ri-apps-fill" style="font-size:20px"></i>
       </div>
       <template #dropdown>
         <el-dropdown-menu>
@@ -106,7 +106,7 @@ export default {
     }
   }
   .tabs-menu {
-    padding: 9px 20px 9px 9px;
+    padding: 8px 20px 8px 8px;
   }
 }
 </style>
