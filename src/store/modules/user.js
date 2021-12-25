@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { authRoutes } from "@/api";
+import { authRoutes } from "~/api";
 import { singleAsyncRoutes } from "../../utils/index";
 
 const state = {

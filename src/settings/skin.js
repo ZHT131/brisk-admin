@@ -7,7 +7,7 @@ const skin = {
     logoColor: "#000000",
     navBackground: "#ffffff",
     navColor: "#000000",
-    activeColor: "#409EFF",
+    activeColor: "var(--el-color-primary)",
   },
   aside_black_nav_white: {
     className: "aside_black_nav_white",
@@ -17,7 +17,7 @@ const skin = {
     logoBackground: "#222d32",
     navBackground: "#ffffff",
     navColor: "#000000",
-    activeColor: "#409EFF",
+    activeColor: "var(--el-color-primary)",
   },
   aside_white_nav_black: {
     className: "aside_white_nav_black",
@@ -27,7 +27,7 @@ const skin = {
     logoBackground: "#222d32",
     navBackground: "#222d32",
     navColor: "#ffffff",
-    activeColor: "#409EFF",
+    activeColor: "var(--el-color-primary)",
   },
   aside_purple_nav_white: {
     className: "aside_purple_nav_white",
@@ -37,7 +37,7 @@ const skin = {
     logoBackground: "#605ca8",
     navBackground: "#ffffff",
     navColor: "#000000",
-    activeColor: "#409EFF",
+    activeColor: "var(--el-color-primary)",
   },
   aside_yellow_nav_white: {
     className: "aside_yellow_nav_white",
@@ -47,7 +47,7 @@ const skin = {
     logoBackground: "#f39c12",
     navBackground: "#ffffff",
     navColor: "#000000",
-    activeColor: "#409EFF",
+    activeColor: "var(--el-color-primary)",
   },
   aside_white_nav_yellow: {
     className: "aside_white_nav_yellow",
@@ -57,7 +57,7 @@ const skin = {
     logoBackground: "#f39c12",
     navBackground: "#f39c12",
     navColor: "#ffffff",
-    activeColor: "#409EFF",
+    activeColor: "var(--el-color-primary)",
   },
 };
 export default skin;

@@ -1,8 +1,16 @@
 <template>
   <el-drawer :size="300" :model-value="showSet" direction="rtl" :withHeader="false" :before-close="handleClose" destroy-on-close>
     <div class="drawer_title">
-      <span>{{$t('app.setting_title')}}</span>
-      <i class="el-icon-close" @click="handleClose"></i>
+      <span>系统设置</span>
+      <el-icon @click="handleClose">
+        <Close />
+      </el-icon>
+    </div>
+    <div class="layoutbox">
+      <div>系统主题色</div>
+      <div class="colorbox">
+        <el-color-picker style="margin-top:20px" v-model="systeamColor" @change="colorChange" />
+      </div>
     </div>
     <div class="layoutbox">
       <span>系统皮肤</span>
@@ -17,7 +25,9 @@
               <div class="cont"></div>
             </div>
             <div class="skin-select" v-if="skinChoose.className=='aside_white_nav_white'">
-              <i class="el-icon-check"></i>
+              <el-icon>
+                <Check />
+              </el-icon>
             </div>
           </div>
         </el-col>
@@ -31,7 +41,9 @@
               <div class="cont"></div>
             </div>
             <div class="skin-select" v-if="skinChoose.className=='aside_black_nav_white'">
-              <i class="el-icon-check"></i>
+              <el-icon>
+                <Check />
+              </el-icon>
             </div>
           </div>
         </el-col>
@@ -45,7 +57,9 @@
               <div class="cont"></div>
             </div>
             <div class="skin-select" v-if="skinChoose.className=='aside_white_nav_black'">
-              <i class="el-icon-check"></i>
+              <el-icon>
+                <Check />
+              </el-icon>
             </div>
           </div>
         </el-col>
@@ -59,7 +73,9 @@
               <div class="cont"></div>
             </div>
             <div class="skin-select" v-if="skinChoose.className=='aside_purple_nav_white'">
-              <i class="el-icon-check"></i>
+              <el-icon>
+                <Check />
+              </el-icon>
             </div>
           </div>
         </el-col>
@@ -73,7 +89,9 @@
               <div class="cont"></div>
             </div>
             <div class="skin-select" v-if="skinChoose.className=='aside_yellow_nav_white'">
-              <i class="el-icon-check"></i>
+              <el-icon>
+                <Check />
+              </el-icon>
             </div>
           </div>
         </el-col>
@@ -87,7 +105,9 @@
               <div class="cont"></div>
             </div>
             <div class="skin-select" v-if="skinChoose.className=='aside_white_nav_yellow'">
-              <i class="el-icon-check"></i>
+              <el-icon>
+                <Check />
+              </el-icon>
             </div>
           </div>
         </el-col>
@@ -95,13 +115,21 @@
     </div>
   </el-drawer>
 </template>
-
 <script>
+import { Check, Close } from "@element-plus/icons-vue";
 import { mapState } from "vuex";
-import skin from "@/settings/skin.js";
+import skin from "~/settings/skin.js";
+import { mix } from "~/utils/index.js";
 export default {
+  components: {
+    Check,
+    Close
+  },
   data() {
-    return {};
+    const el = document.documentElement;
+    return {
+      systeamColor: getComputedStyle(el).getPropertyValue(`--el-color-primary`),
+    };
   },
   computed: {
     ...mapState({
@@ -119,6 +147,22 @@ export default {
         value: skin[type],
       });
     },
+    colorChange(e) {
+      // 变量前缀
+      const pre = "--el-color-primary";
+      // 白色混合色
+      const mixWhite = "#ffffff";
+      // 黑色混合色
+      const mixBlack = "#000000";
+      const el = document.documentElement;
+      el.style.setProperty(pre, e);
+      // 这里是覆盖原有颜色的核心代码
+      for (let i = 1; i < 10; i += 1) {
+        el.style.setProperty(`${pre}-light-${i}`, mix(e, mixWhite, i * 0.1));
+      }
+      el.style.setProperty("--el-color-primary-dark", mix(e, mixBlack, 0.1));
+      this.$store.dispatch("settings/setColorPrimary", e);
+    }
   },
 };
 </script>
@@ -134,6 +178,9 @@ export default {
 }
 .layoutbox {
   padding: 20px;
+  .colorbox {
+    position: relative;
+  }
   .el-col {
     margin-top: 20px;
   }
@@ -148,7 +195,7 @@ export default {
     align-items: center;
     justify-content: center;
     font-size: 30px;
-    color: $--color-primary;
+    color: var(--el-color-primary);
   }
   .aside_white_nav_white {
     display: flex;

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { pagination } from "@/components/Crud/index";
+import { pagination } from "~/components/Crud/index";
 export default {
   mixins: [pagination],
 };

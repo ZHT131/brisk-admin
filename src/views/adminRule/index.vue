@@ -27,15 +27,15 @@
             </el-form-item>
           </el-col>
           <!-- 搜索操作 -->
-          <searchBtn @resetSearchForm="resetSearchForm" @submitSearchForm="submitSearchForm" />
+          <briskSearchBtn @resetSearchForm="resetSearchForm" @submitSearchForm="submitSearchForm" />
         </el-row>
       </el-form>
     </div>
     <!-- 工具栏 -->
-    <toolBar :toolShow="toolShow" :tableColumns="tableColumns" :exportLoading="exportLoading" @handleAdd="handleAdd" @handleSelectEdit="handleSelectEdit" @handleSelectDel="handleSelectDel" @handleExport="handleExport" @handleCheckAllChange="handleCheckAllChange" @handleCheckChange="handleCheckChange" @changeSearchShow="changeSearchShow" @refresh="refresh">
-    </toolBar>
+    <briskToolbar :toolShow="toolShow" :tableColumns="tableColumns" :exportLoading="exportLoading" @handleAdd="handleAdd" @handleSelectEdit="handleSelectEdit" @handleSelectDel="handleSelectDel" @handleExport="handleExport" @handleCheckAllChange="handleCheckAllChange" @handleCheckChange="handleCheckChange" @changeSearchShow="changeSearchShow" @refresh="refresh">
+    </briskToolbar>
     <!-- 新增弹窗 -->
-    <dialogcom :title="$t('adminRule.component.addlog_add_title')" :device="$store.state.app.device" :showDialog="addDialogFormVisible" @cancle="addCancle" @submit="addSubmit">
+    <briskDialogcom :title="$t('adminRule.component.addlog_add_title')" :device="$store.state.app.device" :showDialog="addDialogFormVisible" @cancle="addCancle" @submit="addSubmit" @close="addCancle">
       <template #form>
         <el-form ref="addForm" :model="addForm" label-width="80px" label-position="left" size="medium">
           <el-form-item :label="$root.$t('adminRule.field.title')">
@@ -51,7 +51,7 @@
           </el-form-item>
         </el-form>
       </template>
-    </dialogcom>
+    </briskDialogcom>
     <div style="flex: 1">
       <el-table ref="tables" v-loading="loadingStatus" :data="tableData" border stripe row-key="id" default-expand-all :tree-props="{children: 'children'}" style="width: 100%">
         <el-table-column type="selection" width="60"></el-table-column>
@@ -64,13 +64,13 @@
           </template>
         </el-table-column>
         <!--操作栏-->
-        <operate :device="$store.state.app.device" :showOperate="showOperate" @handleView="handleView" @handleEdit="handleEdit" @handleDel="handleDel"></operate>
+        <briskOperate :device="$store.state.app.device" :showOperate="showOperate" @handleView="handleView" @handleEdit="handleEdit" @handleDel="handleDel"></briskOperate>
       </el-table>
     </div>
     <!--分页组件-->
-    <pagination :device="$store.state.app.device" :currentPage="currentPage" :pageSize="pageSize" :pageSizes="pageSizes" :pageTotal="pageTotal" :pageMobileLayout="pageMobileLayout" :pageDesktopLayout="pageDesktopLayout" @handleSizeChange="handleSizeChange" @handleCurrentChange="handleCurrentChange" />
+    <briskPagination :device="$store.state.app.device" :currentPage="currentPage" :pageSize="pageSize" :pageSizes="pageSizes" :pageTotal="pageTotal" :pageMobileLayout="pageMobileLayout" :pageDesktopLayout="pageDesktopLayout" @handleSizeChange="handleSizeChange" @handleCurrentChange="handleCurrentChange" />
     <!-- 详情弹窗组件 -->
-    <dialogcom :title="$t('adminRule.component.addlog_detail_title')" :device="$store.state.app.device" :showDialog="detailDialogFormVisible" @cancle="detailCancle" @submit="detailSubmit">
+    <briskDialogcom :title="$t('adminRule.component.addlog_detail_title')" :device="$store.state.app.device" :showDialog="detailDialogFormVisible" @cancle="detailCancle" @submit="detailSubmit" @close="detailCancle">
       <template #form>
         <el-table :data="detailData" style="width: 100%">
           <el-table-column prop="name" :label="$root.$t('adminRule.component.detail_title')" width="180">
@@ -78,13 +78,13 @@
               <span>{{ $root.$t(scope.row.name) }}</span>
             </template>
           </el-table-column>
-          <el-table-column prop="content" :label="$root.$t('adminRule.component.detail_content')" width="180">
+          <el-table-column prop="content" :label="$root.$t('adminRule.component.detail_content')">
           </el-table-column>
         </el-table>
       </template>
-    </dialogcom>
+    </briskDialogcom>
     <!-- 编辑弹窗组件 -->
-    <dialogcom :title="$t('adminRule.component.addlog_edit_title')" :device="$store.state.app.device" :showDialog="editDialogFormVisible" @cancle="editCancle" @submit="editSubmit">
+    <briskDialogcom :title="$t('adminRule.component.addlog_edit_title')" :device="$store.state.app.device" :showDialog="editDialogFormVisible" @cancle="editCancle" @submit="editSubmit" @close="editCancle">
       <template #form>
         <el-form ref="editForm" :model="editForm" label-width="80px" label-position="left" size="medium">
           <el-form-item :label="$root.$t('adminRule.field.title')">
@@ -100,26 +100,26 @@
           </el-form-item>
         </el-form>
       </template>
-    </dialogcom>
+    </briskDialogcom>
   </div>
 </template>
 
 <script>
-import toolBar from "@/components/crud/toolBar.vue";
-import searchBtn from "@/components/crud/searchBtn.vue";
-import crud from "@/components/crud";
-import pagination from "@/components/crud/pagination.vue";
-import operate from "@/components/crud/operate.vue";
-import dialogcom from "@/components/crud/dialogcom.vue";
+import briskToolbar from "~/components/crud/brisk-toolbar.vue";
+import briskSearchBtn from "~/components/crud/brisk-search-btn.vue";
+import crud from "~/components/crud";
+import briskPagination from "~/components/crud/brisk-pagination.vue";
+import briskOperate from "~/components/crud/brisk-operate.vue";
+import briskDialogcom from "~/components/crud/brisk-dialogcom.vue";
 
 export default {
   name:"adminRule",
   components: {
-    toolBar,
-    searchBtn,
-    pagination,
-    operate,
-    dialogcom,
+    briskToolbar,
+    briskSearchBtn,
+    briskPagination,
+    briskOperate,
+    briskDialogcom,
   },
   mixins: [
     crud({
@@ -214,11 +214,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ym-main {
-  padding: 20px;
-  background: white;
-}
-.ym-search-box {
-  background: white;
-}
+
 </style>

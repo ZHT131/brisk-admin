@@ -4,9 +4,9 @@
       <div class="ym-row">
         <!-- 左侧插槽 -->
         <slot name="left" :row="scope.row" />
-        <el-button v-if="showOperate.view" type="primary" icon="el-icon-view" @click="handleView(scope.row)" size="small"></el-button>
-        <el-button v-if="showOperate.edit" type="success" icon="el-icon-edit" @click="handleEdit(scope.row)" size="small"></el-button>
-        <el-button v-if="showOperate.del" type="danger" icon="el-icon-delete" @click="handleDel(scope.row)" size="small"></el-button>
+        <el-button v-if="showOperate.view" type="primary" :icon="View" @click="handleView(scope.row)" size="small"></el-button>
+        <el-button v-if="showOperate.edit" type="success" :icon="Edit" @click="handleEdit(scope.row)" size="small"></el-button>
+        <el-button v-if="showOperate.del" type="danger" :icon="Delete" @click="handleDel(scope.row)" size="small"></el-button>
         <!-- 右侧插槽 -->
         <slot name="right" :row="scope.row" />
       </div>
@@ -15,9 +15,17 @@
 </template>
 
 <script>
-import { operate } from "@/components/Crud/index";
+import { View, Edit, Delete } from "@element-plus/icons-vue";
+import { operate } from "~/components/Crud/index";
 export default {
   mixins: [operate],
+  setup() {
+    return {
+      View,
+      Edit,
+      Delete
+    }
+  }
 };
 </script>
 

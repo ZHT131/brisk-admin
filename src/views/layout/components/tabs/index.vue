@@ -95,6 +95,7 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
+  border-bottom: 1px solid #e6e6e6;
   .tabs-left {
     flex: 1;
     overflow: hidden;
@@ -110,20 +111,22 @@ export default {
   }
 }
 </style>
-<style>
-.el-tabs__nav,
-.el-tabs__item {
-  border: none !important;
-}
-.el-tabs__header {
-  margin: 0;
-  border: none !important;
-}
-.el-tabs__item.is-active,
-.el-tabs__item:hover {
-  -webkit-mask-image: url("@/assets/images/tabs.png");
-  -webkit-mask-size: 100% 100%;
-  outline: none;
-  background: #e6e6e6;
+<style lang="scss">
+.tabs-left {
+  .el-tabs__nav,
+  .el-tabs__item {
+    border: none !important;
+  }
+  .el-tabs__header {
+    margin: 0;
+    border: none !important;
+  }
+  .el-tabs__item.is-active,
+  .el-tabs__item:hover {
+    -webkit-mask-image: url("~/assets/images/tabs.png");
+    -webkit-mask-size: 100% 100%;
+    outline: none;
+    background: #e6e6e6;
+  }
 }
 </style>

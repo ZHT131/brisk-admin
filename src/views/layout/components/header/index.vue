@@ -13,7 +13,7 @@
       <el-dropdown>
         <span :style="{'color':skinChoose.navColor}">
           {{ language == "en" ? "English" : "中文" }}
-          <i class="el-icon-arrow-down el-icon--right"></i>
+          <el-icon :color="skinChoose.navColor"><arrow-down /></el-icon>
         </span>
         <template #dropdown>
           <el-dropdown-menu>
@@ -24,8 +24,9 @@
       </el-dropdown>
       <el-dropdown>
         <span :style="{'color':skinChoose.navColor}">
-          {{userinfo&&userinfo.nickname}}<i class="el-icon-arrow-down el-icon--right"></i>
+          {{userinfo&&userinfo.nickname}}
         </span>
+        <el-icon :color="skinChoose.navColor"><arrow-down /></el-icon>
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="toProfile()">{{
@@ -33,7 +34,7 @@
             }}</el-dropdown-item>
             <el-dropdown-item @click="loginOut()">{{
               $t("userDropdown.loginout")
-            }}</el-dropdown-item>
+            }}</el-dropdown-item>          
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -43,12 +44,15 @@
     </div>
   </div>
 </template>
-
 <script>
+import { ArrowDown } from "@element-plus/icons-vue";
 import { mapState } from "vuex";
 import screenfull from "screenfull";
 
 export default {
+  components:{
+    ArrowDown
+  },
   data() {
     return {};
   },

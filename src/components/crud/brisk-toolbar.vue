@@ -3,18 +3,18 @@
     <el-button-group>
       <!-- 左侧插槽 -->
       <slot name="left" />
-      <el-button v-if="toolShow.add" type="primary" icon="el-icon-plus" size="small" @click="$emit('handleAdd')">
+      <el-button v-if="toolShow.add" type="primary" :icon="Plus" size="small" @click="$emit('handleAdd')">
         {{$t("toolBar.add")}}
       </el-button>
-      <el-button v-if="toolShow.edit" type="success" icon="el-icon-edit" size="small" @click="$emit('handleSelectEdit')">
+      <el-button v-if="toolShow.edit" type="success" :icon="Edit" size="small" @click="$emit('handleSelectEdit')">
         {{$t("toolBar.edit")}}
       </el-button>
-      <el-button v-if="toolShow.del" type="danger" icon="el-icon-delete" size="small" @click="$emit('handleSelectDel')">
+      <el-button v-if="toolShow.del" type="danger" :icon="Delete" size="small" @click="$emit('handleSelectDel')">
         {{$t("toolBar.delete")}}
       </el-button>
       <el-popover v-if="toolShow.export" placement="bottom-end" trigger="click">
         <template #reference>
-          <el-button type="warning" icon="el-icon-download" size="small" :loading="exportLoading">
+          <el-button type="warning" :icon="Download" size="small" :loading="exportLoading">
             {{$t("toolBar.export")}}
           </el-button>
         </template>
@@ -28,11 +28,11 @@
       <slot name="right" />
     </el-button-group>
     <el-button-group>
-      <el-button plain type="info" icon="el-icon-search" size="small" @click="changeSearchShow" />
-      <el-button icon="el-icon-refresh" size="small" @click="refresh" />
+      <el-button plain type="info" :icon="Search" size="small" @click="changeSearchShow" />
+      <el-button :icon="Refresh" size="small" @click="refresh" />
       <el-popover placement="bottom-end" trigger="click">
         <template #reference>
-          <el-button size="small" icon="el-icon-s-grid"></el-button>
+          <el-button size="small" :icon="Grid"></el-button>
         </template>
         <div class="ym-column">
           <el-checkbox v-model="allColumnsSelected" :indeterminate="allColumnsSelectedIndeterminate" @change="checkAllChange">
@@ -48,9 +48,21 @@
 </template>
 
 <script>
-import { tools } from "@/components/crud/index";
+import { Plus, Edit, Delete, Download, Search, Refresh, Grid } from "@element-plus/icons-vue";
+import { tools } from "~/components/crud/index";
 export default {
   mixins: [tools],
+  setup() {
+    return {
+      Plus,
+      Edit,
+      Delete,
+      Download,
+      Search,
+      Refresh,
+      Grid
+    }
+  }
 };
 </script>
 

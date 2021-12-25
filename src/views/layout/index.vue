@@ -1,6 +1,6 @@
 <template>
   <div class="ym-body">
-    <el-config-provider :locale="language == 'en' ? enLocale : zhLocale">
+    <el-config-provider :locale="locale">
       <el-container style="height: 100%">
         <asideLayout />
         <settingLayout />
@@ -30,9 +30,8 @@ import { mapState } from "vuex";
 import headerLayout from "./components/header/index.vue";
 import asideLayout from "./components/aside/index.vue";
 import settingLayout from "./components/setting/index.vue";
-import enLocale from "element-plus/lib/locale/lang/en";
-import zhLocale from "element-plus/lib/locale/lang/zh-cn";
 import tabsLayout from "./components/tabs/index.vue";
+import zhLocale from "element-plus/lib/locale/lang/zh-cn";
 export default {
   name: "layout",
   mixins: [ResizeMixin],
@@ -44,10 +43,9 @@ export default {
   },
   data() {
     return {
-      enLocale: enLocale,
-      zhLocale: zhLocale,
       levelList: [],
       refRoutePath: "",
+      locale: zhLocale,
     };
   },
   watch: {
@@ -61,7 +59,6 @@ export default {
   computed: {
     ...mapState({
       sidebar: (state) => state.app.sidebar,
-      language: (state) => state.app.language,
       skinChoose: (state) => state.settings.skinChoose,
       keepAliveRoutes: (state) => state.user.keepAliveRoutes,
     }),
@@ -101,6 +98,7 @@ export default {
 
 .el-main {
   background-color: #e9eef3;
+  padding: 15px;
 }
 </style>
 <style>

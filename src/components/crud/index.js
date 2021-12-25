@@ -1,4 +1,4 @@
-import { comReq } from "@/api/common.js";
+import { comReq } from "~/api/common.js";
 import { ElMessage } from "element-plus";
 function curd(options) {
   return {
@@ -198,7 +198,7 @@ function curd(options) {
           tHeader.push(this.$t(item.label));
           filterVal.push(item.property);
         });
-        import("@/vendor/Export2Excel").then((excel) => {
+        import("~/vendor/Export2Excel").then((excel) => {
           const list = this.tableData;
           const data = this.formatJson(filterVal, list);
           excel.export_json_to_excel({

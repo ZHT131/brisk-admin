@@ -1,7 +1,7 @@
 <template>
   <el-menu-item v-if="(!item.children || item.children.length <= 1) && !item.alwaysShow" :index="getPath()">
+    <i :class="item.meta.icon" :style="{'color':activeRoute==getPath()?skinChoose.activeColor:skinChoose.asideColor}"></i>
     <template #title>
-      <i :class="item.meta.icon" :style="{'color':activeRoute==getPath()?skinChoose.activeColor:skinChoose.asideColor}"></i>
       <span style="margin-left:10px">{{ $t(item.name + "." + item.meta.title) }}</span>
     </template>
   </el-menu-item>
@@ -10,7 +10,9 @@
       <i :class="item.meta.icon" :style="{'color':activeRoute==getPath()?skinChoose.activeColor:skinChoose.asideColor}"></i>
       <span style="margin-left:10px">{{ $t(item.name + "." + item.meta.title) }}</span>
     </template>
-    <menuItem v-for="child in item.children" :key="child.path" :item="child" :parentPath="getPath()" />
+    <template v-for="child in item.children" :key="child.path">
+      <menuItem v-if="!child.hidden" :item="child" :parentPath="getPath()" />
+    </template>
   </el-sub-menu>
 </template>
 

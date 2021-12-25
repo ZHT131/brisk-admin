@@ -5,22 +5,22 @@
         <div class="login-box">
           <el-image class="login-bg" :src="loginbg"></el-image>
           <div class="login">
-            <el-form class="login-form" ref="form" :model="form" label-width="80px" label-position="left">
+            <el-form class="login-form" ref="form" :model="form" label-width="80px" label-position="left" @submit.prevent>
               <el-form-item label-width="50px" prop="username">
                 <template #label>
                   <div class="loginIcon">
-                    <i class="el-icon-user"></i>
+                    <i class="ri-user-fill"></i>
                   </div>
                 </template>
-                <el-input v-model="form.username" :placeholder="$t('login.usernamePlaceholder')"></el-input>
+                <el-input v-model="form.username" placeholder="请输入用户名"></el-input>
               </el-form-item>
               <el-form-item label-width="50px" prop="password">
                 <template #label>
                   <div class="loginIcon">
-                    <i class="el-icon-lock"></i>
+                    <i class="ri-lock-fill"></i>
                   </div>
                 </template>
-                <el-input v-model="form.password" :placeholder="$t('login.passwordPlaceholder')"></el-input>
+                <el-input show-password v-model="form.password" placeholder="请输入密码"></el-input>
               </el-form-item>
               <el-button class="loginbtn" type="primary" @click="onSubmit">{{
                 $t("login.loginBtn")
@@ -36,9 +36,9 @@
 </template>
 
 <script>
-import { login } from "@/api";
+import { login } from "~/api";
 import { ElMessage } from "element-plus";
-import loginbg from "@/assets/images/loginbg.png";
+import loginbg from "~/assets/images/loginbg.png";
 
 export default {
   name: "login",
@@ -98,8 +98,8 @@ export default {
         align-items: center;
         justify-content: center;
         border: 1px solid #e6e6e6;
-        width: 40px;
-        height: 39px;
+        width: 30px;
+        height: 30px;
         border-radius: 4px;
       }
       .loginbtn {

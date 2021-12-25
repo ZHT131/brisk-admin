@@ -8,7 +8,7 @@
   </el-col>
 </template>
 <script>
-import { search } from "@/components/Crud/index";
+import { search } from "~/components/Crud/index";
 export default {
   mixins: [search],
 };

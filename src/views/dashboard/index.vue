@@ -229,7 +229,7 @@ export default {
   .number {
     font-size: 28px;
     font-weight: 600;
-    color: $--color-primary;
+    color: var(--el-color-primary);
     margin-top: 20px;
   }
 }

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import img401 from "@/assets/images/401.png";
+import img401 from "~/assets/images/401.png";
 export default {
   name:"401",
   data() {

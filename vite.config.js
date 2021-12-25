@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import ElementPlus from "unplugin-element-plus/vite";
 const { resolve } = require("path");
 /**
  * @type {import('vite').UserConfig}
@@ -10,15 +11,19 @@ export default defineConfig(({ command, mode }) => {
     vueI18n["vue-i18n"] = "vue-i18n/dist/vue-i18n.cjs.js"; //解决dev运行警告You are running the esm-bundler build of vue-i18n.
   }
   return {
-    plugins: [vue()],
+    plugins: [
+      vue(),
+      ElementPlus({
+        useSource: true,
+      }),
+    ],
     resolve: {
       alias: {
-        "@": resolve(__dirname, "src"),
-        "/@": resolve(__dirname, "src"),
+        "~/": `${resolve(__dirname, "src")}/`,
         ...vueI18n,
       },
     },
-    base: "./",
+    // base: "./",
     server: {
       host: "127.0.0.1",
       port: 8086,
@@ -35,8 +40,7 @@ export default defineConfig(({ command, mode }) => {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@import "./src/style/element-variables.scss";`,
-          //引用公共样式，使用vite搭建项目只安装sass即可，不需要安装node-sass,sass-loader
+          additionalData: `@use "~/styles/element/index.scss" as *;`,
         },
       },
     },

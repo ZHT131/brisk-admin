@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 import settings from "../../settings/settings";
-import router from "@/router/index.js";
+import router from "~/router/index.js";
 
 const state = {
   sidebar: false,
