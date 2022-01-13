@@ -1,36 +1,36 @@
 <template>
-  <div class="ym-main">
+  <div class="brisk-main">
     <!-- 搜索框 -->
-    <div class="ym-search-box" v-if="showSearch">
+    <div class="brisk-search-box" v-if="showSearch">
       <el-form ref="searchForm" :model="searchForm" :rules="searchRules" size="medium" label-width="100px" label-position="left" style="margin-bottom: 20px">
         <el-row :gutter="20">
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('admin.field.id')" prop="id" size="small">
+            <el-form-item :label="$t('admin.field.id')" prop="id">
               <el-input :placeholder="$t('admin.field.id')" v-model="searchForm.id" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('admin.field.username')" prop="username" size="small">
+            <el-form-item :label="$t('admin.field.username')" prop="username">
               <el-input :placeholder="$t('admin.field.username')" v-model="searchForm.username" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('admin.field.nickname')" prop="nickname" size="small">
+            <el-form-item :label="$t('admin.field.nickname')" prop="nickname">
               <el-input :placeholder="$t('admin.field.nickname')" v-model="searchForm.nickname" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('admin.field.group_id')" prop="group_id" size="small">
+            <el-form-item :label="$t('admin.field.group_id')" prop="group_id">
               <el-input :placeholder="$t('admin.field.group_id')" v-model="searchForm.group_id" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('admin.field.group.name')" prop="group.name" size="small">
+            <el-form-item :label="$t('admin.field.group.name')" prop="group.name">
               <el-input :placeholder="$t('admin.field.group.name')" v-model="searchForm.group.name" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('admin.field.status')" prop="status" size="small">
+            <el-form-item :label="$t('admin.field.status')" prop="status">
               <el-select v-model="searchForm.status" :placeholder="$t('admin.component.select_placeholder')" :style="{ width: '100%' }">
                 <el-option v-for="item in statusFilters" :key="item.value" :label="$t('admin.field.'+item.label)" :value="item.value" />
               </el-select>
@@ -69,7 +69,7 @@
     </briskDialogcom>
     <!-- 表格 -->
     <div style="flex: 1">
-      <el-table ref="tables" v-loading="loadingStatus" :data="tableData" @selection-change="selectionChange" border stripe style="width: 100%">
+      <el-table ref="tables" v-loading="loadingStatus" :data="tableData" @selection-change="selectionChange" border stripe style="width: 100%;">
         <el-table-column type="selection" width="60"></el-table-column>
         <el-table-column v-if="showColumns.id" prop="id" :label="$t('admin.field.id')" min-width="180" sortable></el-table-column>
         <el-table-column v-if="showColumns.username" prop="username" :label="$t('admin.field.username')" min-width="180"></el-table-column>
@@ -77,7 +77,7 @@
         <el-table-column v-if="showColumns.group_id" prop="group_id" :label="$t('admin.field.group_id')" min-width="180"></el-table-column>
         <el-table-column v-if="showColumns.group_dot_name" prop="group.name" :label="$t('admin.field.group.name')" min-width="180">
           <template #default="scope">
-            <el-tag size="medium">{{ scope.row.group.name }}</el-tag>
+            <el-tag>{{ scope.row.group.name }}</el-tag>
           </template>
         </el-table-column>
         <el-table-column v-if="showColumns.status" prop="status" :label="$t('admin.field.status')" min-width="180">
@@ -139,7 +139,7 @@ import briskPagination from "~/components/crud/brisk-pagination.vue";
 import briskOperate from "~/components/crud/brisk-operate.vue";
 import briskDialogcom from "~/components/crud/brisk-dialogcom.vue";
 export default {
-  name:"admin",
+  name: "admin",
   components: {
     briskToolbar,
     briskSearchBtn,
@@ -258,11 +258,10 @@ export default {
       ],
     };
   },
-  created() {},
+  created() { },
   methods: {},
 };
 </script>
 
 <style lang="scss" scoped>
-
 </style>

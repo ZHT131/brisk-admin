@@ -1,5 +1,5 @@
 <template>
-  <div class="ym-page">
+  <div class="brisk-page">
     <el-pagination :small="device == 'mobile' ? true : false" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-size="pageSize" :page-sizes="pageSizes" :layout="
           device == 'mobile'
             ? pageMobileLayout
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ym-page {
+.brisk-page {
   display: flex;
   flex-direction: row;
   align-items: center;

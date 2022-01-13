@@ -416,6 +416,10 @@ var tools = {
 // 操作栏mixins
 var operate = {
   props: {
+    width: {
+      type: Number,
+      default: 180,
+    },
     device: {
       type: String,
       default: "",

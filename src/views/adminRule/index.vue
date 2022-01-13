@@ -1,26 +1,26 @@
 <template>
-  <div class="ym-main">
+  <div class="brisk-main">
     <!-- 搜索框 -->
-    <div class="ym-search-box" v-if="showSearch">
+    <div class="brisk-search-box" v-if="showSearch">
       <el-form ref="searchForm" :model="searchForm" :rules="searchRules" size="medium" label-width="100px" label-position="left" style="margin-bottom: 20px">
         <el-row :gutter="20">
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('adminRule.field.id')" prop="id" size="small">
+            <el-form-item :label="$t('adminRule.field.id')" prop="id">
               <el-input :placeholder="$t('adminRule.field.id')" v-model="searchForm.id" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('adminRule.field.title')" prop="title" size="small">
+            <el-form-item :label="$t('adminRule.field.title')" prop="title">
               <el-input :placeholder="$t('adminRule.field.title')" v-model="searchForm.title" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('adminRule.field.rule')" prop="rule" size="small">
+            <el-form-item :label="$t('adminRule.field.rule')" prop="rule">
               <el-input :placeholder="$t('adminRule.field.rule')" v-model="searchForm.rule" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('adminRule.field.status')" prop="status" size="small">
+            <el-form-item :label="$t('adminRule.field.status')" prop="status">
               <el-select v-model="searchForm.status" :placeholder="$t('adminRule.component.select_placeholder')" :style="{ width: '100%' }">
                 <el-option v-for="item in statusFilters" :key="item.value" :label="$t('adminRule.field.'+item.label)" :value="item.value" />
               </el-select>

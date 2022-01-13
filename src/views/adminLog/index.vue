@@ -1,36 +1,36 @@
 <template>
-  <div class="ym-main">
+  <div class="brisk-main">
     <!-- 搜索框 -->
-    <div class="ym-search-box" v-if="showSearch">
+    <div class="brisk-search-box" v-if="showSearch">
       <el-form ref="searchForm" :model="searchForm" :rules="searchRules" size="medium" label-width="100px" label-position="left" style="margin-bottom: 20px">
         <el-row :gutter="20">
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('adminLog.field.id')" prop="id" size="small">
+            <el-form-item :label="$t('adminLog.field.id')" prop="id">
               <el-input :placeholder="$t('adminLog.field.id')" v-model="searchForm.id" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('adminLog.field.username')" prop="username" size="small">
+            <el-form-item :label="$t('adminLog.field.username')" prop="username">
               <el-input :placeholder="$t('adminLog.field.username')" v-model="searchForm.username" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('adminLog.field.title')" prop="title" size="small">
+            <el-form-item :label="$t('adminLog.field.title')" prop="title">
               <el-input :placeholder="$t('adminLog.field.title')" v-model="searchForm.title" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('adminLog.field.path_url')" prop="path_url" size="small">
+            <el-form-item :label="$t('adminLog.field.path_url')" prop="path_url">
               <el-input :placeholder="$t('adminLog.field.path_url')" v-model="searchForm.path_url" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('adminLog.field.ip')" prop="ip" size="small">
+            <el-form-item :label="$t('adminLog.field.ip')" prop="ip">
               <el-input :placeholder="$t('adminLog.field.ip')" v-model="searchForm.ip" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('adminLog.field.status')" prop="status" size="small">
+            <el-form-item :label="$t('adminLog.field.status')" prop="status">
               <el-select v-model="searchForm.status" :placeholder="$t('adminLog.component.select_placeholder')" :style="{ width: '100%' }">
                 <el-option v-for="item in statusFilters" :key="item.value" :label="$t('adminLog.field.'+item.label)" :value="item.value" />
               </el-select>

@@ -1,5 +1,5 @@
 <template>
-  <div class="ym-body">
+  <div class="brisk-body">
     <el-row type="flex" class="row-bg" justify="center" align="middle" style="height: 100%">
       <el-col :xs="18" :sm="18" :md="6">
         <div class="login-box">
@@ -73,7 +73,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ym-body {
+.brisk-body {
   position: relative;
   height: 100%;
   width: 100%;

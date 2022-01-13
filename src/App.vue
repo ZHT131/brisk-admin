@@ -32,68 +32,12 @@ export default {
 }
 </script>
 <style lang="scss">
-.ym-main {
+.brisk-main {
   padding: 20px;
   background: white;
   border-radius: 10px;
 }
-.ym-search-box {
+.brisk-search-box {
   background: white;
-}
-.bri-field-cell {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 15px;
-  border-bottom: 1px solid #f8f8f8;
-  font-size: 14px;
-  .bri-field-title {
-    flex: 1;
-  }
-  .bri-field-content {
-    flex: 3;
-  }
-}
-.bri-bg-f8f8f8 {
-  background-color: #f8f8f8;
-}
-.bri-bg-white {
-  background-color: white;
-}
-.ym-m-t-20 {
-  margin-top: 20px;
-}
-.ym-p-20 {
-  padding: 20px;
-}
-.ym-flex-row-sb {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-.ym-border {
-  border: 1px solid #e6e6e6;
-}
-.ym-iconbox {
-  border: 1px solid #e6e6e6;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  font-size: 22px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.ym-flex-row {
-  display: flex;
-  flex-direction: row;
-}
-.ym-flex-row-center {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
 }
 </style>

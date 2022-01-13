@@ -1,11 +1,11 @@
 <template>
-  <div class="ym-body">
+  <div class="brisk-body">
     <el-config-provider :locale="locale">
       <el-container style="height: 100%">
         <asideLayout />
         <settingLayout />
         <el-container>
-          <el-header :style="{'background':skinChoose.navBackground}">
+          <el-header height="45px" style="padding:0;" :style="{'background':skinChoose.navBackground}">
             <headerLayout @refRoute="refRoute" />
           </el-header>
           <tabsLayout />
@@ -90,7 +90,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ym-body {
+.brisk-body {
   position: relative;
   height: 100%;
   width: 100%;
@@ -100,13 +100,9 @@ export default {
   background-color: #e9eef3;
   padding: 15px;
 }
-</style>
-<style>
-.is-horizontal {
-  display: none !important;
-}
-.el-dropdown {
-  font-size: 12px;
-  margin-left: 20px;
-}
+// :deep{
+//   .is-horizontal {
+//     display: none !important;
+//   }
+// }
 </style>

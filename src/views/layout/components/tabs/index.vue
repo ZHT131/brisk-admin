@@ -5,7 +5,7 @@
         <el-tab-pane :key="item.fullPath" v-for="(item) in tabsList" :name="item.fullPath">
           <template #label>
             <div class="tab-label">
-              <i :class="item.meta.icon"></i>
+              <i :class="item.meta.icon" style="vertical-align:middle;"></i>
               <span style="margin-left:5px">{{ $t(item.name + "." + item.meta.title) }}</span>
             </div>
           </template>
@@ -14,7 +14,7 @@
     </div>
     <el-dropdown placement="bottom-start">
       <div class="tabs-menu">
-        <i class="ri-apps-fill" style="font-size:20px"></i>
+        <i class="ri-apps-fill" style="vertical-align:middle;"></i>
       </div>
       <template #dropdown>
         <el-dropdown-menu>
@@ -95,38 +95,77 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid #f5f5f5;
+  padding: 0 20px;
   .tabs-left {
     flex: 1;
     overflow: hidden;
+    background: #f6f6f6;
     .tab-label {
       display: inline-block;
-      text-align: center;
       vertical-align: middle;
-      font-size: 13px;
+      font-size: 12px;
+      margin-top: -2px;
     }
   }
   .tabs-menu {
-    padding: 8px 20px 8px 8px;
+    height: 40px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 40px;
+    font-size: 20px;
+    margin-left: 10px;
   }
 }
-</style>
-<style lang="scss">
-.tabs-left {
-  .el-tabs__nav,
-  .el-tabs__item {
-    border: none !important;
-  }
-  .el-tabs__header {
+:deep {
+  .el-tabs--card > .el-tabs__header {
+    border: none;
     margin: 0;
-    border: none !important;
-  }
-  .el-tabs__item.is-active,
-  .el-tabs__item:hover {
-    -webkit-mask-image: url("~/assets/images/tabs.png");
-    -webkit-mask-size: 100% 100%;
-    outline: none;
-    background: #e6e6e6;
+    .el-tabs__nav {
+      padding: 5px 0;
+      border: none !important;
+    }
+    .el-tabs__nav-prev {
+      height: 30px;
+      line-height: 30px;
+      background: white;
+      padding: 5px 0;
+      .el-icon {
+        font-size: 20px;
+        vertical-align: middle;
+      }
+    }
+    .el-tabs__nav-next {
+      height: 30px;
+      line-height: 30px;
+      background: white;
+      padding: 5px 0;
+      .el-icon {
+        font-size: 20px;
+        vertical-align: middle;
+      }
+    }
+    .el-tabs__nav-scroll {
+      height: 40px;
+    }
+    .el-tabs__item {
+      height: 30px;
+      line-height: 30px;
+      border-radius: 3px;
+      font-size: 12px;
+      background-color: var(--el-color-white);
+      padding: 0 10px;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+    .el-tabs__item.is-active {
+      color: var(--el-color-white);
+      border: 1px solid var(--el-color-primary);
+      background-color: var(--el-color-primary);
+    }
+    .el-tabs__item:hover {
+      border: 1px solid var(--el-color-primary);
+    }
   }
 }
 </style>

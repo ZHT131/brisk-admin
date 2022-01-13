@@ -1,12 +1,12 @@
 <template>
-  <el-table-column :fixed="device == 'mobile' ? false : 'right'" :label="$t('table.operate')" width="165">
+  <el-table-column :fixed="device == 'mobile' ? false : 'right'" :label="$t('table.operate')" :width="width">
     <template #default="scope">
-      <div class="ym-row">
+      <div class="brisk-row">
         <!-- 左侧插槽 -->
         <slot name="left" :row="scope.row" />
-        <el-button v-if="showOperate.view" type="primary" :icon="View" @click="handleView(scope.row)" size="small"></el-button>
-        <el-button v-if="showOperate.edit" type="success" :icon="Edit" @click="handleEdit(scope.row)" size="small"></el-button>
-        <el-button v-if="showOperate.del" type="danger" :icon="Delete" @click="handleDel(scope.row)" size="small"></el-button>
+        <el-button v-if="showOperate.view" type="primary" :icon="View" @click="handleView(scope.row)"></el-button>
+        <el-button v-if="showOperate.edit" type="success" :icon="Edit" @click="handleEdit(scope.row)"></el-button>
+        <el-button v-if="showOperate.del" type="danger" :icon="Delete" @click="handleDel(scope.row)"></el-button>
         <!-- 右侧插槽 -->
         <slot name="right" :row="scope.row" />
       </div>
@@ -29,14 +29,16 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.ym-row {
+<style lang="scss" scoped>
+.brisk-row {
   display: flex;
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
-  .el-button {
-    margin: 2px;
+  :deep {
+    .el-button {
+      margin: 2px;
+    }
   }
 }
 </style>

@@ -1,20 +1,26 @@
 <template>
-  <div class="ym-header">
-    <div class="header-left">
-      <div class="header-tool" @click="outSide">
+  <div class="brisk-header">
+    <div class="brisk-header-left">
+      <div class="brisk-header-tool" @click="outSide">
         <i class="ri-indent-decrease" style="font-size: 18px" :style="{'color':skinChoose.navColor}"></i>
       </div>
-      <div class="header-refresh" @click="refRoute">
+      <div class="brisk-header-refresh" @click="refRoute">
         <i class="ri-refresh-line" style="font-size: 18px" :style="{'color':skinChoose.navColor}"></i>
       </div>
     </div>
-    <div class="header-right">
-      <i class="ri-fullscreen-fill" @click="toScreenfull" :style="{'color':skinChoose.navColor}"></i>
-      <el-dropdown>
-        <span :style="{'color':skinChoose.navColor}">
-          {{ language == "en" ? "English" : "中文" }}
-          <el-icon :color="skinChoose.navColor"><arrow-down /></el-icon>
-        </span>
+    <div class="brisk-header-right">
+      <div class="brisk-fullscreen">
+        <i class="ri-fullscreen-fill" @click="toScreenfull" :style="{'color':skinChoose.navColor}"></i>
+      </div>
+      <el-dropdown style="margin-right: 20px;">
+        <div class="brisk-userinfo">
+          <span :style="{'color':skinChoose.navColor}">
+            {{ language == "en" ? "English" : "中文" }}
+          </span>
+          <el-icon :color="skinChoose.navColor">
+            <arrow-down />
+          </el-icon>
+        </div>
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="setLang('zh-cn')">中文</el-dropdown-item>
@@ -23,10 +29,14 @@
         </template>
       </el-dropdown>
       <el-dropdown>
-        <span :style="{'color':skinChoose.navColor}">
-          {{userinfo&&userinfo.nickname}}
-        </span>
-        <el-icon :color="skinChoose.navColor"><arrow-down /></el-icon>
+        <div class="brisk-userinfo">
+          <span :style="{'color':skinChoose.navColor}">
+            {{userinfo&&userinfo.nickname}}
+          </span>
+          <el-icon :color="skinChoose.navColor">
+            <arrow-down />
+          </el-icon>
+        </div>
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="toProfile()">{{
@@ -34,11 +44,11 @@
             }}</el-dropdown-item>
             <el-dropdown-item @click="loginOut()">{{
               $t("userDropdown.loginout")
-            }}</el-dropdown-item>          
+            }}</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
-      <div class="header-set" @click="changeShowSet">
+      <div class="brisk-header-set" @click="changeShowSet">
         <i class="ri-settings-fill" :style="{'color':skinChoose.navColor}"></i>
       </div>
     </div>
@@ -50,7 +60,7 @@ import { mapState } from "vuex";
 import screenfull from "screenfull";
 
 export default {
-  components:{
+  components: {
     ArrowDown
   },
   data() {
@@ -68,7 +78,7 @@ export default {
           : state.user.userinfo,
     }),
   },
-  created() {},
+  created() { },
   methods: {
     outSide() {
       this.$store.dispatch("app/toggleSidebar", !this.sidebar);
@@ -98,29 +108,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ym-header {
+.brisk-header {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  .header-tool {
+  border-bottom: 1px solid #f5f5f5;
+  .brisk-header-tool {
     padding-right: 20px;
   }
-  .header-left {
+  .brisk-header-left {
     display: flex;
     flex-direction: row;
     align-items: center;
     flex: 1;
+    margin-left: 20px;
   }
-  .header-right {
+  .brisk-header-right {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    .header-set {
+    margin-right: 20px;
+    .brisk-header-set {
       margin-left: 20px;
+    }
+    .brisk-fullscreen {
+      margin-right: 20px;
+    }
+    .brisk-userinfo {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
     }
   }
 }

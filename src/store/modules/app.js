@@ -97,11 +97,11 @@ const actions = {
     const index = tabsList.findIndex((item) => item.fullPath == obj.fullPath);
     tabsList.splice(index, 1);
     commit("SET_TABSLIST", tabsList);
-    //打开最后一个tab页面
-    commit("SET_TABACTIVE", tabsList[tabsList.length - 1].fullPath);
     localStorage.setItem("tabsList", JSON.stringify(tabsList));
-    localStorage.setItem("tabActive", tabsList[tabsList.length - 1].fullPath);
     if (obj.type == "current") {
+      //打开最后一个tab页面
+      commit("SET_TABACTIVE", tabsList[tabsList.length - 1].fullPath);
+      localStorage.setItem("tabActive", tabsList[tabsList.length - 1].fullPath);
       router.push({ path: tabsList[tabsList.length - 1].fullPath });
     }
   },

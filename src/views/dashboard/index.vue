@@ -2,25 +2,25 @@
   <div>
     <el-row :gutter="10">
       <el-col :xs="12" :sm="12" :md="6" style="margin-bottom: 10px">
-        <div class="ym-card">
+        <div class="brisk-card">
           <div class="title">{{ $t("dashboard.totalUserNumber") }}</div>
           <div class="number">6666</div>
         </div>
       </el-col>
       <el-col :xs="12" :sm="12" :md="6" style="margin-bottom: 10px">
-        <div class="ym-card">
+        <div class="brisk-card">
           <div class="title">{{ $t("dashboard.totalVisits") }}</div>
           <div class="number">6666</div>
         </div>
       </el-col>
       <el-col :xs="12" :sm="12" :md="6" style="margin-bottom: 10px">
-        <div class="ym-card">
+        <div class="brisk-card">
           <div class="title">{{ $t("dashboard.totalOrderNumber") }}</div>
           <div class="number">6666</div>
         </div>
       </el-col>
       <el-col :xs="12" :sm="12" :md="6" style="margin-bottom: 10px">
-        <div class="ym-card">
+        <div class="brisk-card">
           <div class="title">{{ $t("dashboard.totalSalesAmount") }}</div>
           <div class="number">6666</div>
         </div>
@@ -92,8 +92,7 @@ export default {
     },
   },
   mounted() {
-    const e = document.createEvent("Event");
-    e.initEvent("resize", true, true);
+    const e = new Event("resize", { "bubbles": true, "cancelable": true });
     window.dispatchEvent(e);
     this.$nextTick(() => {
       this.zChart();
@@ -218,7 +217,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ym-card {
+.brisk-card {
   background: white;
   padding: 20px;
   border-radius: 10px;

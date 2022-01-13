@@ -1,5 +1,5 @@
 <template>
-  <div class="ym-imgbox">
+  <div class="brisk-imgbox">
     <el-image :src="img404"></el-image>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ym-imgbox {
+.brisk-imgbox {
   height: 100%;
   width: 100%;
   display: flex;

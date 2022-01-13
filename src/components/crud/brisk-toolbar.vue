@@ -3,22 +3,22 @@
     <el-button-group>
       <!-- 左侧插槽 -->
       <slot name="left" />
-      <el-button v-if="toolShow.add" type="primary" :icon="Plus" size="small" @click="$emit('handleAdd')">
+      <el-button v-if="toolShow.add" type="primary" :icon="Plus" @click="$emit('handleAdd')">
         {{$t("toolBar.add")}}
       </el-button>
-      <el-button v-if="toolShow.edit" type="success" :icon="Edit" size="small" @click="$emit('handleSelectEdit')">
+      <el-button v-if="toolShow.edit" type="success" :icon="Edit" @click="$emit('handleSelectEdit')">
         {{$t("toolBar.edit")}}
       </el-button>
-      <el-button v-if="toolShow.del" type="danger" :icon="Delete" size="small" @click="$emit('handleSelectDel')">
+      <el-button v-if="toolShow.del" type="danger" :icon="Delete" @click="$emit('handleSelectDel')">
         {{$t("toolBar.delete")}}
       </el-button>
       <el-popover v-if="toolShow.export" placement="bottom-end" trigger="click">
         <template #reference>
-          <el-button type="warning" :icon="Download" size="small" :loading="exportLoading">
+          <el-button type="warning" :icon="Download" :loading="exportLoading">
             {{$t("toolBar.export")}}
           </el-button>
         </template>
-        <div class="ym-column">
+        <div class="brisk-column">
           <div class="export-item" @click="$emit('handleExport','xlsx')">xlsx</div>
           <div class="export-item" @click="$emit('handleExport','csv')">csv</div>
           <div class="export-item" @click="$emit('handleExport','txt')">txt</div>
@@ -28,13 +28,13 @@
       <slot name="right" />
     </el-button-group>
     <el-button-group>
-      <el-button plain type="info" :icon="Search" size="small" @click="changeSearchShow" />
-      <el-button :icon="Refresh" size="small" @click="refresh" />
+      <el-button plain type="info" :icon="Search" @click="changeSearchShow" />
+      <el-button :icon="Refresh" @click="refresh" />
       <el-popover placement="bottom-end" trigger="click">
         <template #reference>
-          <el-button size="small" :icon="Grid"></el-button>
+          <el-button :icon="Grid"></el-button>
         </template>
-        <div class="ym-column">
+        <div class="brisk-column">
           <el-checkbox v-model="allColumnsSelected" :indeterminate="allColumnsSelectedIndeterminate" @change="checkAllChange">
             {{$t("toolBar.select_all")}}
           </el-checkbox>
@@ -67,7 +67,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ym-column {
+.brisk-column {
   display: flex;
   flex-direction: column;
   line-height: 30px;
