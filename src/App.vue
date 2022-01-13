@@ -40,4 +40,8 @@ export default {
 .brisk-search-box {
   background: white;
 }
+/**修复table悬浮右侧操作栏后偏差不出现边框问题 */
+.el-table-fixed-column--right {
+  right: unset !important;
+}
 </style>
