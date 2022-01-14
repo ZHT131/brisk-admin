@@ -7,8 +7,8 @@
     <template #footer>
       <span class="dialog-footer">
         <slot name="btn"></slot>
-         <el-button v-if="showBtn.submit" type="primary" @click="$emit('submit')">{{$root.$t("dialogcom.comfirm")}}</el-button>
-        <el-button v-if="showBtn.cancle" @click="$emit('cancle')">{{$root.$t("dialogcom.cancle")}}</el-button>
+        <el-button v-if="showBtn.submit" type="primary" @click="$emit('submit')">确定</el-button>
+        <el-button v-if="showBtn.cancle" @click="$emit('cancle')">取消</el-button>
       </span>
     </template>
   </el-dialog>

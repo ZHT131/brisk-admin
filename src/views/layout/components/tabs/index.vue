@@ -6,7 +6,7 @@
           <template #label>
             <div class="tab-label">
               <i :class="item.meta.icon" style="vertical-align:middle;"></i>
-              <span style="margin-left:5px">{{ $t(item.name + "." + item.meta.title) }}</span>
+              <span style="margin-left:5px">{{ item.meta.title }}</span>
             </div>
           </template>
         </el-tab-pane>

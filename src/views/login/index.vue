@@ -22,9 +22,7 @@
                 </template>
                 <el-input show-password v-model="form.password" placeholder="请输入密码"></el-input>
               </el-form-item>
-              <el-button class="loginbtn" type="primary" @click="onSubmit">{{
-                $t("login.loginBtn")
-              }}</el-button>
+              <el-button class="loginbtn" type="primary" @click="onSubmit">登录</el-button>
               <el-alert style="margin-top:20px" title="账户：admin或editor 密码：随便填" type="success">
               </el-alert>
             </el-form>

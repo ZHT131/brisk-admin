@@ -3,7 +3,6 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Cookies from "js-cookie";
 import store from "../store";
 import { filterAsyncRoutes, sameLevelRoutes } from "../utils/index";
-import i18n from "../lang/index";
 import NProgress from "nprogress"; // progress bar
 import "nprogress/nprogress.css"; // progress bar style
 // 2. 定义一些路由
@@ -54,8 +53,7 @@ router.beforeEach(async (to, form) => {
   NProgress.start();
   // 动态修改网页标题
   if (to.meta.title) {
-    const { t } = i18n.global;
-    document.title = t(`${to.meta.title}.${to.meta.title}`);
+    document.title = to.meta.title;
   }
   //执行登录鉴权，未登录跳转登录页
   if (!Cookies.get("token")) {

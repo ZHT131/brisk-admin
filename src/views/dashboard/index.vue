@@ -3,26 +3,26 @@
     <el-row :gutter="10">
       <el-col :xs="12" :sm="12" :md="6" style="margin-bottom: 10px">
         <div class="brisk-card">
-          <div class="title">{{ $t("dashboard.totalUserNumber") }}</div>
+          <div class="title">总用户数</div>
           <div class="number">6666</div>
         </div>
       </el-col>
       <el-col :xs="12" :sm="12" :md="6" style="margin-bottom: 10px">
         <div class="brisk-card">
-          <div class="title">{{ $t("dashboard.totalVisits") }}</div>
+          <div class="title">总访问量</div>
           <div class="number">6666</div>
         </div>
       </el-col>
       <el-col :xs="12" :sm="12" :md="6" style="margin-bottom: 10px">
         <div class="brisk-card">
-          <div class="title">{{ $t("dashboard.totalOrderNumber") }}</div>
+          <div class="title">总订单数</div>
           <div class="number">6666</div>
         </div>
       </el-col>
       <el-col :xs="12" :sm="12" :md="6" style="margin-bottom: 10px">
         <div class="brisk-card">
-          <div class="title">{{ $t("dashboard.totalSalesAmount") }}</div>
-          <div class="number">6666</div>
+          <div class="title">总销售金额</div>
+          <div class="number">￥888.88</div>
         </div>
       </el-col>
     </el-row>
@@ -47,7 +47,7 @@ import { mapState } from "vuex";
 import { Chart, registerShape } from "@antv/g2";
 
 export default {
-  name:"dashboard",
+  name: "dashboard",
   mixins: [ResizeMixin],
   data() {
     return {
@@ -59,37 +59,6 @@ export default {
     ...mapState({
       device: (state) => state.app.device,
     }),
-  },
-
-  watch: {
-    "$i18n.locale"(newValue) {
-      const data = [
-        { name: this.$t("dashboard.sales"), month: "1", num: 18.9 },
-        { name: this.$t("dashboard.sales"), month: "2", num: 28.8 },
-        { name: this.$t("dashboard.sales"), month: "3", num: 39.3 },
-        { name: this.$t("dashboard.sales"), month: "4", num: 81.4 },
-        { name: this.$t("dashboard.sales"), month: "5", num: 47 },
-        { name: this.$t("dashboard.sales"), month: "6", num: 20.3 },
-        { name: this.$t("dashboard.sales"), month: "7", num: 24 },
-        { name: this.$t("dashboard.sales"), month: "8", num: 35.6 },
-        { name: this.$t("dashboard.orderNumber"), month: "1", num: 12.4 },
-        { name: this.$t("dashboard.orderNumber"), month: "2", num: 23.2 },
-        { name: this.$t("dashboard.orderNumber"), month: "3", num: 34.5 },
-        { name: this.$t("dashboard.orderNumber"), month: "4", num: 99.7 },
-        { name: this.$t("dashboard.orderNumber"), month: "5", num: 52.6 },
-        { name: this.$t("dashboard.orderNumber"), month: "6", num: 35.5 },
-        { name: this.$t("dashboard.orderNumber"), month: "7", num: 37.4 },
-        { name: this.$t("dashboard.orderNumber"), month: "8", num: 42.4 },
-      ];
-      this.chart.changeData(data);
-      const data1 = [
-        { type: this.$t("dashboard.wxPay"), value: 20 },
-        { type: this.$t("dashboard.aliPay"), value: 18 },
-        { type: this.$t("dashboard.walletPay"), value: 32 },
-        { type: this.$t("dashboard.otherPay"), value: 15 },
-      ];
-      this.chartB.changeData(data1);
-    },
   },
   mounted() {
     const e = new Event("resize", { "bubbles": true, "cancelable": true });
@@ -106,22 +75,22 @@ export default {
   methods: {
     zChart() {
       const data = [
-        { name: this.$t("dashboard.sales"), month: "1", num: 18.9 },
-        { name: this.$t("dashboard.sales"), month: "2", num: 28.8 },
-        { name: this.$t("dashboard.sales"), month: "3", num: 39.3 },
-        { name: this.$t("dashboard.sales"), month: "4", num: 81.4 },
-        { name: this.$t("dashboard.sales"), month: "5", num: 47 },
-        { name: this.$t("dashboard.sales"), month: "6", num: 20.3 },
-        { name: this.$t("dashboard.sales"), month: "7", num: 24 },
-        { name: this.$t("dashboard.sales"), month: "8", num: 35.6 },
-        { name: this.$t("dashboard.orderNumber"), month: "1", num: 12.4 },
-        { name: this.$t("dashboard.orderNumber"), month: "2", num: 23.2 },
-        { name: this.$t("dashboard.orderNumber"), month: "3", num: 34.5 },
-        { name: this.$t("dashboard.orderNumber"), month: "4", num: 99.7 },
-        { name: this.$t("dashboard.orderNumber"), month: "5", num: 52.6 },
-        { name: this.$t("dashboard.orderNumber"), month: "6", num: 35.5 },
-        { name: this.$t("dashboard.orderNumber"), month: "7", num: 37.4 },
-        { name: this.$t("dashboard.orderNumber"), month: "8", num: 42.4 },
+        { name: "销售额(元)", month: "1", num: 18.9 },
+        { name: "销售额(元)", month: "2", num: 28.8 },
+        { name: "销售额(元)", month: "3", num: 39.3 },
+        { name: "销售额(元)", month: "4", num: 81.4 },
+        { name: "销售额(元)", month: "5", num: 47 },
+        { name: "销售额(元)", month: "6", num: 20.3 },
+        { name: "销售额(元)", month: "7", num: 24 },
+        { name: "销售额(元)", month: "8", num: 35.6 },
+        { name: "订单数(单)", month: "1", num: 12.4 },
+        { name: "订单数(单)", month: "2", num: 23.2 },
+        { name: "订单数(单)", month: "3", num: 34.5 },
+        { name: "订单数(单)", month: "4", num: 99.7 },
+        { name: "订单数(单)", month: "5", num: 52.6 },
+        { name: "订单数(单)", month: "6", num: 35.5 },
+        { name: "订单数(单)", month: "7", num: 37.4 },
+        { name: "订单数(单)", month: "8", num: 42.4 },
       ];
 
       this.chart = new Chart({
@@ -159,10 +128,10 @@ export default {
     },
     bChart() {
       const data = [
-        { type: this.$t("dashboard.wxPay"), value: 20 },
-        { type: this.$t("dashboard.aliPay"), value: 18 },
-        { type: this.$t("dashboard.walletPay"), value: 32 },
-        { type: this.$t("dashboard.otherPay"), value: 15 },
+        { type: "微信支付", value: 20 },
+        { type: "支付宝支付", value: 18 },
+        { type: "钱包支付", value: 32 },
+        { type: "其他支付", value: 15 },
       ];
 
       // 可以通过调整这个数值控制分割空白处的间距，0-1 之间的数值

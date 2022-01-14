@@ -5,24 +5,24 @@
       <el-form ref="searchForm" :model="searchForm" :rules="searchRules" size="medium" label-width="100px" label-position="left" style="margin-bottom: 20px">
         <el-row :gutter="20">
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('adminRule.field.id')" prop="id">
-              <el-input :placeholder="$t('adminRule.field.id')" v-model="searchForm.id" clearable :style="{ width: '100%' }" />
+            <el-form-item label="ID" prop="id">
+              <el-input placeholder="ID" v-model="searchForm.id" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('adminRule.field.title')" prop="title">
-              <el-input :placeholder="$t('adminRule.field.title')" v-model="searchForm.title" clearable :style="{ width: '100%' }" />
+            <el-form-item label="标题" prop="title">
+              <el-input placeholder="标题" v-model="searchForm.title" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('adminRule.field.rule')" prop="rule">
-              <el-input :placeholder="$t('adminRule.field.rule')" v-model="searchForm.rule" clearable :style="{ width: '100%' }" />
+            <el-form-item label="规则" prop="rule">
+              <el-input placeholder="规则" v-model="searchForm.rule" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('adminRule.field.status')" prop="status">
-              <el-select v-model="searchForm.status" :placeholder="$t('adminRule.component.select_placeholder')" :style="{ width: '100%' }">
-                <el-option v-for="item in statusFilters" :key="item.value" :label="$t('adminRule.field.'+item.label)" :value="item.value" />
+            <el-form-item label="状态" prop="status">
+              <el-select v-model="searchForm.status" :style="{ width: '100%' }">
+                <el-option v-for="item in statusFilters" :key="item.value" :label="item.label" :value="item.value" />
               </el-select>
             </el-form-item>
           </el-col>
@@ -35,18 +35,18 @@
     <briskToolbar :toolShow="toolShow" :tableColumns="tableColumns" :exportLoading="exportLoading" @handleAdd="handleAdd" @handleSelectEdit="handleSelectEdit" @handleSelectDel="handleSelectDel" @handleExport="handleExport" @handleCheckAllChange="handleCheckAllChange" @handleCheckChange="handleCheckChange" @changeSearchShow="changeSearchShow" @refresh="refresh">
     </briskToolbar>
     <!-- 新增弹窗 -->
-    <briskDialogcom :title="$t('adminRule.component.addlog_add_title')" :device="$store.state.app.device" :showDialog="addDialogFormVisible" @cancle="addCancle" @submit="addSubmit" @close="addCancle">
+    <briskDialogcom title="新增" :device="$store.state.app.device" :showDialog="addDialogFormVisible" @cancle="addCancle" @submit="addSubmit" @close="addCancle">
       <template #form>
         <el-form ref="addForm" :model="addForm" label-width="80px" label-position="left" size="medium">
-          <el-form-item :label="$root.$t('adminRule.field.title')">
-            <el-input v-model="addForm.title" :placeholder="$root.$t('adminRule.field.title')"></el-input>
+          <el-form-item label="标题">
+            <el-input v-model="addForm.title" placeholder="标题"></el-input>
           </el-form-item>
-          <el-form-item :label="$root.$t('adminRule.field.rule')">
-            <el-input v-model="addForm.rule" :placeholder="$root.$t('adminRule.field.rule')"></el-input>
+          <el-form-item label="规则">
+            <el-input v-model="addForm.rule" placeholder="规则"></el-input>
           </el-form-item>
-          <el-form-item :label="$root.$t('adminRule.field.status')">
+          <el-form-item label="状态">
             <el-radio-group v-model="addForm.status">
-              <el-radio v-for="item in statusFilters" :key="item.value" :label="item.value">{{$root.$t('adminRule.field.'+item.label)}}</el-radio>
+              <el-radio v-for="item in statusFilters" :key="item.value" :label="item.value">{{item.label}}</el-radio>
             </el-radio-group>
           </el-form-item>
         </el-form>
@@ -55,10 +55,10 @@
     <div style="flex: 1">
       <el-table ref="tables" v-loading="loadingStatus" :data="tableData" border stripe row-key="id" default-expand-all :tree-props="{children: 'children'}" style="width: 100%">
         <el-table-column type="selection" width="60"></el-table-column>
-        <el-table-column v-if="showColumns.id" prop="id" :label="$t('adminRule.field.id')" min-width="180" sortable></el-table-column>
-        <el-table-column v-if="showColumns.title" prop="title" :label="$t('adminRule.field.title')" min-width="180"></el-table-column>
-        <el-table-column v-if="showColumns.rule" prop="rule" :label="$t('adminRule.field.rule')" min-width="180"></el-table-column>
-        <el-table-column v-if="showColumns.status" prop="status" :label="$t('adminRule.field.status')" min-width="180">
+        <el-table-column v-if="showColumns.id" prop="id" label="ID" min-width="180" sortable></el-table-column>
+        <el-table-column v-if="showColumns.title" prop="title" label="标题" min-width="180"></el-table-column>
+        <el-table-column v-if="showColumns.rule" prop="rule" label="规则" min-width="180"></el-table-column>
+        <el-table-column v-if="showColumns.status" prop="status" label="状态" min-width="180">
           <template #default="scope">
             <el-tag :type="scope.row.status == '1' ? 'success' : 'danger'" disable-transitions>{{ scope.row.status_text }}</el-tag>
           </template>
@@ -70,32 +70,32 @@
     <!--分页组件-->
     <briskPagination :device="$store.state.app.device" :currentPage="currentPage" :pageSize="pageSize" :pageSizes="pageSizes" :pageTotal="pageTotal" :pageMobileLayout="pageMobileLayout" :pageDesktopLayout="pageDesktopLayout" @handleSizeChange="handleSizeChange" @handleCurrentChange="handleCurrentChange" />
     <!-- 详情弹窗组件 -->
-    <briskDialogcom :title="$t('adminRule.component.addlog_detail_title')" :device="$store.state.app.device" :showDialog="detailDialogFormVisible" @cancle="detailCancle" @submit="detailSubmit" @close="detailCancle">
+    <briskDialogcom title="详情" :device="$store.state.app.device" :showDialog="detailDialogFormVisible" @cancle="detailCancle" @submit="detailSubmit" @close="detailCancle">
       <template #form>
         <el-table :data="detailData" style="width: 100%">
-          <el-table-column prop="name" :label="$root.$t('adminRule.component.detail_title')" width="180">
+          <el-table-column prop="name" label="标题" width="180">
             <template #default="scope">
-              <span>{{ $root.$t(scope.row.name) }}</span>
+              <span>{{ scope.row.name }}</span>
             </template>
           </el-table-column>
-          <el-table-column prop="content" :label="$root.$t('adminRule.component.detail_content')">
+          <el-table-column prop="content" label="内容">
           </el-table-column>
         </el-table>
       </template>
     </briskDialogcom>
     <!-- 编辑弹窗组件 -->
-    <briskDialogcom :title="$t('adminRule.component.addlog_edit_title')" :device="$store.state.app.device" :showDialog="editDialogFormVisible" @cancle="editCancle" @submit="editSubmit" @close="editCancle">
+    <briskDialogcom title="编辑" :device="$store.state.app.device" :showDialog="editDialogFormVisible" @cancle="editCancle" @submit="editSubmit" @close="editCancle">
       <template #form>
         <el-form ref="editForm" :model="editForm" label-width="80px" label-position="left" size="medium">
-          <el-form-item :label="$root.$t('adminRule.field.title')">
-            <el-input v-model="editForm.title" :placeholder="$root.$t('adminRule.field.title')"></el-input>
+          <el-form-item label="标题">
+            <el-input v-model="editForm.title" placeholder="标题"></el-input>
           </el-form-item>
-          <el-form-item :label="$root.$t('adminRule.field.rule')">
-            <el-input v-model="editForm.rule" :placeholder="$root.$t('adminRule.field.rule')"></el-input>
+          <el-form-item label="规则">
+            <el-input v-model="editForm.rule" placeholder="规则"></el-input>
           </el-form-item>
-          <el-form-item :label="$root.$t('adminRule.field.status')">
+          <el-form-item label="状态">
             <el-radio-group v-model="editForm.status">
-              <el-radio v-for="item in statusFilters" :key="item.value" :label="item.value">{{$root.$t('adminRule.field.'+item.label)}}</el-radio>
+              <el-radio v-for="item in statusFilters" :key="item.value" :label="item.value">{{item.label}}</el-radio>
             </el-radio-group>
           </el-form-item>
         </el-form>
@@ -113,7 +113,7 @@ import briskOperate from "~/components/crud/brisk-operate.vue";
 import briskDialogcom from "~/components/crud/brisk-dialogcom.vue";
 
 export default {
-  name:"adminRule",
+  name: "adminRule",
   components: {
     briskToolbar,
     briskSearchBtn,
@@ -143,22 +143,22 @@ export default {
       //列筛选数据
       tableColumns: [
         {
-          label: "adminRule.field.id",
+          label: "ID",
           property: "id",
           visible: true,
         },
         {
-          label: "adminRule.field.title",
+          label: "标题",
           property: "title",
           visible: true,
         },
         {
-          label: "adminRule.field.rule",
+          label: "规则",
           property: "rule",
           visible: true,
         },
         {
-          label: "adminRule.field.status",
+          label: "状态",
           property: "status",
           visible: true,
         },
@@ -175,8 +175,8 @@ export default {
     return {
       //状态筛选数据
       statusFilters: [
-        { label: "status_1", value: "1" },
-        { label: "status_2", value: "2" },
+        { label: "正常", value: "1" },
+        { label: "禁用", value: "2" },
       ],
       addForm: {
         title: "",
@@ -190,29 +190,28 @@ export default {
       },
       detailData: [
         {
-          name: "adminRule.field.id",
+          name: "ID",
           content: "1",
         },
         {
-          name: "adminRule.field.title",
+          name: "标题",
           content: "zhangsan",
         },
         {
-          name: "adminRule.field.rule",
+          name: "规则",
           content: "adminRule",
         },
         {
-          name: "adminRule.field.status",
+          name: "状态",
           content: "正常",
         },
       ],
     };
   },
-  created() {},
+  created() { },
   methods: {},
 };
 </script>
 
 <style lang="scss" scoped>
-
 </style>

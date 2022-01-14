@@ -6,10 +6,6 @@ const { resolve } = require("path");
  * @type {import('vite').UserConfig}
  */
 export default defineConfig(({ command, mode }) => {
-  let vueI18n = {};
-  if (command === "serve") {
-    vueI18n["vue-i18n"] = "vue-i18n/dist/vue-i18n.cjs.js"; //解决dev运行警告You are running the esm-bundler build of vue-i18n.
-  }
   return {
     plugins: [
       vue(),
@@ -20,7 +16,6 @@ export default defineConfig(({ command, mode }) => {
     resolve: {
       alias: {
         "~/": `${resolve(__dirname, "src")}/`,
-        ...vueI18n,
       },
     },
     // base: "./",

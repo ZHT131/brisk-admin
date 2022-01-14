@@ -4,18 +4,18 @@
       <!-- 左侧插槽 -->
       <slot name="left" />
       <el-button v-if="toolShow.add" type="primary" :icon="Plus" @click="$emit('handleAdd')">
-        {{$t("toolBar.add")}}
+        新增
       </el-button>
       <el-button v-if="toolShow.edit" type="success" :icon="Edit" @click="$emit('handleSelectEdit')">
-        {{$t("toolBar.edit")}}
+        编辑
       </el-button>
       <el-button v-if="toolShow.del" type="danger" :icon="Delete" @click="$emit('handleSelectDel')">
-        {{$t("toolBar.delete")}}
+        删除
       </el-button>
       <el-popover v-if="toolShow.export" placement="bottom-end" trigger="click">
         <template #reference>
           <el-button type="warning" :icon="Download" :loading="exportLoading">
-            {{$t("toolBar.export")}}
+            导出
           </el-button>
         </template>
         <div class="brisk-column">
@@ -36,10 +36,10 @@
         </template>
         <div class="brisk-column">
           <el-checkbox v-model="allColumnsSelected" :indeterminate="allColumnsSelectedIndeterminate" @change="checkAllChange">
-            {{$t("toolBar.select_all")}}
+            全选
           </el-checkbox>
           <el-checkbox v-for="item in tableColumns" :key="item.property" v-model="item.visible" @change="checkChange(item)">
-            {{ $t(item.label) }}
+            {{ item.label }}
           </el-checkbox>
         </div>
       </el-popover>

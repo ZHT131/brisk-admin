@@ -52,7 +52,7 @@ const authRoutes = (params) => {
         component: "layout/index.vue",
         redirect: "/dashboard",
         meta: {
-          title: "home",
+          title: "控制台",
           icon: "ri-home-line",
           keepAlive: false,
           tabShow: false,
@@ -65,7 +65,7 @@ const authRoutes = (params) => {
             component: "dashboard/index.vue",
             name: "dashboard",
             meta: {
-              title: "dashboard",
+              title: "控制台",
               icon: "ri-home-line",
               keepAlive: true,
               tabShow: true,
@@ -80,7 +80,7 @@ const authRoutes = (params) => {
         component: "layout/index.vue",
         redirect: "/profile/index",
         meta: {
-          title: "profile",
+          title: "个人资料",
           icon: "ri-home-line",
           keepAlive: false,
           tabShow: false,
@@ -94,7 +94,7 @@ const authRoutes = (params) => {
             component: "profile/index.vue",
             name: "profileIndex",
             meta: {
-              title: "profileIndex",
+              title: "个人资料",
               icon: "ri-home-line",
               keepAlive: true,
               tabShow: true,
@@ -109,7 +109,7 @@ const authRoutes = (params) => {
         component: "layout/index.vue",
         redirect: null,
         meta: {
-          title: "auth",
+          title: "权限管理",
           icon: "ri-file-user-line",
           keepAlive: false,
           tabShow: false,
@@ -122,7 +122,7 @@ const authRoutes = (params) => {
             component: "admin/index.vue",
             name: "admin",
             meta: {
-              title: "admin",
+              title: "管理员",
               icon: "ri-admin-line",
               keepAlive: true,
               tabShow: true,
@@ -135,7 +135,7 @@ const authRoutes = (params) => {
             component: "adminLog/index.vue",
             name: "adminLog",
             meta: {
-              title: "adminLog",
+              title: "管理员日志",
               icon: "ri-file-list-line",
               keepAlive: true,
               tabShow: true,
@@ -148,7 +148,7 @@ const authRoutes = (params) => {
             component: "adminGroup/index.vue",
             name: "adminGroup",
             meta: {
-              title: "adminGroup",
+              title: "角色分组",
               icon: "ri-group-line",
               keepAlive: true,
               tabShow: true,
@@ -161,7 +161,7 @@ const authRoutes = (params) => {
             component: "adminRule/index.vue",
             name: "adminRule",
             meta: {
-              title: "adminRule",
+              title: "权限规则",
               icon: "ri-menu-line",
               keepAlive: true,
               tabShow: true,
@@ -177,7 +177,7 @@ const authRoutes = (params) => {
         name: "error_page",
         redirect: null,
         meta: {
-          title: "error_page",
+          title: "错误页面",
           icon: "ri-error-warning-line",
           keepAlive: false,
           tabShow: false,
@@ -189,7 +189,7 @@ const authRoutes = (params) => {
             component: "401/index.vue",
             name: "page401",
             meta: {
-              title: "page401",
+              title: "401",
               icon: "ri-error-warning-line",
               keepAlive: true,
               tabShow: true,
@@ -202,7 +202,7 @@ const authRoutes = (params) => {
             component: "404/index.vue",
             name: "page404",
             meta: {
-              title: "page404",
+              title: "404",
               icon: "ri-error-warning-line",
               keepAlive: true,
               tabShow: true,
@@ -219,7 +219,7 @@ const authRoutes = (params) => {
         name: "nested",
         redirect: null,
         meta: {
-          title: "nested",
+          title: "嵌套页面",
           icon: "ri-stack-fill",
           keepAlive: false,
           tabShow: false,
@@ -231,7 +231,7 @@ const authRoutes = (params) => {
             component: "noComponent",
             name: "menu",
             meta: {
-              title: "menu",
+              title: "菜单",
               icon: "ri-apps-2-fill",
               keepAlive: false,
               tabShow: false,
@@ -244,7 +244,7 @@ const authRoutes = (params) => {
                 component: "noComponent",
                 name: "menu2",
                 meta: {
-                  title: "menu2",
+                  title: "菜单2",
                   icon: "ri-apps-2-fill",
                   keepAlive: false,
                   tabShow: false,
@@ -257,7 +257,7 @@ const authRoutes = (params) => {
                     component: "menu4/index.vue",
                     name: "menu4",
                     meta: {
-                      title: "menu4",
+                      title: "菜单4",
                       icon: "ri-apps-2-fill",
                       keepAlive: true,
                       tabShow: true,
@@ -272,7 +272,7 @@ const authRoutes = (params) => {
                 component: "menu3/index.vue",
                 name: "menu3",
                 meta: {
-                  title: "menu3",
+                  title: "菜单3",
                   icon: "ri-apps-2-fill",
                   keepAlive: true,
                   tabShow: true,
@@ -287,7 +287,7 @@ const authRoutes = (params) => {
             component: "menu1/index.vue",
             name: "menu1",
             meta: {
-              title: "menu1",
+              title: "菜单1",
               icon: "ri-apps-2-fill",
               keepAlive: true,
               tabShow: true,
@@ -314,7 +314,7 @@ const authRoutes = (params) => {
         component: "layout/index.vue",
         redirect: "/dashboard",
         meta: {
-          title: "home",
+          title: "首页",
           icon: "ri-home-line",
           keepAlive: false,
           tabShow: false,
@@ -327,7 +327,7 @@ const authRoutes = (params) => {
             component: "dashboard/index.vue",
             name: "dashboard",
             meta: {
-              title: "dashboard",
+              title: "控制台",
               icon: "ri-home-line",
               keepAlive: true,
               tabShow: true,
@@ -342,7 +342,7 @@ const authRoutes = (params) => {
         component: "layout/index.vue",
         redirect: "/profile/index",
         meta: {
-          title: "profile",
+          title: "个人资料",
           icon: "ri-home-line",
           keepAlive: false,
           tabShow: false,
@@ -356,7 +356,7 @@ const authRoutes = (params) => {
             component: "profile/index.vue",
             name: "profileIndex",
             meta: {
-              title: "profileIndex",
+              title: "个人资料",
               icon: "ri-home-line",
               keepAlive: true,
               tabShow: true,
@@ -371,7 +371,7 @@ const authRoutes = (params) => {
         component: "layout/index.vue",
         redirect: null,
         meta: {
-          title: "auth",
+          title: "权限管理",
           icon: "ri-file-user-line",
           keepAlive: false,
           tabShow: false,
@@ -384,7 +384,7 @@ const authRoutes = (params) => {
             component: "admin/index.vue",
             name: "admin",
             meta: {
-              title: "admin",
+              title: "管理员",
               icon: "ri-admin-line",
               keepAlive: true,
               tabShow: true,
@@ -397,7 +397,7 @@ const authRoutes = (params) => {
             component: "adminLog/index.vue",
             name: "adminLog",
             meta: {
-              title: "adminLog",
+              title: "管理员日志",
               icon: "ri-file-list-line",
               keepAlive: true,
               tabShow: true,
@@ -413,7 +413,7 @@ const authRoutes = (params) => {
         name: "error_page",
         redirect: null,
         meta: {
-          title: "error_page",
+          title: "错误页面",
           icon: "ri-error-warning-line",
           keepAlive: false,
           tabShow: false,
@@ -425,7 +425,7 @@ const authRoutes = (params) => {
             component: "401/index.vue",
             name: "page401",
             meta: {
-              title: "page401",
+              title: "401",
               icon: "ri-error-warning-line",
               keepAlive: true,
               tabShow: true,
@@ -438,7 +438,7 @@ const authRoutes = (params) => {
             component: "404/index.vue",
             name: "page404",
             meta: {
-              title: "page404",
+              title: "404",
               icon: "ri-error-warning-line",
               keepAlive: true,
               tabShow: true,
@@ -455,7 +455,7 @@ const authRoutes = (params) => {
         name: "nested",
         redirect: null,
         meta: {
-          title: "nested",
+          title: "嵌套页面",
           icon: "ri-stack-fill",
           keepAlive: false,
           tabShow: false,
@@ -467,7 +467,7 @@ const authRoutes = (params) => {
             component: "noComponent",
             name: "menu",
             meta: {
-              title: "menu",
+              title: "菜单",
               icon: "ri-apps-2-fill",
               keepAlive: false,
               tabShow: false,
@@ -480,7 +480,7 @@ const authRoutes = (params) => {
                 component: "noComponent",
                 name: "menu2",
                 meta: {
-                  title: "menu2",
+                  title: "菜单2",
                   icon: "ri-apps-2-fill",
                   keepAlive: false,
                   tabShow: false,
@@ -493,7 +493,7 @@ const authRoutes = (params) => {
                     component: "menu4/index.vue",
                     name: "menu4",
                     meta: {
-                      title: "menu4",
+                      title: "菜单4",
                       icon: "ri-apps-2-fill",
                       keepAlive: true,
                       tabShow: true,
@@ -508,7 +508,7 @@ const authRoutes = (params) => {
                 component: "menu3/index.vue",
                 name: "menu3",
                 meta: {
-                  title: "menu3",
+                  title: "菜单3",
                   icon: "ri-apps-2-fill",
                   keepAlive: true,
                   tabShow: true,
@@ -523,7 +523,7 @@ const authRoutes = (params) => {
             component: "menu1/index.vue",
             name: "menu1",
             meta: {
-              title: "menu1",
+              title: "菜单1",
               icon: "ri-apps-2-fill",
               keepAlive: true,
               tabShow: true,

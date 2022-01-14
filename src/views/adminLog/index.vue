@@ -5,34 +5,34 @@
       <el-form ref="searchForm" :model="searchForm" :rules="searchRules" size="medium" label-width="100px" label-position="left" style="margin-bottom: 20px">
         <el-row :gutter="20">
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('adminLog.field.id')" prop="id">
-              <el-input :placeholder="$t('adminLog.field.id')" v-model="searchForm.id" clearable :style="{ width: '100%' }" />
+            <el-form-item label="ID" prop="id">
+              <el-input placeholder="ID" v-model="searchForm.id" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('adminLog.field.username')" prop="username">
-              <el-input :placeholder="$t('adminLog.field.username')" v-model="searchForm.username" clearable :style="{ width: '100%' }" />
+            <el-form-item label="用户名" prop="username">
+              <el-input placeholder="用户名" v-model="searchForm.username" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('adminLog.field.title')" prop="title">
-              <el-input :placeholder="$t('adminLog.field.title')" v-model="searchForm.title" clearable :style="{ width: '100%' }" />
+            <el-form-item label="标题" prop="title">
+              <el-input placeholder="标题" v-model="searchForm.title" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('adminLog.field.path_url')" prop="path_url">
-              <el-input :placeholder="$t('adminLog.field.path_url')" v-model="searchForm.path_url" clearable :style="{ width: '100%' }" />
+            <el-form-item label="操作路径" prop="path_url">
+              <el-input placeholder="操作路径" v-model="searchForm.path_url" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('adminLog.field.ip')" prop="ip">
-              <el-input :placeholder="$t('adminLog.field.ip')" v-model="searchForm.ip" clearable :style="{ width: '100%' }" />
+            <el-form-item label="IP" prop="ip">
+              <el-input placeholder="IP" v-model="searchForm.ip" clearable :style="{ width: '100%' }" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="6">
-            <el-form-item :label="$t('adminLog.field.status')" prop="status">
-              <el-select v-model="searchForm.status" :placeholder="$t('adminLog.component.select_placeholder')" :style="{ width: '100%' }">
-                <el-option v-for="item in statusFilters" :key="item.value" :label="$t('adminLog.field.'+item.label)" :value="item.value" />
+            <el-form-item label="状态" prop="status">
+              <el-select v-model="searchForm.status" :style="{ width: '100%' }">
+                <el-option v-for="item in statusFilters" :key="item.value" :label="item.label" :value="item.value" />
               </el-select>
             </el-form-item>
           </el-col>
@@ -45,24 +45,24 @@
     <briskToolbar :toolShow="toolShow" :tableColumns="tableColumns" :exportLoading="exportLoading" @handleAdd="handleAdd" @handleSelectEdit="handleSelectEdit" @handleSelectDel="handleSelectDel" @handleExport="handleExport" @handleCheckAllChange="handleCheckAllChange" @handleCheckChange="handleCheckChange" @changeSearchShow="changeSearchShow" @refresh="refresh">
     </briskToolbar>
     <!-- 新增弹窗 -->
-    <briskDialogcom :title="$t('adminLog.component.addlog_add_title')" :device="$store.state.app.device" :showDialog="addDialogFormVisible" @cancle="addCancle" @submit="addSubmit" @close="addCancle">
+    <briskDialogcom title="新增" :device="$store.state.app.device" :showDialog="addDialogFormVisible" @cancle="addCancle" @submit="addSubmit" @close="addCancle">
       <template #form>
         <el-form ref="addForm" :model="addForm" label-width="80px" label-position="left" size="medium">
-          <el-form-item :label="$root.$t('adminLog.field.username')">
-            <el-input v-model="addForm.username" :placeholder="$root.$t('adminLog.field.username')"></el-input>
+          <el-form-item label="用户名">
+            <el-input v-model="addForm.username" placeholder="用户名"></el-input>
           </el-form-item>
-          <el-form-item :label="$root.$t('adminLog.field.title')">
-            <el-input v-model="addForm.title" :placeholder="$root.$t('adminLog.field.title')"></el-input>
+          <el-form-item label="标题">
+            <el-input v-model="addForm.title" placeholder="标题"></el-input>
           </el-form-item>
-          <el-form-item :label="$root.$t('adminLog.field.path_url')">
-            <el-input v-model="addForm.path_url" :placeholder="$root.$t('adminLog.field.path_url')"></el-input>
+          <el-form-item label="操作路径">
+            <el-input v-model="addForm.path_url" placeholder="操作路径"></el-input>
           </el-form-item>
-          <el-form-item :label="$root.$t('adminLog.field.ip')">
-            <el-input v-model="addForm.ip" :placeholder="$root.$t('adminLog.field.ip')"></el-input>
+          <el-form-item label="IP">
+            <el-input v-model="addForm.ip" placeholder="IP"></el-input>
           </el-form-item>
-          <el-form-item :label="$root.$t('adminLog.field.status')">
+          <el-form-item label="状态">
             <el-radio-group v-model="addForm.status">
-              <el-radio v-for="item in statusFilters" :key="item.value" :label="item.value">{{$root.$t('adminLog.field.'+item.label)}}</el-radio>
+              <el-radio v-for="item in statusFilters" :key="item.value" :label="item.value">{{item.label}}</el-radio>
             </el-radio-group>
           </el-form-item>
         </el-form>
@@ -71,12 +71,12 @@
     <div style="flex: 1">
       <el-table ref="tables" v-loading="loadingStatus" @selection-change="selectionChange" :data="tableData" border stripe style="width: 100%">
         <el-table-column type="selection" width="60"></el-table-column>
-        <el-table-column v-if="showColumns.id" prop="id" :label="$t('adminLog.field.id')" min-width="180" sortable></el-table-column>
-        <el-table-column v-if="showColumns.username" prop="username" :label="$t('adminLog.field.username')" min-width="180"></el-table-column>
-        <el-table-column v-if="showColumns.title" prop="title" :label="$t('adminLog.field.title')" min-width="180"></el-table-column>
-        <el-table-column v-if="showColumns.path_url" prop="path_url" :label="$t('adminLog.field.path_url')" min-width="180"></el-table-column>
-        <el-table-column v-if="showColumns.ip" prop="ip" :label="$t('adminLog.field.ip')" min-width="180"></el-table-column>
-        <el-table-column v-if="showColumns.status" prop="status" :label="$t('adminLog.field.status')" min-width="180">
+        <el-table-column v-if="showColumns.id" prop="id" label="ID" min-width="180" sortable></el-table-column>
+        <el-table-column v-if="showColumns.username" prop="username" label="用户名" min-width="180"></el-table-column>
+        <el-table-column v-if="showColumns.title" prop="title" label="标题" min-width="180"></el-table-column>
+        <el-table-column v-if="showColumns.path_url" prop="path_url" label="操作路径" min-width="180"></el-table-column>
+        <el-table-column v-if="showColumns.ip" prop="ip" label="IP" min-width="180"></el-table-column>
+        <el-table-column v-if="showColumns.status" prop="status" label="状态" min-width="180">
           <template #default="scope">
             <el-tag :type="scope.row.status == '1' ? 'success' : 'danger'" disable-transitions>{{ scope.row.status_text }}</el-tag>
           </template>
@@ -88,15 +88,15 @@
     <!--分页组件-->
     <briskPagination :device="$store.state.app.device" :currentPage="currentPage" :pageSize="pageSize" :pageSizes="pageSizes" :pageTotal="pageTotal" :pageMobileLayout="pageMobileLayout" :pageDesktopLayout="pageDesktopLayout" @handleSizeChange="handleSizeChange" @handleCurrentChange="handleCurrentChange" />
     <!-- 详情弹窗组件 -->
-    <briskDialogcom :title="$t('adminLog.component.addlog_detail_title')" :device="$store.state.app.device" :showDialog="detailDialogFormVisible" @cancle="detailCancle" @submit="detailSubmit" @close="detailCancle">
+    <briskDialogcom title="详情" :device="$store.state.app.device" :showDialog="detailDialogFormVisible" @cancle="detailCancle" @submit="detailSubmit" @close="detailCancle">
       <template #form>
         <el-table :data="detailData" style="width: 100%">
-          <el-table-column prop="name" :label="$root.$t('adminLog.component.detail_title')" width="180">
+          <el-table-column prop="name" label="标题" width="180">
             <template #default="scope">
-              <span>{{ $root.$t(scope.row.name) }}</span>
+              <span>{{ scope.row.name }}</span>
             </template>
           </el-table-column>
-          <el-table-column prop="content" :label="$root.$t('adminLog.component.detail_content')">
+          <el-table-column prop="content" label="内容">
           </el-table-column>
         </el-table>
       </template>
@@ -113,7 +113,7 @@ import briskOperate from "~/components/crud/brisk-operate.vue";
 import briskDialogcom from "~/components/crud/brisk-dialogcom.vue";
 
 export default {
-  name:"adminLog",
+  name: "adminLog",
   components: {
     briskToolbar,
     briskSearchBtn,
@@ -147,32 +147,32 @@ export default {
       //列筛选数据
       tableColumns: [
         {
-          label: "adminLog.field.id",
+          label: "ID",
           property: "id",
           visible: true,
         },
         {
-          label: "adminLog.field.username",
+          label: "用户名",
           property: "username",
           visible: true,
         },
         {
-          label: "adminLog.field.title",
+          label: "标题",
           property: "title",
           visible: true,
         },
         {
-          label: "adminLog.field.path_url",
+          label: "操作路径",
           property: "path_url",
           visible: true,
         },
         {
-          label: "adminLog.field.ip",
+          label: "IP",
           property: "ip",
           visible: true,
         },
         {
-          label: "adminLog.field.status",
+          label: "状态",
           property: "status",
           visible: true,
         },
@@ -196,8 +196,8 @@ export default {
     return {
       //状态筛选数据
       statusFilters: [
-        { label: "status_1", value: "1" },
-        { label: "status_2", value: "2" },
+        { label: "正常", value: "1" },
+        { label: "禁用", value: "2" },
       ],
       addForm: {
         username: "",
@@ -208,39 +208,38 @@ export default {
       },
       detailData: [
         {
-          name: "adminLog.field.id",
+          name: "ID",
           content: "1",
         },
         {
-          name: "adminLog.field.username",
+          name: "用户名",
           content: "zhangsan",
         },
         {
-          name: "adminLog.field.title",
+          name: "标题",
           content: "操作后台",
         },
         {
-          name: "adminLog.field.ip",
+          name: "IP",
           content: "127.0.0.1",
         },
         {
-          name: "adminLog.field.path_url",
+          name: "操作路径",
           content: "/adminLog/auth/index",
         },
         {
-          name: "adminLog.field.status",
+          name: "状态",
           content: "正常",
         },
       ],
     };
   },
-  created() {},
+  created() { },
   methods: {
-   
+
   },
 };
 </script>
 
 <style lang="scss" scoped>
-
 </style>

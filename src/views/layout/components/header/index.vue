@@ -12,22 +12,6 @@
       <div class="brisk-fullscreen">
         <i class="ri-fullscreen-fill" @click="toScreenfull" :style="{'color':skinChoose.navColor}"></i>
       </div>
-      <el-dropdown style="margin-right: 20px;">
-        <div class="brisk-userinfo">
-          <span :style="{'color':skinChoose.navColor}">
-            {{ language == "en" ? "English" : "中文" }}
-          </span>
-          <el-icon :color="skinChoose.navColor">
-            <arrow-down />
-          </el-icon>
-        </div>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item @click="setLang('zh-cn')">中文</el-dropdown-item>
-            <el-dropdown-item @click="setLang('en')">English</el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
       <el-dropdown>
         <div class="brisk-userinfo">
           <span :style="{'color':skinChoose.navColor}">
@@ -39,12 +23,8 @@
         </div>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item @click="toProfile()">{{
-              $t("userDropdown.userinfo")
-            }}</el-dropdown-item>
-            <el-dropdown-item @click="loginOut()">{{
-              $t("userDropdown.loginout")
-            }}</el-dropdown-item>
+            <el-dropdown-item @click="toProfile()">个人资料</el-dropdown-item>
+            <el-dropdown-item @click="loginOut()">退出</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
